@@ -1,0 +1,30 @@
+units metal
+boundary p p p
+atom_style atomic
+
+read_data ppimg2-hydrolysis.lmp
+
+neighbor 2.0 bin
+neigh_modify every 10 delay 0 check no
+
+pair_style deepmd graph_1_006_compressed.pb graph_2_006_compressed.pb  graph_3_006_compressed.pb  out_freq 10000  out_file model_devi.out
+pair_coeff * *
+
+timestep 0.0005
+
+velocity all create 298.15 12044006 dist gaussian
+   
+fix pl all plumed plumedfile plumed_ppimg2-hydrolysis.dat outfile plumed_ppimg2-hydrolysis.logfix
+fix 1 all nve
+fix 2 all temp/csvr 298.15 298.15 $(100.0*dt) 17684006
+fix 3 all momentum 1 linear 1 1 1
+
+dump traj all atom 10000 trajectory_traj.lammpstrj # handles the output printing
+
+thermo_style custom step time etotal ke pe temp press vol density cella cellb cellc cpuremain
+thermo_modify flush yes
+thermo 10000
+
+run 400000
+
+write_restart ppimg2-hydrolysis.restart

@@ -1,0 +1,63 @@
+# Large trajectory and restart files
+*.lammpstrj
+*.dcd
+*.trj
+*.restart
+
+# PLUMED output (not input)
+COLVAR
+KERNELS
+*.logfix
+
+# DeePMD compiled models
+*.pb
+
+# Numpy arrays
+*.npy
+
+# ORCA binary output
+*.gbw
+*.densities
+*.engrad
+*.prop
+*.hess
+
+# CP2K wavefunction files
+*.wfn
+
+# CP2K/LAMMPS output files
+*.out
+*.log
+LAMMPS_DeepMD.*
+
+# CP2K forces/energy outputs (unless explicitly committed)
+*.fe
+*.for
+
+# Large data files
+all_energies*.dat
+debug.txt
+
+# Python
+*.pyc
+__pycache__/
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Conda / virtualenv
+lammps_env/
+arcann_env/
+plt_env/
+*.tar.gz
+*.whl
+
+# Editor
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Backup files
+*.bak

@@ -1,0 +1,11 @@
+--- LIST OF FILES ---
+
+o plumed_SMD.dat: contains the plumed settings to design the motion and the dynamic within the system. Potnetial walls are set here to prevent certain atom to approach each other or even interact. More detail-
+  -s are contained within the file in the commented lines
+
+o plumes_atomdef.dat: initializes some aotmic types as the leaving atoms, or the electrophilic centers. Provides a first overview of the process within the system.
+
+o pph3.*: those are the three files containig the configuration of the system at the beginning of the simulation. The .lmp is the actual input used by lammps and passed as initial configuration
+
+o properties_sys1-2.dat: it sets the correct label to atoms when converting from .xyz (or .pdb) and it builds the box within the system is contained. Pass it as argument after '-properties' keyword and before
+  the desired model you want to convert to when running atomsk to force the correct atomic label assignations, in order to ensure the correct working of the NNPs.

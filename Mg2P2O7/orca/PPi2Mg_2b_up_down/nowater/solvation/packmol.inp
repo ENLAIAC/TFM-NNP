@@ -1,0 +1,19 @@
+# --- Global Settings ---
+tolerance 2.0               # Minimum distance between atoms in Angstroms
+filetype xyz                # We want XYZ format for CP2K
+output PPi2Mg_sides.xyz     # Name of your final output file
+
+# --- Solute (Your Complex) ---
+structure PPi2Mg_nowater_sides.xyz
+  number 1                  # Put exactly 1 complex in the box
+  fixed 0. 0. 0. 0. 0. 0.   # Fix it perfectly at the center (x, y, z, and rotation angles)
+end structure
+
+# --- Solvent (The Water Box) ---
+structure water_structure.xyz
+  number 169               # REPLACE THIS with your EXACT target number of waters
+  
+  # Define the box boundaries: xmin ymin zmin xmax ymax zmax
+  # For a 30x30x30 Box centered at 0,0,0, you use -15 to +15:
+  inside box -8.0 -8.0 -8.0 8.0 8.0 8.0 
+end structure

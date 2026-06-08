@@ -1,0 +1,11 @@
+#Change atom types to match NNP
+type
+H 1
+O 2
+Mg 3
+P 4
+masses
+H   1.00800000
+O   15.99900000
+Mg   24.30500000
+P   30.97376200

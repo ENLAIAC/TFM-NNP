@@ -1,0 +1,50 @@
+#INITIALIZATION
+units metal # It sets the unity of measurements to use. In this case the time uom are picoseconds
+boundary p p p # It sets the boundary conditions in each direction with the format: x y z. Here pbc are applied
+atom_style atomic # Defines the attributes associated with atoms and reported in the output
+
+# "pair_style" defines the type of forces to use to compute pairwise interaction. Here the NNP obtained by Luis are used
+pair_style deepmd graph_1_006_compressed.pb graph_2_006_compressed.pb graph_3_006_compressed.pb out_freq 1 out_file model_devi_test.out #the last four keyword handles output files
+
+
+# SYSTEM DEFINITION (by reading data provided in input)
+read_data PPiMg2-SMD.lmp
+
+# SIMULATION SETTINGS
+
+pair_coeff * * # Specify the pairwise force field coefficients for one or more pairs of atom types, the double '*' syntax means "all atom types"
+
+neighbor 2.0 bin # It drives the building of the pairing list. The first argument is the distance beyond the force cutoff within atom pairs (total distance = force cutoff + skin), while the second arguments defines the argument to build thepairing list and eventually their distirbution across processors: binning in this case.
+neigh_modify every 1 delay 0 check yes # every 10 steps build the pairing list without checking if atoms have moved
+timestep 0.0005 #Set the timestep size for subsequent molecular dynamics simulations. The uom is set by the initial command: "metal"
+dump traj all atom 1 test.lammpstrj # handles the output printing
+thermo_style custom step time etotal ke pe temp press vol density cpuremain
+#controls the style of thermodynamic data printing, specifically:
+# step:timestep (dt) of the frame: time:simulation total time at that frame; etotal, ke, pe: total energy (ke+pe), 
+# kinetic contribution and potentail contribution; tempe: temperature; press: pressure; vol: volume; density: density, 
+# cpuremain: estimated CPU time remaining in run
+thermo_modify flush yes # Rendering of thermodynamics. The software updates data, it doesn't prevent data lost due to 
+#hardware
+thermo 1 # Each how many timestep the thermodynamic datas are printed. Is set at the end because 'thermo_style' restore
+#default setting for thermodynamics.
+
+velocity all create 298.15 9374654 dist gaussian
+# Generates a distribution of velocitites according to the fixed temperature and the chosen distribution type using an 
+# arbitrary seed.
+
+
+fix pl all plumed plumedfile plumed_PPiMg2-SMD.dat outfile plumed_PPiMg2-SMD.logfix 
+# fix the plumed data usage, providing a input and an output file. Assigns '1' as fix label and defines the kind of fix command is required to perform. I.e., after a plumed analysis of the trajectories, compute the nve integration over the entire system. The plumed file contains the analysis/sampling to perform on the system.
+
+fix 1 all nve # Perform plain time integration to update position and velocity for atoms in the group each timestep. 
+# This creates a system trajectory consistent with the microcanonical ensemble (NVE)
+
+fix 2 all temp/csvr 298.15 298.15 $(100.0*dt) 9374654
+# Adjust the temperature with a canonical sampling. Takes as arguments the starting temp, the final one and the damping
+# parameter that sets how rapidly the temperature relaxes. In the current case the thermostat resembles to a berendsen
+# #thermostat 
+
+fix 3 all momentum 1 linear 1 1 1 
+# The linear momentum of all atoms is zeroed at each step ('1') in all the directions
+
+run 1000 # 160000 timesteps

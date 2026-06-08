@@ -1,0 +1,42 @@
+=====================================
+FOLDER: LAMMPS_MD_PPiMg2
+SYSTEM: MareNostrum 5 glogin1
+CREATED: 19/05/2026
+UPDATED: 23/05/2026
+PURPOSE: Steered MD of Mg2P2O7 driven by PLUMED using DeePMD NNPs from
+         ArcaNN iteration 006. Model deviation tracked in parallel.
+=====================================
+
+19/05/2026
+
+o Folder initialized. The three compressed graph files ('graph_1/2/3_006_compressed.pb')
+  from ArcaNN iteration 006 have been copied here and will be used as the committee
+  of NNPs for both the dynamics and the model deviation calculation.
+
+o The LAMMPS input file 'PPiMg2-SMD.in' and the PLUMED input 'plumed_PPiMg2-SMD.dat'
+  have been set up starting from the previous SMD configuration. The job submission
+  script 'job_lammps_submission.sh' has been prepared and the first run submitted.
+
+23/05/2026
+
+o The trajectory 'PPiMg2-SMD.lammpstrj', the LAMMPS log 'PPiMg2-SMD.log',
+  the PLUMED log 'plumed_PPiMg2-SMD.logfix', the model deviation output
+  'model_devi_PPiMg2.out' and the job log 'LAMMPS_DeepMD.40951064' have been
+  copied to the local machine at ~/TFM/Mg2P2O7/LAMMPS_MD_PPiMg2/.
+
+o Analysis of the simulation crash revealed that the Mg coordination walls in
+  'plumed_PPiMg2-SMD.dat' were miscalibrated with respect to the actual geometry
+  in 'PPiMg2-SMD.lmp'. Each Mg is octahedrally coordinated to 4 water oxygens
+  (2.01-2.23 A) and 2 substrate oxygens (2.04-2.33 A), giving initial coordination
+  values below the lower wall thresholds, which injected large artificial forces
+  from step 0 and caused the system to collapse.
+
+o The PLUMED file has been corrected: R_0 changed from 2.20 to 2.50 A in all
+  six Mg coordination CVs ('comg1', 'comg2', 'coelpmg1', 'coelpmg2', 'colvpmg1',
+  'colvpmg2'), and the lower wall threshold on 'comg1_tot'/'comg2_tot' adjusted
+  from 4.8 to 4.5. Backups of the original files are stored as
+  'plumed_PPiMg2-SMD.dat.bak' and 'PPiMg2-SMD.in.bak'.
+
+o The LAMMPS input 'PPiMg2-SMD.in' has been updated with a 'dump_modify' line
+  to embed element symbols in the trajectory, resolving the 'UNKO' label issue
+  in VMD visualization.

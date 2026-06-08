@@ -1,0 +1,14 @@
+dptrain: is the file used to the training. Is written according to DeepMD documentation (https://docs.deepmodeling.com/projects/deepmd/en/stable/model/index.html)
+
+job_deepmd_compress_cpu_vives.sh: used to launch compress phase within any step
+
+job_deepmd_dptest_cpu_vives.sh: launches the test phase (optional)
+
+job_deepmd_freeze_cpu_vives.sh: handles the freezing within any step
+
+job_deepmd_train_gpu_vives.sh: launches the training during the training phase
+
+properties.txt: contains the atom type and the associations of each atom type to a number in order to keep track of the indexes 
+associated to atoms. Moreover it stores the masses of each atom
+
+

@@ -1,0 +1,15 @@
+--- LIST OF FILES ---
+o job_lammps-deepmd.sh: script used to submit the calculation (use the 'sbatch job_lammps-deepmd.sh' command). The name of the input file inside must be adjusted to user's one
+
+o COLVAR: collects the trend of the collective variables during the simulation defined in 'plumed_SMD.dat'
+
+o model_devi_pph3.out: tracks the evolution of theparameters related to the NNPs. To analyze the quality of the dynamic plot the 1st (step numb.) and 5th columns (forces deviation) in new plot. A good run must
+  retains forces within 0.1 and 0.7.
+
+o pp_3h_steered_md.log: contains the step by step evolution of thr dynamics run and reports the values of the thermal properties across the simulation with a frequency set by the user in the input file
+
+o steered_md.dat: It tracks the evolution of the synamics too.
+
+o trash is a folder that contains useless files from previous runs, just to avoid deleting them straight forward as sometimes may be useless to compare or debug.
+
+

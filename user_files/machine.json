@@ -1,0 +1,53 @@
+{
+    "glogin2":
+    {
+        "hostname": "glogin2",
+        "walltime_format": "hours",
+        "job_scheduler": "slurm",
+        "launch_command": "sbatch",
+        "max_jobs" : 300,
+        "max_array_size" : 600,
+        "cpu": {
+            "project_name": "unknown",
+            "allocation_name": "uv36",
+            "arch_name": "sapphire_rapids",
+            "arch_type": "cpu",
+            "partition": "gpp",
+            "subpartition": "null",
+            "qos": {"gp_resa": 259200},
+            "valid_for":  ["labelling","exploration","freezing", "freezing","compressing"],
+            "default": ["labelling", "freezing","compressing"]
+        }
+    },
+    "alogin2":
+    {
+	    "hostname": "alogin2",
+	    "walltime_format": "hours",
+	    "job_scheduler": "slurm",
+	    "launch_command": "sbatch",
+	    "max_jobs" : 300,
+	    "max_array_size" : 600,
+	    "cpu": {
+		    "project_name": "unknown",
+		    "allocation_name": "uv36",
+		    "arch_name": "sapphire_rapids",
+		    "arch_type": "cpu",
+		    "partition": "gpp",
+		    "subpartition": "null",
+		    "qos": {"gp_resa": 259200},
+		    "valid_for":  ["labelling","exploration","freezing", "freezing","compressing"],
+		    "default": ["labelling", "freezing","compressing"]
+	    },
+	    "gpu": {
+		    "project_name": "unknown",
+		    "allocation_name": "uv36",
+		    "arch_name": "h100",
+		    "arch_type": "gpu",
+		    "partition": "acc",
+		    "subpartition": "null",
+		    "qos": {"acc_resa": 259200},
+		    "valid_for":  ["training","exploration"],
+		    "default": ["training","exploration"]
+        }
+    }
+}

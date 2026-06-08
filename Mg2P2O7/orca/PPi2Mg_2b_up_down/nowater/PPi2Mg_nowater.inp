@@ -1,0 +1,24 @@
+# avogadro generated ORCA input file 
+# Basic Mode
+# 
+! PBE RI OPT FREQ
+
+%basis
+  Basis "def2-TZVP"         # The orbital expansion basis set
+  AuxJ  "def2/J"            # RI-J auxiliary basis set
+end
+
+* xyz 0 1
+   P       -1.10900       -0.38200        0.08500
+   O        0.25400       -1.22000        0.08500
+   O       -0.42500        0.67900        0.89600
+   O       -2.94700       -0.83500        0.25000
+   O       -1.86200       -0.44200       -1.65900
+  Mg       -4.21600       -0.29200       -1.71900
+   P        1.76300       -1.08000       -0.42900
+   O        2.44600       -0.01900        0.38200
+   O        2.14000       -1.35800       -2.25000
+   O        2.67400       -2.65100       -0.98800
+  Mg        3.23800       -3.15500       -3.33200
+*
+

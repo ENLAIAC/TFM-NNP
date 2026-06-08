@@ -1,0 +1,38 @@
+units metal
+boundary p p p
+atom_style atomic
+
+read_data 002_pph3-TS_2_00002_00056.lmp
+
+neighbor 2.0 bin
+neigh_modify every 10 delay 0 check no
+
+pair_style deepmd graph_3_002_compressed.pb graph_1_002_compressed.pb graph_2_002_compressed.pb out_freq 10000 out_file model_devi_pph3-TS_3_003.out
+pair_coeff * *
+
+timestep 0.0005
+
+velocity all create 298.15 36671003 dist gaussian
+
+fix pl all plumed plumedfile plumed_pph3-TS.dat outfile plumed_pph3-TS_3_003.log
+fix 1 all nve
+fix 2 all temp/csvr 298.15 298.15 $(100.0*dt) 3681003
+fix 3 all momentum 1 linear 1 1 1
+
+dump traj all atom 10000 trajectory_traj.xyz # handles the output printing
+
+thermo_style custom step time etotal ke pe temp press vol density cella cellb cellc cpuremain
+thermo_modify flush yes
+thermo 10000
+
+variable v_xlo equal xlo
+variable v_xhi equal xhi
+variable v_ylo equal ylo
+variable v_yhi equal yhi
+variable v_zlo equal zlo
+variable v_zhi equal zhi
+fix extra all print 10000 "${v_xlo} ${v_xhi} ${v_ylo} ${v_yhi} ${v_zlo} ${v_zhi}" file cell.txt
+
+run 1000000
+
+write_restart pph3-TS_3_003.restart

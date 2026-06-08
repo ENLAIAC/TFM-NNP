@@ -1,0 +1,80 @@
+UNITS LENGTH=A ENERGY=kcal/mol TIME=ps
+
+#ATOMIC DEFINITIONS
+ow: GROUP ATOMS=12-435:3,441-516:3 #Water's oxygens
+hw: GROUP ATOMS=13-517:3,14-518:3 #Water's hydrogens
+lvp: GROUP ATOMS=1 #Leaving phosphorus
+elp: GROUP ATOMS=7 #Elecrophilic phisphorus
+olvp: GROUP ATOMS=2,3,4,5 #Oxyegns attached to the leaving phosphorus
+oelp: GROUP ATOMS=8,9,10 #Oxygens attached to the electrophilic phosphorus
+mg1: GROUP ATOMS=6
+mg2: GROUP ATOMS=11
+nuc: GROUP ATOMS=438 #Nucleophilic water
+
+#Coordination CV delcaration
+coh: COORDINATION GROUPA=nuc GROUPB=hw R_0=1.30 NN=12 NLIST NL_CUTOFF=4.5 NL_STRIDE=100 #Nucleophile coordination
+colvp: COORDINATION GROUPA=olvp GROUPB=hw R_0=1.20 NN=12 NLIST NL_CUTOFF=4.5 NL_STRIDE=100 #Leaving group oxygens coordination
+coelp: COORDINATION GROUPA=oelp GROUPB=hw R_0=1.20 NN=12 NLIST NL_CUTOFF=4.5 NL_STRIDE=100 #Electrophilic group coordination
+coplv_nuc: COMBINE ARG=colvp,coh COEFFICIENTS=1,1 PERIODIC=NO
+coelp_nuc: COMBINE ARG=coelp,coh COEFFICIENTS=1,1 PERIODIC=NO
+copyro_tot: COMBINE ARG=coelp,coh,colvp COEFFICIENTS=1,1,1 PERIODIC=NO
+comg1: COORDINATION GROUPA=mg1 GROUPB=ow R_0=2.20 NN=6 NLIST NL_CUTOFF=4.5 NL_STRIDE=100 #Magnesium-water coordination
+comg2: COORDINATION GROUPA=mg2 GROUPB=ow R_0=2.20 NN=6 NLIST NL_CUTOFF=4.5 NL_STRIDE=100 #Magnesium-water coordination
+coelpmg1: COORDINATION GROUPA=mg1 GROUPB=oelp R_0=2.2 NN=6 NLIST NL_CUTOFF=4.5 NL_STRIDE=100 #Magnesium - electrophilic group oxygens coordination
+coelpmg2: COORDINATION GROUPA=mg2 GROUPB=oelp R_0=2.2 NN=6 NLIST NL_CUTOFF=4.5 NL_STRIDE=100 #Magnesium - electrophilic group oxygens coordination
+colvpmg1: COORDINATION GROUPA=mg1 GROUPB=olvp R_0=2.2 NN=6 NLIST NL_CUTOFF=4.5 NL_STRIDE=100 #Magensium - leaving group oxygens coordination
+colvpmg2: COORDINATION GROUPA=mg2 GROUPB=olvp R_0=2.2 NN=6 NLIST NL_CUTOFF=4.5 NL_STRIDE=100 # Magnesium - leaving group oxygens coordination
+comg1_hw: COORDINATION GROUPA=mg1 GROUPB=hw R_0=1.3 NN=12 NLIST NL_CUTOFF=4.0 NL_STRIDE=100
+comg2_hw: COORDINATION GROUPA=mg2 GROUPB=hw R_0=1.3 NN=12 NLIST NL_CUTOFF=4.0 NL_STRIDE=100
+comg1_tot: COMBINE ARG=comg1,coelpmg1,colvpmg1 COEFFICIENTS=1,1,1 PERIODIC=NO
+comg2_tot: COMBINE ARG=comg2,coelpmg2,colvpmg2 COEFFICIENTS=1,1,1 PERIODIC=NO
+#Coordination constraints
+uw_1: UPPER_WALLS ARG=coh,colvp,coelp,coplv_nuc,coelp_nuc,copyro_tot AT=2.2,1.1,1.1,2.1,2.1,2.1 KAPPA=500.0,500.0,500.0,500.0,500.0,500.0 EPS=1,1,1,1,1,1 EXP=2,2,2,2,2,2 
+lw_1: LOWER_WALLS ARG=coh,copyro_tot AT=0.8,1.8 KAPPA=500.0,500.0 EPS=1,1 EXP=2,2 
+uw_mg: UPPER_WALLS ARG=comg1,comg2,coelpmg1,coelpmg2,colvpmg1,colvpmg2,comg1_tot,comg2_tot AT=5.1,5.1,2.1,2.1,2.1,2.1,6.1,6.1 KAPPA=500.0,500.0,500.0,500.0,500.0,500.0,500.0,500.0 EPS=1,1,1,1,1,1,1,1 EXP=2,2,2,2,2,2,2,2
+lw_mg: LOWER_WALLS ARG=comg1,comg2,coelpmg1,coelpmg2,colvpmg1,colvpmg2,comg1_tot,comg2_tot AT=2.5,2.5,1.5,1.5,1.5,1.5,4.0,4.0 KAPPA=500.0,500.0,500.0,500.0,500.0,500.0,500.0,500.0 EPS=1,1,1,1,1,1,1,1 EXP=2,2,2,2,2,2,2,2
+uw_mg_h: UPPER_WALLS ARG=comg1_hw,comg2_hw AT=0.2,0.2 KAPPA=500.0,500.0 EXP=2,2 EPS=1,1
+
+#Angle constraint to drive the nucleophilic attack alongthe correct direction
+aobpow: ANGLE ATOMS=2,7,438 
+lw_angle: LOWER_WALLS ARG=aobpow AT=2.618 KAPPA=500.0 EXP=2 EPS=1
+
+#Distances between lvg oxygen and electrophilic phosphorus, distance with the bridging O(O2) is declared later because correspond to the CV along which the run is performed
+dolvg1_elp: DISTANCE ATOMS=3,7
+dolvg2_elp: DISTANCE ATOMS=4,7
+dolvg3_elp: DISTANCE ATOMS=5,7
+lw_dist: LOWER_WALLS ARG=dolvg1_elp,dolvg2_elp,dolvg3_elp AT=3.2,3.2,3.2 KAPPA=250.0,250.0,250.0 EXP=2,2,2 EPS=1,1,1
+
+# If required, here add the distances between Mg and phosphorus. Currently they're only tracked
+d_mg1p1: DISTANCE ATOMS=6,1
+d_mg1p2: DISTANCE ATOMS=6,7
+d_mg2p1: DISTANCE ATOMS=11,1
+d_mg2p2: DISTANCE ATOMS=11,7
+uw_dist: UPPER_WALLS ARG=d_mg1p1,d_mg1p2,d_mg2p1,d_mg2p2 AT=3.5,3.5,3.5,3.5 KAPPA=500.0,500.0,500.0,500.0 EXP=2,2,2,2 EPS=1,1,1,1
+
+#Bulk coordination of electrophilic posphorus with any of the water solvent molecules
+cowbulkp: COORDINATION GROUPA=elp GROUPB=ow R_0=1.9 NN=8 NLIST NL_CUTOFF=5.1 NL_STRIDE=100
+uw_bulk: UPPER_WALLS ARG=cowbulkp AT=0.08 KAPPA=5000.0 EXP=2 EPS=1
+
+COORDINATIONNUMBER LOWMEM SPECIESA=ow SPECIESB=hw SWITCH={RATIONAL R_0=1.30 NN=6 MM=12 D_MAX=5.0} HIGHEST LOWEST LABEL=CV_c_OwHw_cn
+COORDINATIONNUMBER LOWMEM SPECIESA=ow SPECIESB=hw SWITCH={RATIONAL R_0=1.30 NN=50 MM=100 D_MAX=5.0} HIGHEST LOWEST LABEL=CV_Hc_OwHw_cn
+lw_owh_min: LOWER_WALLS ARG=CV_c_OwHw_cn.lowest AT=0.8 KAPPA=1000.0 EXP=2 EPS=1 # Lower wall on the detachment of H from Oxygens that constraints the Oxygen to be coordinated to at least one H
+uw_owh_max: UPPER_WALLS ARG=CV_c_OwHw_cn.highest AT=2.5 KAPPA=1000.0 EXP=2 EPS=1 # Upper wall that sets the maximum coordination of oxygens within the solvent to 2.5, allowing for H3O+ as allowed but not common structure within the system
+
+
+#Collective variables
+dnuc_elp: DISTANCE ATOMS=7,438 #Distance nucleophile (water) - electrophile phosphorus
+delp_ob: DISTANCE ATOMS=2,7 #Distance bridging O - electrophilic phosphorus
+dD_CV: COMBINE ARG=delp_ob,dnuc_elp COEFFICIENTS=1,-1 PERIODIC=NO
+
+steered_md: MOVINGRESTRAINT ...
+   ARG=dD_CV
+   STEP0=0 AT0=-2.0 KAPPA0=200
+   STEP1=160000 AT1=2.0 KAPPA1=200
+...
+
+PRINT STRIDE=1 ARG=dD_CV,coh,colvp,coelp,coplv_nuc,coelp_nuc,copyro_tot,cowbulkp FILE=Coord.info
+PRINT STRIDE=1 ARG=dD_CV,comg1,comg2,coelpmg1,coelpmg2,colvpmg1,colvpmg2,comg1_tot,comg2_tot FILE=Coord_Mg.info
+PRINT STRIDE=1 ARG=d_mg1p1,d_mg1p2,d_mg2p1,d_mg2p2 FILE=Mg_dist.log
+PRINT STRIDE=1 ARG=dD_CV,steered_md.* FILE=steered_md.dat
+PRINT STRIDE=1 ARG=dD_CV,dnuc_elp,delp_ob,coh,colvp,coelp,d_mg1p1,d_mg1p2,d_mg2p1,d_mg2p2,CV_c_OwHw_cn.lowest,CV_c_OwHw_cn.highest

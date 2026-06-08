@@ -1,0 +1,74 @@
+UNITS LENGTH=A ENERGY=kcal/mol TIME=ps
+
+INCLUDE FILE=/storage/scratch/lv87/lv87908/DeepMD_pyro/PP_3H/SMD/input/plumed_atomdef.dat
+
+#Main CVs of the process: In the current file the lv oxigen is the one labelled by 7 and surrounded by 4 oxygen, two of whose are
+#protonated. The electrophile one is the one that undergo the nucleophile attack and is labelled as P1 (third atom)
+cowh: COORDINATION GROUPA=ow GROUPB=hwater R_0=1.30 NN=12 NLIST NL_CUTOFF=4.5 NL_STRIDE=100 # Coordination nucleophile
+cobh: COORDINATION GROUPA=oplv GROUPB=hwater R_0=1.20 NN=12 NLIST NL_CUTOFF=4.5 NL_STRIDE=100 # Coordination sphere lv group (PO4-)
+chopel: COORDINATION GROUPA=oel GROUPB=hwater R_0=1.20 NN=12 NLIST NL_CUTOFF=4.5 NL_STRIDE=100 # Coordination of attacked group
+dobp: DISTANCE ATOMS=6,3 # Distance between the bridging 'O' and the electron-attractor phosphorus
+dowp: DISTANCE ATOMS=228,3 # Distance from the nucleophile and the electron-attractor phosphorus
+dD: COMBINE ARG=dobp,dowp COEFFICIENTS=1,-1 PERIODIC=NO # CV relative to the nucleophile approaching the P and the second P leaving
+dC: COMBINE ARG=cobh,cowh COEFFICIENTS=1,-1 PERIODIC=NO # CV relative to the coordination of the lv group, and the nucleophile
+
+#Lower wall on the nucleophilic attack angle to avoid the metaphosphate formation
+aobpow: ANGLE ATOMS=228,3,6 # Mantains a fixed angle between the nucleophilic O and the to avoid the formation of metaphosphate
+lwall_angle: LOWER_WALLS ARG=aobpow AT=2.618 KAPPA=500.0 EXP=2 EPS=1 
+
+#Lower walls to keep the neutralizing mg away
+dMgMg: DISTANCE ATOMS=1,11  #Mg-Mg distance
+dMgP1: DISTANCE ATOMS=3,11  #Mg-P1 distance
+dMgP2: DISTANCE ATOMS=7,11  #Mg-P2 distance
+dMgnP1: DISTANCE ATOMS=3,1  #Mg-P1 distance
+dMgnP2: DISTANCE ATOMS=7,1  #Mg-P2 distance
+lwall_mgn_s: LOWER_WALLS ARG=dMgMg,dMgP1,dMgP2,dMgnP1,dMgnP2 AT=2.0,6.5,6.5,6.5,6.5 KAPPA=100.0,100.0,100.0,100.0,100.0 EXP=2,2,2,2,2 EPS=1,1,1,1,1
+
+#Lower walls to prevent the formation of pyrophosphate with the leaving oxygens (distance with O6 declared before)
+dP2O1P1: DISTANCE ATOMS=9,3 # Distance of electron-attractor phosporus from the lv oxygen
+dP2O2P1: DISTANCE ATOMS=8,3 # Distance of the electron-attractor phosporus from the lv oxygen
+dP2O3P1: DISTANCE ATOMS=10,3 # Distance of the electron-attractor phosporus from the lv oxygen
+lwall_4: LOWER_WALLS ARG=dP2O1P1,dP2O2P1,dP2O3P1 AT=3.2,3.2,3.2 KAPPA=250.0,250.0,250.0 EXP=2,2,2 EPS=1,1,1
+
+#Upper walls to prevent the hydroxyde ion to detach from mg and to gain a proton
+dOH1_mg2: DISTANCE ATOMS=285,11 # Avoid the detach of O from Mg. (O99)
+dOH2_mg1: DISTANCE ATOMS=447,1 # NEW: Avoid the detach of the O from the first Mg. It is introduced by the third deprotonation (O153)
+dOH3_mg1: DISTANCE ATOMS=330,1 # Avoid the detach of the second O from the second Mg(O114)
+oh1: GROUP ATOMS=447 # New by Elia: Introduced as the new OH arising from third deprotonation
+oh2: GROUP ATOMS=285 # Modified, in the previous code it was 285
+oh3: GROUP ATOMS=330 # The previous one was 330
+coh1_h: COORDINATION GROUPA=oh1 GROUPB=hwater R_0=1.30 NLIST NN=12 NL_CUTOFF=4.5 NL_STRIDE=100 #Coord. of 1st OH attached to Mg1
+coh2_h: COORDINATION GROUPA=oh2 GROUPB=hwater R_0=1.30 NLIST NN=12 NL_CUTOFF=4.5 NL_STRIDE=100 #Coord. of the OH attached to Mg2
+coh3_h: COORDINATION GROUPA=oh3 GROUPB=hwater R_0=1.30 NLIST NN=12 NL_CUTOFF=4.5 NL_STRIDE=100 #Coord. of the 2nd OH attached to Mg1
+uwall_5: UPPER_WALLS ARG=dOH2_mg1,dOH3_mg1,dOH1_mg2,coh1_h,coh2_h,coh3_h AT=2.5,2.5,2.5,1.2,1.2,1.2 KAPPA=500.0,500.0,500.0,500.0,500.0,500.0 EXP=2,2,2,2,2,2 EPS=1,1,1,1,1,1
+
+#Upper wall on coordination of the attacked phosphorus with any oxygen of the rest of water molecules
+cowbulkp: COORDINATION GROUPA=elp GROUPB=owater R_0=1.9 NN=8 NLIST NL_CUTOFF=5.1 NL_STRIDE=100
+uwall_bulkp: UPPER_WALLS ARG=cowbulkp AT=0.08 KAPPA=5000.0 EXP=2 EPS=1
+
+# Track H3O+ or HO- in the solvent
+COORDINATIONNUMBER LOWMEM SPECIESA=owater SPECIESB=hwater SWITCH={RATIONAL R_0=1.30 NN=6 MM=12 D_MAX=5.0} HIGHEST LOWEST LABEL=CV_c_OwHw_cn
+COORDINATIONNUMBER LOWMEM SPECIESA=owater SPECIESB=hwater SWITCH={RATIONAL R_0=1.30 NN=50 MM=100 D_MAX=5.0} HIGHEST LOWEST LABEL=CV_Hc_OwHw_cn
+
+steered_md: MOVINGRESTRAINT ... # dD is brought from -2.0 to 2.0 in 400k steps mantaining the force costants unaltered
+   ARG=dD
+   STEP0=0 AT0=-2.0 KAPPA0=200 # At the beginning the the phosporus is bond to the bonding 'O'
+   STEP1=400000 AT1=2.0 KAPPA1=200 # After 400k steps, the nucleophile is close to phosphorus (bond), while the other phosporus left
+...
+
+#Walls to maintain TS
+UW_dowp: UPPER_WALLS ARG=dowp AT=3.5 KAPPA=500.0
+UW_dobp: UPPER_WALLS ARG=dobp AT=3.5 KAPPA=500.0
+UW_cowh: UPPER_WALLS ARG=cowh AT=2.2 KAPPA=500.0
+#LW_cowh: LOWER_WALLS ARG=cowh AT=1.7 KAPPA=500.0
+LW_cobh: LOWER_WALLS ARG=cobh AT=0.8 KAPPA=500.0
+UW_cobh: UPPER_WALLS ARG=cobh AT=2.2 KAPPA=500.0
+LW_chopel: LOWER_WALLS ARG=chopel AT=0.8 KAPPA=500.0
+UW_chopel: UPPER_WALLS ARG=chopel AT=1.2 KAPPA=500.0
+#W_dD: RESTRAINT ARG=dD AT=0 KAPPA=400.0
+
+PRINT STRIDE=100 ARG=cowh,cobh,dobp,dowp,chopel,CV_Hc_OwHw_cn.highest,CV_Hc_OwHw_cn.lowest,dC,dD,dOH1_mg2,dOH2_mg1,dOH3_mg1,coh1_h,coh2_h,coh3_h FILE=COLVAR
+PRINT STRIDE=100 ARG=dD,steered_md.* FILE=steered_md.dat
+
+
+

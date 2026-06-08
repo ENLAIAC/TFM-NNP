@@ -1,0 +1,11 @@
+#Definition of hydrogen atoms
+hwater: GROUP ATOMS=13-448:3,14-446:3,450-516:3,451-517:3,518
+owater: GROUP ATOMS=12-225:3,231-447:3,449-515:3
+
+#Definition of nucleophilic water and bridging oxygen atom. The leaving phosporus is the one that leaves the molecule with 4 oxygens,
+# while the attacked one retains three oxygens, plus the additional one due to the nucleophilic attack.
+oplv: GROUP ATOMS=6,9,8,10
+elp: GROUP ATOMS=3 #electrophilic phosporus (undergoes the attack)
+ow: GROUP ATOMS=228 # (O80)
+lvp: GROUP ATOMS=7 #lv phosporus
+oel: GROUP ATOMS=2,4,5 #oxygens bonded to the electrophilic phosphorus

@@ -1,0 +1,97 @@
+UNITS LENGTH=A ENERGY=kcal/mol TIME=ps
+
+# ATOMS DEFINITION
+elp: GROUP ATOMS=3 			# P attacked by the nucleophilic OH
+oelp: GROUP ATOMS=2,4,5			# Oxygens linked to the electrophilic P
+lvp: GROUP ATOMS=7			# Leaving P, i.e., the one linked to two OH, or the that is not attacked by the nucleophile (H2PO3- fragmet, exclunsing the bridging oxygen)
+olvp: GROUP ATOMS=6,8,9,10		# Oxygens linked to the leaving P
+nuc: GROUP ATOMS=228			# Nucleophilic oxygen
+
+# WATER OXYGENS AND HYDROGENS DEFINITIONS
+ow: GROUP ATOMS=12-225:3,231-447:3,449-515:3
+hw: GROUP ATOMS=13-448:3,14-446:3,450-516:3,451-517:3,518
+
+# COODINATION SPHERES TO BUILD THE CVs
+# Tracking the evolution of the coordination around the nucleophilic oxygen and the leaving group oxygens renders how the arrangement of the system change and provides a picture of the
+# mechanism
+cowh: COORDINATION GROUPA=nuc GROUPB=hw R_0=1.30 NLIST NL_CUTOFF=4.5 NL_STRIDE=100 			# Nucleophile coordination
+cobh: COORDINATION GROUPA=olvp GROUPB=hw R_0=1.20 NN=12 NLIST NL_CUTOFF=4.5 NL_STRIDE=100 		# Coordination sphere around the leaving group
+coelp: COORDINATION GROUPA=oelp GROUPB=hw R_0=1.20 NN=12 NLIST NL_CUTOFF=4.5 NL_STRIDE=100 	 	# Coordination of elecrophilic group
+
+#DISTANCES VARIABLES TO DEFINE THE CVs. 
+#The simultaneous approach of the OH to the PP and the cleavage of the OP (same phosphorus) combined adds up to the CVs that tracks the reaction's development
+dobp: DISTANCE ATOMS=6,3 		# Distance between the bridging 'O' and the electron-attractor. The cleavage of the O-P bond is tracked by this distance
+dowp: DISTANCE ATOMS=228,3 		# Distance between the nucleophile and the electron-attractor phosphorus. The nucleophilic attrack evolution is tracked throguh this distance
+
+#CVs defintion
+dD: COMBINE ARG=dobp,dowp COEFFICIENTS=1,-1 PERIODIC=NO # CV relative to the nucleophile approaching the P and the cleavage of the P-O bond
+dC: COMBINE ARG=cobh,cowh COEFFICIENTS=1,-1 PERIODIC=NO # CV relative to the coordination of the lv group, and the nucleophile
+
+#### Added the LW on the deprotonation of oelp, modified the UW on the same nuc+lv group sum and modified the total coordination UW
+# COORDINATION AND DISTANCES CONSTRAINTS 
+# Prevents the oxygens of the nucleophile, of the leaving group and the electrophilic group to exceed the excpected coordination. Moreover, prevents the nucleophile to float away the
+# electrophilic center, and the leaving group to float away from the electrophilic center 
+uw_1: UPPER_WALLS ARG=cowh,cobh,coelp,dobp,dowp AT=2.2,3.2,2.2,3.5,3.5 KAPPA=500.0,500.0,500.0,500.0,500.0 EXP=2,2,2,2,2 EPS=1,1,1,1,1
+sum_nuc_lv: COMBINE ARG=cowh,cobh COEFFICIENTS=1,1 PERIODIC=NO			#Coordination of the nucleophile OH and of the leaving group
+sum_htot: COMBINE ARG=cowh,cobh,coelp COEFFICIENTS=1,1,1 PERIODIC=NO   	#Coordination of the total system (nuc+lv group+electrophile)
+sum_pyro: COMBINE ARG=cobh,coelp COEFFICIENTS=1,1 PERIODIC=NO		#Total coordination of the oxygen orginally belonging to pyrophosphate
+uw_sum: UPPER_WALLS ARG=sum_nuc_lv,sum_htot,sum_pyro AT=4.1,5.1,4.2 KAPPA=500.0,500.0,500.0 EXP=2,2,2 EPS=1,1,1 	#Set the maximum values of the combined corrdination of nuc+lv and the total one
+
+lw_1: LOWER_WALLS ARG=cowh,cobh,coelp AT=0.8,1.8,0.8 KAPPA=500.0,500.0,500.0 EXP=2,2,2 EPS=1,1,1	#Prevents the nucleophile OH and the lv group to their hydrogens
+
+#ANGLE RESTRAINT
+#To avoid the formation of the metaphosphate the attack of the oxygen must be directed toward P. The angle can't be lower than 2.618 rad (more or leass 150Â)
+aobpow: ANGLE ATOMS=228,3,6 # Mantains a fixed angle between the nucleophilic O and the to avoid the formation of metaphosphate
+lwall_angle: LOWER_WALLS ARG=aobpow AT=2.618 KAPPA=500.0 EXP=2 EPS=1 
+
+#LWs to keep the neutralizing Mg away
+dMgMg: DISTANCE ATOMS=1,11  #Mg-Mg distance
+dP1Mg2: DISTANCE ATOMS=3,11  #P1-Mg2 distance
+dP2Mg2: DISTANCE ATOMS=7,11  #P2-Mg2 distance
+dP1Mg1: DISTANCE ATOMS=3,1  #P1-Mg1 distance
+dP2Mg1: DISTANCE ATOMS=7,1  #P2-Mg1 distance
+lwall_mgn_s: LOWER_WALLS ARG=dMgMg,dP1Mg2,dP2Mg2,dP1Mg1,dP2Mg1 AT=2.0,6.5,6.5,6.5,6.5 KAPPA=100.0,100.0,100.0,100.0,100.0 EXP=2,2,2,2,2 EPS=1,1,1,1,1
+
+#LWs to prevent the formation of pyrophosphate with the remaining leaving oxygens
+dP2O1P1: DISTANCE ATOMS=9,3 # Distance of electron-attractor phosporus from the lv oxygen
+dP2O2P1: DISTANCE ATOMS=8,3 # Distance of the electron-attractor phosporus from the lv oxygen
+dP2O3P1: DISTANCE ATOMS=10,3 # Distance of the electron-attractor phosporus from the lv oxygen
+lwall_4: LOWER_WALLS ARG=dP2O1P1,dP2O2P1,dP2O3P1 AT=3.2,3.2,3.2 KAPPA=250.0,250.0,250.0 EXP=2,2,2 EPS=1,1,1
+
+#Upper walls to prevent the hydroxyde ion to detach from Mg and to gain a proton
+dOH1_mg2: DISTANCE ATOMS=285,11 				# Avoid the detachment of OH from Mg.
+dOH2_mg1: DISTANCE ATOMS=447,1 					# Avoid the detachment of the O from the first Mg.
+dOH3_mg1: DISTANCE ATOMS=330,1 					# Avoid the detach of the second O from the second Mg.
+oh1: GROUP ATOMS=447 # OH 
+oh2: GROUP ATOMS=285 # OH
+oh3: GROUP ATOMS=330 # OH
+coh1_h: COORDINATION GROUPA=oh1 GROUPB=hw R_0=1.30 NLIST NN=12 NL_CUTOFF=4.5 NL_STRIDE=100 		#Coord. of 1st OH attached to Mg1
+coh2_h: COORDINATION GROUPA=oh2 GROUPB=hw R_0=1.30 NLIST NN=12 NL_CUTOFF=4.5 NL_STRIDE=100 		#Coord. of the OH attached to Mg2
+coh3_h: COORDINATION GROUPA=oh3 GROUPB=hw R_0=1.30 NLIST NN=12 NL_CUTOFF=4.5 NL_STRIDE=100 		#Coord. of the 2nd OH attached to Mg1
+uwall_3: UPPER_WALLS ARG=dOH2_mg1,dOH3_mg1,dOH1_mg2,coh1_h,coh2_h,coh3_h AT=2.5,2.5,2.5,1.2,1.2,1.2 KAPPA=500.0,500.0,500.0,500.0,500.0,500.0 EXP=2,2,2,2,2,2 EPS=1,1,1,1,1,1
+
+#Upper wall on coordination of the attacked phosphorus with any oxygen of the rest of water molecules
+cowbulkp: COORDINATION GROUPA=elp GROUPB=ow R_0=1.9 NN=8 NLIST NL_CUTOFF=5.1 NL_STRIDE=100
+uwall_bulkp: UPPER_WALLS ARG=cowbulkp AT=0.08 KAPPA=5000.0 EXP=2 EPS=1 		# There can't be any coordination of the leaving electrophilic phosphorus by any other water molecules 
+										#except the nucleophilic one
+
+# Track H3O+ or HO- in the solvent
+#COORDINATIONNUMBER LOWMEM SPECIESA=ow SPECIESB=hw SWITCH={RATIONAL R_0=1.30 NN=6 MM=12 D_MAX=5.0} HIGHEST LOWEST LABEL=CV_c_OwHw_cn
+COORDINATIONNUMBER LOWMEM SPECIESA=ow SPECIESB=hw SWITCH={RATIONAL R_0=1.30 NN=50 MM=100 D_MAX=5.0} HIGHEST LOWEST LABEL=CV_Hc_OwHw_cn
+
+#Trying to set the hydronyum and hydroide as limit species, avoiding tetraprotonated or fully deprotonated water
+#wat_prot: COORDINATION GROUPA=ow GROUPB=hw R_0=0.8 NN=12 NLIST N_CUTOFF=1.8 NL_STRIDE=100
+#uw_h3o: UPPER_WALLS ARGS=wat_prot AT=3.5 KAPPA=500.0 EXP=2 EPS=1
+#lw_oh: LOWER_WALLS ARGS=wat_prot AT=1.5 KAPPA=500.0 EXP=2 EPS=1
+
+# OPES setup
+opes: OPES_METAD ARG=cowh,cobh,dowp,dobp PACE=100 SIGMA=0.07,0.07,0.07,0.07 TEMP=298.15 BARRIER=50
+
+PRINT STRIDE=500 ARG=cowh,cobh,coelp,sum_nuc_lv,sum_pyro,sum_htot,dobp,dowp,dC,dD FILE=COLVAR
+PRINT STRIDE=500 ARG=aobpow,cowbulkp FILE=additional.log
+PRINT STRIDE=500 ARG=dD,opes.* FILE=OPES_dD.log
+
+
+#FLUSH STRIDE=_R_PRINT_FREQ_
+
+ENDPLUMED
