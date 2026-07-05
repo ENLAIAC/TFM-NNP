@@ -1,0 +1,49 @@
+--- OVERVIEW: Training_2Mgcomplex/scripts ---
+
+Analysis/utility scripts synced from MareNostrum 5 (upg826249) on 05/07/2026. Each was found
+duplicated across many replica/iteration folders on the cluster; only one representative
+copy of each is kept here.
+
+o max_model_deviation.py: reads the per-committee-member LAMMPS/DeePMD force output for an
+  exploration run and plots the maximum model deviation vs. simulation step (produces the
+  max_model_deviation_*.png files in ../005-exploration/).
+
+o lammps_to_dcd.py: converts a LAMMPS trajectory to DCD format for visualization/analysis
+  in VMD or MDAnalysis-based tools.
+
+o plot.py: generates the aggregated RMSE-forces validation plot (rmse_forces.png) across
+  all validated systems for a given NNP generation.
+
+o rmse_dD_v2.py: computes and plots the RMSE between DFT-reference and NNP-predicted forces
+  as a function of a reaction/distance coordinate (dD).
+
+o rmse_per_atom_nrmse.py: computes per-atom-type normalized RMSE (NRMSE) for energies and
+  forces, comparing NNP predictions to the DFT reference validation set.
+
+o job_deepmd_dptest_cpu_alogin1.sh: SLURM submission script for the DeePMD-kit dptest phase
+  (alogin1.bsc.es, CPU), used to generate the raw prediction files consumed by the plotting
+  scripts above.
+
+o submit_missing.py: scans a labeling dataset directory and resubmits CP2K labeling jobs for
+  configurations whose output is missing or incomplete.
+
+o trajectory_breaker.sh: splits a long trajectory file into the individual per-configuration
+  frames expected by the labeling/dataset-generation pipeline.
+
+o npy_generator.sh: converts labeled configurations into the DeePMD-kit .npy training-set
+  format (raw_generator.py output -> compressed system.npy files).
+
+o dptest_launch.sh: SLURM wrapper that launches the DeePMD-kit dptest evaluation for a given
+  NNP model against a validation dataset.
+
+o wham1D.py / errors_wham1D.py: 1D WHAM (Weighted Histogram Analysis Method) free-energy
+  reconstruction from umbrella-sampling windows, and its associated statistical-error
+  estimate.
+
+o job_wham.sh: SLURM submission script that runs wham1D.py over a set of umbrella-sampling
+  windows.
+
+o generate_US_window.py: builds a single umbrella-sampling window input (restraint center,
+  force constant, starting configuration) for a PLUMED/LAMMPS umbrella-sampling scan.
+
+Note: written 05/07/2026 to describe newly-synced scripts; no existing file was modified.

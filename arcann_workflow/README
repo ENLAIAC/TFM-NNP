@@ -1,0 +1,34 @@
+--- OVERVIEW: arcann_workflow ---
+
+This folder holds representative inputs/outputs from the ArcaNN active-learning iterations
+used to train the NNP for the pph3/pph4 (protonated pyrophosphate) systems. Each numbered
+subfolder corresponds to one iteration of the exploration -> labeling -> training loop (see
+the root README.md for the full workflow diagram). Only a curated sample of files is kept
+here (one or a few representative candidates/replicas per iteration), not the full raw
+per-job dump produced on the cluster.
+
+o 001-exploration/: first-iteration candidate structures selected by query-by-committee
+  (candidates_001_pph3-hydrolysis.xyz, candidates_001_pph4-hydrolysis.xyz).
+
+o 001-labeling/: reference structures selected for DFT labeling in iteration 001, split by
+  system (pph3-hydrolysis/, pph4-TS/, pph4-hydrolysis/).
+
+o 002-exploration/: second-iteration LAMMPS/OPES exploration output and re-selected
+  candidates for pph3-hydrolysis/.
+
+o 002-labeling/: iteration-002 labeling selections, split by system
+  (pph3-hydrolysis/, pph4-hydrolisis/) plus a top-level sample (labeling_00051.xyz).
+
+o 003-exploration/: full per-replica exploration folders (00001_3_003, 00002_3_005,
+  00003_3_003, 00004_2_004). Each contains the LAMMPS/PLUMED inputs and logs
+  (job_lammps-deepmd_explore_gpu_alogin1.sh, plumed_pph3-TS*.dat/.log), the OPES output
+  (COLVAR, KERNELS, OPES_MD.log, OPES_react_traj.dat), the query-by-committee bookkeeping
+  (QbC_indexes.json, QbC_stats.json), trajectory files (.dcd/.psf/.xyz), and the selected
+  candidate structure(s) (NNN_pph3-TS_*.lmp/.xyz, also duplicated under safe/ where present).
+
+o 006-exploration/: iteration-006 exploration for the pph4-TS system
+  (pph4-TS_1_00001/, pph4-TS_3_00004/), each with the selected LAMMPS structure, a
+  properties file, and a VMD visualization script.
+
+Note: this README was written to give a general overview of pre-existing content; no
+existing file in this tree was modified to produce it.

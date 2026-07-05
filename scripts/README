@@ -1,0 +1,45 @@
+--- OVERVIEW: scripts ---
+
+General-purpose helper scripts used throughout the ArcaNN/CP2K/LAMMPS workflow, split into
+python/ and bash/. See the root README.md for the full repository map.
+
+--- scripts/python/ ---
+
+o energy_grep.py: reads CP2K energy output files from multiple replica directories, converts
+  kinetic and potential energies from atomic units to kcal/mol, and plots the total-energy
+  distribution as a histogram. Run from the parent directory containing the replica
+  subdirectories.
+
+o extract.py: extracts individual configurations from a multi-frame XYZ trajectory and writes
+  them out separately (or as a subsampled trajectory). Validates the frame count and atom
+  count, and writes a debug log (debug.txt). Usage: python3 extract.py <trajectory.xyz> <natoms>
+
+--- scripts/bash/ ---
+
+o check_convergence.sh: iterates over CP2K labeling job directories and classifies each
+  calculation as converged, not converged (SCF/Cholesky failure), needing manual inspection,
+  or missing output; writes a summary report. Run from the labeling iteration directory.
+
+o check_data.sh: validates the presence and consistency of expected data files across the
+  labeling dataset directories.
+
+o check_distance.sh: scans candidate configurations for atomic overlaps (inter-atomic
+  distances below threshold) that would cause a DFT single-point to fail.
+
+o energy_chart.sh: loops over CP2K replica directories, extracts the total energy per frame,
+  and consolidates them into a single all_energies_long.dat file for plotting.
+
+o energy_grep.sh: extracts energy data from LAMMPS/DeePMD run logs across multiple
+  simulation directories.
+
+o generate_xyz.sh: converts LAMMPS trajectory (or other) formats to XYZ for visualization
+  and further analysis.
+
+o job_lammps-deepmd.sh: SLURM submission wrapper for LAMMPS+DeePMD exploration runs;
+  sets up modules/environment and launches the LAMMPS executable.
+
+o python_submission.sh: SLURM wrapper for submitting Python analysis scripts to the cluster
+  queue.
+
+Note: this README was written to give a general overview of pre-existing content; no
+existing file in this tree was modified to produce it.

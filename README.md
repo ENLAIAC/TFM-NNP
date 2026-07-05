@@ -117,10 +117,26 @@ TFM-NNP/
 │   ├── pyro-hydrolysis-mg.pdb     Top-level reference geometry
 │   └── pyro-hydrolysis-mg2.mol2
 │
-└── SMD/                     Steered MD of pph3 (pyrophosphate — 3H protonation state)
-    ├── input/               LAMMPS topology, PLUMED SMD setup
-    └── output/              Reactant and product structures
+├── SMD/                     Steered MD of pph3 (pyrophosphate — 3H protonation state)
+│   ├── input/               LAMMPS topology, PLUMED SMD setup
+│   └── output/              Reactant and product structures
+│
+├── Training_2Mgcomplex/     ArcaNN NNP training/validation for the Mg complex (synced 05/07/2026)
+│   ├── 005-exploration/     Model-deviation monitoring plots (iteration 005)
+│   ├── validation_set/      NNP-vs-DFT validation plots, per system and per validation run
+│   └── scripts/             Model-deviation, validation (RMSE/NRMSE), WHAM/US analysis scripts
+│
+└── Train_PPiMg2_LFER/       pph4 free-energy (LFER) and NNP-selection analysis (synced 05/07/2026)
+    ├── LFER_3_mg2/pph4/     FES_2D and umbrella-sampling PMF plots along the reaction path
+    ├── NNP_LFER_choice/     PMF comparison across 3 candidate NNP committees
+    └── scripts/             FES/PMF/WHAM analysis scripts
 ```
+
+`Training_2Mgcomplex/` and `Train_PPiMg2_LFER/` were synced from MareNostrum 5 on 05/07/2026
+(own account upg826249, and supervisor's reserved area on uv169161, respectively) — see each
+folder's own README for details and provenance. Only plots and analysis scripts were copied;
+the raw per-iteration exploration/labeling/training data and the trained `graph_*.pb` NNP
+models remain on the cluster only.
 
 ---
 

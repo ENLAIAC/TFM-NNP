@@ -1,0 +1,28 @@
+--- OVERVIEW: Train_PPiMg2_LFER/scripts ---
+
+Analysis scripts synced from MareNostrum 5 (supervisor's account uv169161, reserved area) on
+05/07/2026.
+
+o FES_2D.py: builds a 2D free-energy surface from biased/reweighted collective-variable
+  trajectories (produces the FES_2D.png plots under ../LFER_3_mg2/pph4/).
+
+o FES_2D_inverse.py: variant of FES_2D.py using the inverse mapping of the reaction
+  coordinates, used as a cross-check of the surface reconstruction.
+
+o FES_from_Reweighting.py: reconstructs the free-energy surface via trajectory reweighting
+  (rather than direct histogramming), for OPES/metadynamics-biased runs.
+
+o convert_restart_to_lmp.py: converts a LAMMPS restart file from an SMD run into a plain
+  LAMMPS data/topology (.lmp) file, used to seed each umbrella-sampling window.
+
+o average_PMF.py: averages the per-replica WHAM free-energy profiles into the combined
+  average_pmf.png reported for each umbrella-sampling scan.
+
+o generate_US_window.py: builds a single umbrella-sampling window input (restraint center,
+  force constant, starting configuration) for a PLUMED/LAMMPS umbrella-sampling scan.
+
+Note: wham1D.py / errors_wham1D.py (WHAM reconstruction and its error estimate) are identical
+to the copies already documented in ../../Training_2Mgcomplex/scripts/README and were not
+duplicated here.
+
+Note: written 05/07/2026 to describe newly-synced scripts; no existing file was modified.

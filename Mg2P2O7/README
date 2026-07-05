@@ -1,0 +1,47 @@
+--- OVERVIEW: Mg2P2O7 ---
+
+This folder collects all calculations concerning the Mg2P2O7 (bimagnesium pyrophosphate)
+system: classical/AIMD dynamics, DeePMD-driven steered and OPES MD, and ORCA benchmark
+quantum-chemistry calculations used to build reference configurations.
+
+o pyro-hydrolysis-mg.pdb: top-level reference geometry of the hydrolysis system (PDB format).
+
+o pyro-hydrolysis-mg2.mol2: top-level reference geometry with bond/connectivity info (MOL2 format).
+
+--- SUBFOLDERS ---
+
+o CP2K_dynamics/: CP2K ab initio MD of the PPiMg2 system.
+  - inputs/: base CP2K input files (PPiMg2.inp, PPiMg2_edges.inp) for the two initial
+    coordination geometries explored (bridged vs. edge-sharing Mg binding).
+  - PPiMg2_sides_final/: final production CP2K inputs (three protocol variants: original,
+    2nd, and side-chain corrected), the resulting energy series (PPiMg2_sides-Energy.en),
+    energy-distribution plots (energy_distribution_Kcal.png, energy_distribution_PPiMg2_sides.png),
+    the energy-extraction scripts used to produce them (energy_grep*.py), the SLURM submission
+    script (job_slurm_submission_cp2k.sh), and a VMD visualization script (vmd-pyrophosphate.tcl).
+
+o LAMMPS_MD_PPiMg2/: steered MD of Mg2P2O7 driven by PLUMED using the DeePMD NNP committee
+  from ArcaNN iteration 006. See its own README (cluster session log) for a detailed,
+  dated history of this run, including a PLUMED wall miscalibration bug and its fix.
+
+o SMD/: LAMMPS topology/trajectory and PLUMED setup (plumed_Mg_complex.dat) for an earlier,
+  Mg-constrained steered-MD run of the sides configuration (properties_sys1-2.dat holds
+  associated atom-type/property definitions).
+
+o hydrolysis_OPES/: OPES (On-the-fly Probability Enhanced Sampling)-driven hydrolysis MD of
+  the Mg complex using the NNP, with its LAMMPS input/topology (ppimg2-hydrolysis.in/.lmp),
+  PLUMED OPES setup (plumed_ppimg2-hydrolysis.dat), the raw PLUMED output (opes_MD.dat), the
+  SLURM submission script, and a VMD visualization script.
+
+o orca/: ORCA benchmark single-point/optimization calculations for candidate Mg-pyrophosphate
+  coordination geometries.
+  - PPi2Mg_2b_bridged/: bidentate-bridged Mg coordination.
+  - PPi2Mg_2b_up_down/: bidentate up-down Mg coordination, including a solvated ("nowater"
+    stripped) variant with full ORCA output (densities, Hessian, gradient, property files)
+    and a solvation/ subfolder with the packmol-built explicit-water system and its LAMMPS
+    topology conversions.
+  - PPi2Mg_3b/: tridentate Mg coordination.
+  - configurations/: reference structures (.xyz/.pdb) for each coordination mode, used as
+    starting points for the ORCA calculations above.
+
+Note: this README was written to give a general overview of pre-existing content; no
+existing file in this tree was modified to produce it.

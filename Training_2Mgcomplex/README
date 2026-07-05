@@ -1,0 +1,42 @@
+--- OVERVIEW: Training_2Mgcomplex ---
+
+New content synced from MareNostrum 5 (account upg826249, /gpfs/scratch/uv36/elia/Training_2Mgcomplex),
+on 05/07/2026. This is the ArcaNN active-learning working directory for the bimagnesium
+complex NNP (systems ppimg2-TS/-hydrolysis/-prod/-react), now at iterations 000-006. Only the
+model-deviation monitoring plots, the NNP-validation plots, and a curated set of the analysis
+scripts that produced them were copied locally (the raw per-iteration exploration/labeling/
+training/test data, the NNP_select/ committee models and the full data/ initial-configuration
+library remain on the cluster only, as they amount to hundreds of GB and per-job binary output
+that does not belong in a git repository).
+
+--- 005-exploration/ ---
+
+Model-deviation plots for iteration 005, one per sub-system, tracking the maximum force
+deviation across the NNP committee during LAMMPS/PLUMED exploration:
+o max_model_deviation_ppimg2-TS_005.png
+o max_model_deviation_ppimg2-hydrolysis_005.png
+o max_model_deviation_ppimg2-prod_005.png
+o max_model_deviation_ppimg2-react_005.png
+
+--- validation_set/ ---
+
+NNP validation plots comparing DFT-labeled reference energies/forces against NNP predictions,
+organized by system and by validation run. Subfolder-naming convention:
+o plot_all*/: aggregated RMSE-forces plot across all systems for a given NNP generation
+  (plot_all/, plot_all_006_pph4/, plot_all_mg2/ -> each contains rmse_forces.png).
+o <system>/<run>/: per-system validation plots, where <system> is one of pp, pph, pph3,
+  pph3_bis, pph4, pph4_bis, pph_lp, pphh, ppimg2, ppmg (naming variants of the
+  pyrophosphate/Mg-complex protonation and coordination states), and <run> is one of
+  04_dptest(_2/_3) (DeePMD dptest runs), 005-plot / 005_plot_006_pph4 / 05_plot_mg2
+  (plotting passes at different NNP generations). Each run folder contains a <system>.png
+  (and, where available, a <system>_per_atom.png) energy/force parity or error plot.
+See validation_set's own content for the full per-run plot set; the naming reflects the
+exact folder names used on the cluster to keep provenance traceable.
+
+--- scripts/ ---
+
+Curated analysis scripts (deduplicated from many near-identical per-replica copies on the
+cluster) — see scripts/README for what each one does.
+
+Note: this README was written on 05/07/2026 to summarize newly-synced content; no existing
+local file was modified to produce it.
