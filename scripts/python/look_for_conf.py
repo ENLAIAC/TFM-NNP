@@ -13,7 +13,7 @@ OPERATIONS = {
         }
 
 parser=argparse.ArgumentParser(description='Select the CV and their values to extract configurations from the COLVAR file',formatter_class=argparse.RawTextHelpFormatter)
-parser.add_argument('--file', '-f', dest='COLVAR', type=str, default="COLVAR", help='MANDATORY - Provide the name of the file to look through')
+parser.add_argument('--file', '-f', dest='COLVAR', type=str, default="COLVAR", help='Provide the name of the file to look through')
 parser.add_argument('--colvar', '-cv', dest='cv', nargs='+', type=str, help='Provide a list of the collective variable to filter the selection')
 parser.add_argument('--threshold','-t', dest='values', nargs='+', type=float, help='Provide a list of the values associated to the CVs. The order must be consistent with the \'--colvar\' argument specification')
 parser.add_argument('--instruction', '-i', dest='instructions', nargs='+', type=str, 
