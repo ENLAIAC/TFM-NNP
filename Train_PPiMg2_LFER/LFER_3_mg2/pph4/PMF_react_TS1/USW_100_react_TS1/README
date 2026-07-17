@@ -1,0 +1,34 @@
+--- USW_100_react_TS1 ---
+
+Umbrella-sampling (US) stage of the reactant -> TS1 PMF pipeline (see ../README). Consumes
+the 100 seed structures produced by ../SMD_react_TS1/ (one per window, spanning the dD
+reaction coordinate from the reactant to TS1).
+
+Three independent replicas (rep1, rep2, rep3), same protocol — one README covers all three.
+
+What each replica does:
+o 100 window subfolders (000..099), one per seed structure from SMD_react_TS1/lmp_files/.
+  Each window runs LAMMPS+DeepMD+PLUMED starting from its 'USW_NNN.lmp' structure
+  ('job_lammps-deepmd.sh'), with a static harmonic restraint on dD centered at that window's
+  target value (plumed_USW_NNN.dat: 'uw: RESTRAINT ARG=dD AT=<value> KAPPA=300', INCLUDEing
+  the shared CV definitions from '../inputs/plumed_colvars.dat'). Output per window:
+  'USW_NNN.lammpstrj'/'.restart', 'US_lammps.log', 'colvar_multi_NNN.dat' (all tracked CVs +
+  bias), 'model_devi_pyro.out' (NNP committee deviation, QC), and the thinned/full dD-vs-bias
+  series appended to the replica-level 'COLVAR/CV1_thin' and 'COLVAR/CV1' files used by WHAM.
+o 'inputs/lmp_files/': copy of the seed structures used to launch this replica's windows
+  (traceability copy of SMD_react_TS1's output for this specific run).
+o 'WHAM/': the free-energy reconstruction for this replica — 'input.txt' (window
+  centers/force constants list consumed by WHAM), 'job_wham.sh' (submits
+  ../WHAM_files/wham1D.py), the raw free-energy-profile text output
+  ('fepreact_TS1_pph4'), and the resulting plots: 'wham_F_profile*.png' (F(dD) profile),
+  'wham_F_windows*.png' (per-window biased histograms), 'wham_biased_P_windows*.png'
+  (biased probability distributions), 'wham_cvg*.png' (block-average convergence check).
+
+rep2 additionally has a 'WHAM_gridfix_test/' subfolder — a small standalone WHAM re-run
+('input.txt', 'job_wham_test.sh', slurm log) trying a different bin-grid setting, kept as a
+scratch test alongside the regular 'WHAM/' reconstruction; rep1 and rep3 have no equivalent.
+
+The top-level 'inputs/lmp_files/' (one level above the replicas) is a shared copy of the same
+seed set, kept for reference.
+
+Note: this README documents pre-existing content; no existing file was modified.

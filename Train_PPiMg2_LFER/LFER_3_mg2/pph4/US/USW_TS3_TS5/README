@@ -1,0 +1,19 @@
+--- USW_TS3_TS5 ---
+
+Umbrella-sampling stage connecting TS3 and TS5 (see ../README), seeded from
+../SMD_TS3_TS5/<rep>/lmp_files/ and restrained on 'cobh'. Same layout as ../USW_TS3_TS4/: 100
+window subfolders per replica ('000'-'099'), each with a static harmonic restraint
+(KAPPA=300 kcal/mol/A^2) centered on its own cobh value spanning 1.9-2.7 in even steps
+('generate_US_window.py'); 'inputs/lmp_files/' is the traceability copy of the seed
+structures; 'WHAM/' holds the per-replica WHAM reconstruction ('fepTS3_TS5_pph4.out' plus
+diagnostic plots) — see PMF_react_TS1/USW_100_react_TS1/README for the full per-window/WHAM
+file description, substituting the coordinate name.
+
+As in ../USW_TS3_TS4/, a top-level 'average_PMF.py' averages the three replicas'
+'fepTS3_TS5_pph4.out' profiles into 'average_pmf_noerror.dat' and 'average_pmf.png'
+(labelled TS3->TS5, x-axis 'C_LG'), with per-point error bars and the same relative-minimum
+annotation logic.
+
+Three replicas (rep1/2/3) — one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

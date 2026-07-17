@@ -1,0 +1,18 @@
+--- SMD_TS3_TS4 ---
+
+Steered MD stage generating the starting configurations for the TS3 <-> TS4 umbrella-sampling
+scan (see ../USW_TS3_TS4/README and ../README). Driven along 'coelp' (COORDINATION of the
+oxygens bonded to the electrophilic phosphorus with the surrounding hydrogens): MOVINGRESTRAINT
+pulls coelp from AT0=1.7 to AT1=2.7 over 100000 steps, KAPPA=300 kcal/mol/A^2, under the same
+background wall restraints as the reactant-side pipelines (see
+../PMF_react_TS1/SMD_react_TS1/README for the shared CV/wall definitions).
+
+Restart snapshots are converted into per-replica 'lmp_files/' seed structures by
+'convert_restart_to_lmp.py' (run per-replica via 'run_convert.sh', which cds into each rep
+folder and executes the script there with the CV column set to 'coelp'). The empty top-level
+'lmp_files/' is a leftover of the script staging and holds no data itself — the actual 100
+seed '.lmp' files per replica are in each rep's own 'lmp_files/'.
+
+Three replicas (rep1/2/3) — one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

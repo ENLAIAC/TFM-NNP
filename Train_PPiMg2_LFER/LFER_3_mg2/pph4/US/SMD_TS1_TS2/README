@@ -1,0 +1,19 @@
+--- SMD_TS1_TS2 ---
+
+Steered MD stage generating the starting configurations for the TS1 <-> TS2 umbrella-sampling
+scan (see ../USW_100_TS1_TS2/README and ../README). Unlike the reactant->TS PMF pipelines
+(which pull 'dD'), this connection is driven along 'cobh' (COORDINATION of the leaving-group
+oxygens with the surrounding hydrogens — tracks the coordination-sphere reorganization of the
+leaving phosphate group between the two stationary points): MOVINGRESTRAINT pulls cobh from
+AT0=1.7 to AT1=2.9 over 100000 steps, KAPPA=200 kcal/mol/A^2, under the same background wall
+restraints as the reactant-side pipelines (see PMF_react_TS1/SMD_react_TS1/README for the
+shared CV/wall definitions). Restart snapshots are converted the same way into 'lmp_files/'
+seed structures for the umbrella windows.
+
+Each replica also has a 'first_try/' subfolder — a complete earlier attempt at this same SMD
+pull (same file set: trajectory, restarts, COLVAR, logs), superseded by the run in the
+replica's top level but kept for reference.
+
+Three replicas (rep1/2/3) — one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

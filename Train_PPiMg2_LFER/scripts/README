@@ -21,8 +21,17 @@ o average_PMF.py: averages the per-replica WHAM free-energy profiles into the co
 o generate_US_window.py: builds a single umbrella-sampling window input (restraint center,
   force constant, starting configuration) for a PLUMED/LAMMPS umbrella-sampling scan.
 
+o average_fes.py: averages the rep_1/rep_2/rep_3 'fes-rew.dat' bin grids from the OPES-based
+  2D FES reconstruction (under ../LFER_3_mg2/pph4/rep_*/) into a single replica-averaged
+  profile.
+
+o run_convert.sh: SLURM batch wrapper for convert_restart_to_lmp.py — loops over each
+  replica subfolder, patches the replica name into a local copy of the script, and runs it
+  there so the restart->'.lmp' seed conversion happens per replica.
+
 Note: wham1D.py / errors_wham1D.py (WHAM reconstruction and its error estimate) are identical
 to the copies already documented in ../../Training_2Mgcomplex/scripts/README and were not
 duplicated here.
 
-Note: written 05/07/2026 to describe newly-synced scripts; no existing file was modified.
+Note: written 05/07/2026 to describe newly-synced scripts; average_fes.py and run_convert.sh
+added 17/07/2026 during the pph4 README refinement pass. No existing file was modified.

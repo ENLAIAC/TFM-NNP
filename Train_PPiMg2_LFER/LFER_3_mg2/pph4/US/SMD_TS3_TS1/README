@@ -1,0 +1,15 @@
+--- SMD_TS3_TS1 ---
+
+Steered MD run pulling the TS3 <-> TS1 connection along 'cowh' (COORDINATION of the
+nucleophile oxygen with the surrounding hydrogens): MOVINGRESTRAINT pulls cowh from AT0=0.9
+to AT1=1.9 over 100000 steps, KAPPA=300 kcal/mol/A^2, under the same background wall
+restraints as the other SMD pipelines (see ../PMF_react_TS1/SMD_react_TS1/README for the
+shared CV/wall definitions). Each replica folder holds only the raw LAMMPS/PLUMED run output
+(trajectory, restarts, 'COLVAR', 'Coord.info', logs) — unlike ../SMD_TS3_TS4/ and
+../SMD_TS3_TS5/, there is no 'lmp_files/' seed-conversion step and no matching umbrella-
+sampling folder yet present under US/, so this connection has not (yet) been carried through
+to a WHAM free-energy profile.
+
+Three replicas (rep1/2/3) — one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

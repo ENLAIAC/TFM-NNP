@@ -1,0 +1,39 @@
+--- OVERVIEW: US ---
+
+Maps the free-energy landscape connecting the later stationary points of the pph4 reaction
+mechanism (TS1, TS2, TS3, TS4, TS5) that lie beyond the reactant->TS1/TS2 segments already
+covered by ../PMF_react_TS1/ and ../PMF_react_TS2/. Same three-technique pipeline
+(SMD -> Umbrella Sampling -> WHAM) as those, but each pairwise connection uses whichever
+reaction coordinate actually separates that pair of stationary points, rather than the
+single 'dD' coordinate used for the reactant-side legs:
+
+  SMD_TS1_TS2/ + USW_100_TS1_TS2/   TS1<->TS2, driven along 'cobh' (leaving-group
+                                     coordination) — see SMD_TS1_TS2/README.
+  SMD_TS1_TS3/ + USW_100_TS1_TS3/   TS1<->TS3, driven along 'cowh' (nucleophile
+                                     coordination) — see SMD_TS1_TS3/README.
+  SMD_TS2_TS3/ + USW_100_TS2_TS3/   TS2<->TS3, driven along cobh AND cowh together — see
+                                     SMD_TS2_TS3/README.
+  SMD_TS3_TS4/ + USW_TS3_TS4/       TS3<->TS4, driven along 'coelp' (coordination of the
+                                     oxygens on the electrophilic phosphorus) — see
+                                     SMD_TS3_TS4/README.
+  SMD_TS3_TS5/ + USW_TS3_TS5/       TS3<->TS5, driven along 'cobh' — see SMD_TS3_TS5/README.
+  WHAM_files/                       shared WHAM reconstruction scripts (see its README);
+                                     per-connection results are in each
+                                     USW_100_*/USW_*/<rep>/WHAM/.
+
+Each SMD_*/USW_*/ pair follows the exact same generate-seeds -> sample-windows ->
+reconstruct-profile logic detailed in ../PMF_react_TS1/README; only the driven coordinate(s)
+and pull range differ (see each SMD_*/README for its specific coordinate/range). USW_TS3_TS4/
+and USW_TS3_TS5/ additionally average their three replicas' WHAM profiles into a single
+'average_pmf.png' per connection (see their own READMEs).
+
+SMD_TS3_TS1/ and SMD_TS5_TS2/ are two further completed SMD runs (both driven along 'cowh',
+AT0=0.9->AT1=1.9) for the TS3<->TS1 and TS5<->TS2 connections, but neither currently has a
+matching umbrella-sampling folder here — see their own READMEs. They are kept for
+traceability but do not (yet) contribute a WHAM free-energy profile.
+
+Three replicas (rep1/2/3) per stage throughout. Together with ../PMF_react_TS1/ and
+../PMF_react_TS2/, this completes the multi-step free-energy profile of the pph4 mechanism
+used in ../README's LFER analysis.
+
+Note: this README documents pre-existing content; no existing file was modified.

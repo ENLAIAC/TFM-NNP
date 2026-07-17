@@ -1,0 +1,59 @@
+--- OVERVIEW: pph4 ---
+
+Free-energy characterization of the pph4 (fully-protonated pyrophosphate) hydrolysis
+mechanism in the presence of Mg2+, using the NNP committee in ../NNP/ and the analysis
+scripts in ../codes/. Two complementary strategies are used: unbiased-coordinate OPES
+metadynamics for a broad 2D free-energy surface, and targeted SMD+Umbrella-Sampling+WHAM
+for accurate 1D profiles along specific mechanistic segments.
+
+Two loose top-level files duplicate the ../codes/ analysis for local, folder-specific use:
+'FES_2D.png' is produced by a folder-local copy of the FES-reweighting script,
+'FES_2D_inverse.py' (a minor axis-label/plot-range variant of ../codes/FES_2D_inverse.py);
+'average_fes.py' averages the rep_1/rep_2/rep_3 'fes-rew.dat' bin grids into a single
+replica-averaged FES (overwriting 'fes-rew.dat' with the average — run after all three
+replicas have produced matching bin grids).
+
+--- rep_1/, rep_2/, rep_3/ ---
+OPES metadynamics biasing the 'dD' reaction coordinate (see PMF_react_TS1/SMD_react_TS1/
+README for its definition) to freely explore the hydrolysis path and reconstruct a 2D
+free-energy surface (FES) by reweighting: 'codes/FES_2D.py' consumes the accumulated
+'COLVAR'/'KERNELS' to produce 'FES_2D.png' and the raw 'fes-rew*.dat' profiles ('average_fes.py',
+described above, averages these three replicas' profiles together). 'look_for_conf.py' filters
+COLVAR by CV thresholds to flag chemically valid (non-distorted) frames into
+'Valid_configurations.txt'. Each replica's 'original_version/' (rep_1) or 'original/'+
+'pph3_included/' (see below) subfolder is a checkpoint snapshot of this same analysis taken at
+an earlier point of the run / before extending the valid-configuration search to also consider
+frames overlapping with the pph3 system. rep_1 additionally has an 'OPES_20000_step/'
+subfolder — a separate, shorter (20000-step) OPES re-run of the same dD-biased exploration,
+present only for this replica, with its own inner 'safe/' backup copy of an earlier state of
+that re-run. Three replicas differing only by random seed — this one README covers rep_1/2/3
+together.
+
+--- rep_1_tot_constrained/, rep_2_tot_constrained/, rep_3_tot_constrained/ ---
+Same OPES metadynamics protocol as rep_1/2/3, with one additional upper-wall restraint on a
+'sum_pyro' coordination-sum CV (see the PLUMED file) to prevent the trajectory from wandering
+into an unwanted pyrophosphate-decomposition side channel — i.e. a "totally constrained"
+re-run of the same FES reconstruction, kept alongside the unconstrained version for
+comparison. Each contains an 'original/' and a 'pph3_included/' subfolder, same checkpoint
+relationship as above. Three replicas, one README covers all three.
+
+--- OPES_TS/ ---
+OPES metadynamics exploring the TS region directly (angle/coordination CVs, not dD) rather
+than reconstructing a profile along a single reaction coordinate — see OPES_TS/README.
+
+--- PMF_react_TS1/, PMF_react_TS2/ ---
+Targeted SMD -> Umbrella Sampling -> WHAM pipelines giving accurate 1D free-energy profiles
+along 'dD' for the reactant->TS1 and reactant->TS2 segments — see each folder's README.
+
+--- US/ ---
+The same SMD -> US -> WHAM pipeline extended beyond the reactant, to the TS1-TS2, TS1-TS3,
+TS2-TS3, TS3-TS4 and TS3-TS5 pairwise connections, each along whichever coordinate actually
+separates that pair (plus two further SMD-only legs, TS3-TS1 and TS5-TS2, not yet carried
+through to umbrella sampling) — see US/README.
+
+Together, PMF_react_TS1 + PMF_react_TS2 + US reconstruct the full multi-step 1D free-energy
+profile of the reaction across TS1 through TS5, while rep_1/2/3 (+ _tot_constrained) give an
+independent 2D check via unbiased OPES sampling, and OPES_TS gives a broader look at the TS
+region itself.
+
+Note: this README documents pre-existing content; no existing file was modified.

@@ -1,0 +1,16 @@
+--- SMD_TS1_TS3 ---
+
+Steered MD stage generating the starting configurations for the TS1 <-> TS3 umbrella-sampling
+scan (see ../USW_100_TS1_TS3/README and ../README). Driven along 'cowh' (COORDINATION of the
+nucleophilic water/oxygen with the surrounding hydrogens — tracks the nucleophile's hydration
+reorganization between the two stationary points): MOVINGRESTRAINT pulls cowh from AT0=0.9 to
+AT1=2.1 over 100000 steps, KAPPA=200 kcal/mol/A^2, under the same background wall restraints
+as the other pph4 pipelines (see PMF_react_TS1/SMD_react_TS1/README). Restart snapshots are
+converted into 'lmp_files/' seed structures the same way.
+
+rep2 additionally has a 'safe/' subfolder — a backup copy of an earlier state of that
+replica's run (same file set as the top level); rep1 and rep3 have no equivalent.
+
+Three replicas (rep1/2/3) — one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

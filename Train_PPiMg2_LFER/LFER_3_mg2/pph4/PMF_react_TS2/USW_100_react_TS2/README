@@ -1,0 +1,14 @@
+--- USW_100_react_TS2 ---
+
+Umbrella-sampling stage of the reactant -> TS2 PMF pipeline (see ../README). Structurally
+identical to ../../PMF_react_TS1/USW_100_react_TS1/ (100 windows per replica seeded from
+../SMD_react_TS2/lmp_files/, static dD restraint per window, WHAM/ subfolder with the
+per-replica free-energy reconstruction) — see that README for the full per-window/WHAM
+file description. Three replicas (rep1/2/3), one README covers all three.
+
+rep2/inputs/ additionally contains a stray subfolder literally named '-' holding an early,
+superseded copy of a handful of 'USW_NNN.lmp' seed structures (a leftover from an earlier run
+of the seed-copy step); the real seed set used by this replica's windows is
+rep2/inputs/lmp_files/ as usual.
+
+Note: this README documents pre-existing content; no existing file was modified.

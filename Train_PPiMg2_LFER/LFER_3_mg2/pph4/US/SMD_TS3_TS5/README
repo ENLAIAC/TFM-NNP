@@ -1,0 +1,18 @@
+--- SMD_TS3_TS5 ---
+
+Steered MD stage generating the starting configurations for the TS3 <-> TS5 umbrella-sampling
+scan (see ../USW_TS3_TS5/README and ../README). Driven along 'cobh' (COORDINATION of the
+leaving-group oxygens with the surrounding hydrogens — the same coordinate used for the
+TS1<->TS2 connection, here applied to the TS3/TS5 pair): MOVINGRESTRAINT pulls cobh from
+AT0=1.7 to AT1=2.7 over 100000 steps, KAPPA=300 kcal/mol/A^2, under the same background wall
+restraints as the reactant-side pipelines (see ../PMF_react_TS1/SMD_react_TS1/README for the
+shared CV/wall definitions).
+
+Restart snapshots are converted into per-replica 'lmp_files/' seed structures by
+'convert_restart_to_lmp.py' (run per-replica via 'run_convert.sh'), same mechanism as in
+../SMD_TS3_TS4/. Each replica's 'lmp_files/' holds the 100 resulting seed '.lmp' files plus a
+'metadata.csv' log of which restart/timestep/CV value each one came from.
+
+Three replicas (rep1/2/3) — one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

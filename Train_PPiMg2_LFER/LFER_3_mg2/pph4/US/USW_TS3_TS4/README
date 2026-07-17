@@ -1,0 +1,23 @@
+--- USW_TS3_TS4 ---
+
+Umbrella-sampling stage connecting TS3 and TS4 (see ../README), seeded from
+../SMD_TS3_TS4/<rep>/lmp_files/ and restrained on 'coelp'. Structurally identical in layout
+to LFER_3_mg2/pph4/PMF_react_TS1/USW_100_react_TS1/: 100 window subfolders per replica
+('000'-'099'), each with a static harmonic restraint (KAPPA=300 kcal/mol/A^2) centered on its
+own coelp value spanning 1.9-2.7 in even steps ('generate_US_window.py' builds the windows
+and the matching 'plumed_USW_<NNN>.dat' files); 'inputs/lmp_files/' is the traceability copy
+of the seed structures; 'WHAM/' holds the per-replica WHAM reconstruction ('input.txt',
+'job_wham.sh', the resulting free-energy profile 'fepTS3_TS4_pph4.out' and diagnostic plots) —
+see PMF_react_TS1/USW_100_react_TS1/README for the full per-window/WHAM file description,
+substituting the coordinate name.
+
+Unlike the reactant-side USW_100_* folders, this folder additionally carries a top-level
+'average_PMF.py': it loads the three replicas' 'fepTS3_TS4_pph4.out' profiles, averages them
+point-by-point (skipping non-finite bins), writes the result to 'average_pmf_noerror.dat', and
+plots it to 'average_pmf.png' with per-point error bars (std. dev. across replicas) and an
+annotated arrow marking the TS3->TS4 free-energy gap between the global minimum and the
+relative minimum along the profile.
+
+Three replicas (rep1/2/3) — one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

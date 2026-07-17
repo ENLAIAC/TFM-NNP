@@ -1,0 +1,14 @@
+--- SMD_TS5_TS2 ---
+
+Steered MD run pulling the TS5 <-> TS2 connection along 'cowh' (COORDINATION of the
+nucleophile oxygen with the surrounding hydrogens): MOVINGRESTRAINT pulls cowh from AT0=0.9
+to AT1=1.9 over 100000 steps, KAPPA=300 kcal/mol/A^2 — the same pull range as
+../SMD_TS3_TS1/, applied here to the TS5/TS2 pair, under the same background wall restraints
+as the other SMD pipelines (see ../PMF_react_TS1/SMD_react_TS1/README for the shared CV/wall
+definitions). As in ../SMD_TS3_TS1/, each replica folder holds only the raw run output; there
+is no 'lmp_files/' seed-conversion step and no matching umbrella-sampling folder yet present
+under US/.
+
+Three replicas (rep1/2/3) — one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.
