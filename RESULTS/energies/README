@@ -1,0 +1,100 @@
+=====================================
+FOLDER: energies
+SYSTEM: MareNostrum 5 — glogin2
+CREATED: 01/10/2026
+UPDATED: 07/10/2026
+PURPOSE: Converts the pH speciation of ../speciation into an observable: a
+         Boltzmann-weighted effective activation free energy and Eyring rate
+         constant for pyrophosphate hydrolysis as a function of pH, with and
+         without Mg(II), compared against Wolfenden's experimental curve.
+=====================================
+
+01/10/2026
+
+o This folder is the second half of the RESULTS analysis. '../speciation' answers
+  "which species exist at which pH"; this folder answers "what barrier does the
+  solution as a whole present at that pH". There is no MD and no DFT here, only
+  post-processing of a speciation curve plus a table of per-species barriers.
+
+o The model is in 'delta_G.py'. It reads two files. 'energies.txt' is a single row
+  of eight activation free energies in kcal/mol, one per species, with the species
+  names in the header comment: 'pp hpp h2pp h3pp h4pp mgpp mghpp mg2pp'. The second
+  file is a 'concentrations_vs_pH_<Mg>_<PP>.dat' copied over from the matching
+  '../speciation' run. The script converts the concentrations into mole fractions
+  within a chosen group of species, Boltzmann-weights exp(-E/RT) by those fractions,
+  and takes -RT ln of the sum to get an effective barrier per pH point. It then
+  applies Eyring with A = kB*T/h to get a rate constant. Constants are
+  R = 1.987e-3 kcal/(mol*K) and T = 298 K (298.15 K in some copies).
+
+o Invocation is 'python3 delta_G.py <energy_filename> <concentration_filename>'.
+  The outputs written next to it are 'DeltaG_resume.txt' (pH, non-catalyzed dG,
+  non-catalyzed k, catalyzed dG, catalyzed k), 'pp_K_per_species.txt' and
+  'mg_K_per_species.txt' (per-species rate constants, not pH-resolved),
+  'Energy_vs_pH.png' and 'K_vs_pH.png'. Some folders also carry 'ratios_pp.txt',
+  'ratios_mg.txt' and 'boltzmann_coeff' files, which are the intermediate mole
+  fractions and weights from a variant of the script.
+
+o Subfolder naming follows '../speciation': 'MMMM_PPPP' with the two four-digit
+  blocks the total Mg and total pyrophosphate in millimolar, so '0010_0050' is
+  total Mg = 0.010 M and total PP = 0.050 M. Three older folders break that
+  convention and use a loose decimal spelling instead: '01_002', '03_03' and
+  '1_0002'. 'wolfenden_case' is not a concentration at all, it is the composition
+  chosen to line up with the experimental reference.
+
+o IMPORTANT, and the first thing to check before comparing any two subfolders:
+  these runs are NOT all the same calculation. They fall into two generations that
+  differ both in the input barriers and in the definition of the "catalyzed"
+  curve, and nothing in the folder names signals which is which.
+
+    Old generation -- 'energies.txt' has hpp = 29.0 and h3pp = 23.5, and
+    'catalyzed' is the three magnesium complexes only, ["mgpp","mghpp","mg2pp"].
+    Folders: '0001_0120', '0020_0050', '01_002', '03_03', '1_0002'.
+    Outputs dated 06/08/2026 and 19/08/2026, 'DeltaG_resume.txt' is 16 KB.
+
+    New generation -- 'energies.txt' has hpp = 31.18 and h3pp = 23.75, and
+    'catalyzed' is ALL eight species, i.e. the whole solution including the
+    protonation ladder, not just the Mg complexes. Folders: '0010_0010',
+    '0010_0020', '0010_0050', '0050_0100'. Outputs dated 29/08/2026 and
+    31/08/2026, 'DeltaG_resume.txt' is 25 KB.
+
+    'wolfenden_case' uses the new-generation grouping but its own 'energies.txt'
+    again (hpp = 31.2), and its output is dated 20/09/2026.
+
+o The consequence of the grouping change is worth spelling out, because it looks
+  like a bug when it is not. In the new generation the two columns of
+  'DeltaG_resume.txt' agree to several decimal places at low pH. That is expected:
+  the "catalyzed" group now contains the same five protonated species as the
+  "non-catalyzed" group, and below pH ~4 those dominate both averages, so the two
+  curves must coincide there. The curves are meant to be read as "Mg-free solution"
+  versus "solution with Mg present", not as "uncatalyzed path" versus "catalyzed
+  path". Under the old grouping the second column was the Mg-complex subensemble
+  renormalized to itself, which is a different quantity and is not comparable.
+
+o Second trap: the 'delta_G.py' sitting at the top of this folder is the OLD
+  generation. It is not the script that produced the new-generation subfolders.
+  Every subfolder keeps its own frozen copy of the script it was actually run with,
+  and those copies differ from the top-level one in all ten cases. Re-running the
+  top-level script will not reproduce '0010_0050'. Always use the copy inside the
+  subfolder.
+
+o 'concentrations_vs_pH_0.001_0.12.dat' at the top level is a loose speciation curve
+  for 0.001 M Mg / 0.120 M PP, the input of the '0001_0120' run.
+
+o 'wolfenden_case' additionally holds 'wolfend_data.txt', two columns of pH and
+  experimental dG covering pH 5 to 12, read by its script and overlaid on the
+  calculated curves. Its plots are the publication-style comparison: calculated
+  Mg-free, experimental Mg-free, and calculated with Mg, plus a zoomed
+  'Energy_vs_pH_snippet.png' restricted to pH 7-12.
+
+o Not verified in this pass: where the per-species barriers in 'energies.txt' come
+  from. They are entered by hand and are presumably the PMF/US results from
+  '../../LFER/LFER_3_mg2', but no provenance file ties a given number to a given
+  WHAM output. Anyone revising the barriers should record that mapping.
+
+07/10/2026
+
+o Provenance of 'energies.txt', which the 01/10 entry left open: Elia wrote these
+  barrier tables by hand and copied them into each subfolder manually. No script in
+  this tree generates them, so there is no pipeline to re-run and no mapping to a WHAM
+  output to recover. If a barrier changes, the file has to be edited by hand again,
+  and the two generations documented above are the record of that having happened.

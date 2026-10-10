@@ -1,0 +1,106 @@
+=====================================
+FOLDER: speciation
+SYSTEM: MareNostrum 5 — glogin2
+CREATED: 06/08/2026
+UPDATED: 06/08/2026
+PURPOSE: Thermodynamic speciation of the Mg(II) / pyrophosphate system as a
+         function of pH, scanned over a 20x20 grid of total Mg and total PP
+         concentrations. Supports the choice of composition for the DeePMD
+         simulation boxes.
+=====================================
+
+06/08/2026
+
+o The folder holds a 20x20 grid of independent speciation calculations, 400 in
+  total. Each subfolder is named 'MMMM_PPPP', where the two four-digit blocks are
+  the total Mg and the total pyrophosphate concentration in millimolar, so
+  '0035_0080' means total Mg = 0.035 M and total PP = 0.080 M. Both axes run from
+  0.005 M to 0.100 M in steps of 0.005 M. I verified that the folder name and the
+  concentrations written inside the corresponding files agree for all 400 cases.
+
+o The model itself is in 'speciation.py' at the top level. This top copy is a
+  template: the two lines that set the totals read 'c1 = x' and 'c2 = y', and the
+  generating script substitutes the numbers before dropping a frozen copy of the
+  script into each subfolder. The file 'temp' sitting next to it is a leftover of
+  that substitution, with 'c1' already replaced and 'c2' still symbolic. Neither
+  file is a result, and 'temp' can be deleted without losing anything.
+
+o Eleven species are considered. On the pyrophosphate side the full protonation
+  ladder P2O7(4-), HP2O7(3-), H2P2O7(2-), H3P2O7(-) and H4P2O7, with
+  pKa = 0.85, 1.96, 6.60 and 9.41. On the magnesium side the free ion Mg(2+), the
+  solid Mg(OH)2, and the hydroxo complex MgOH(+). Three mixed complexes bridge the
+  two sides: MgP2O7(2-), MgHP2O7(-) and the binuclear Mg2P2O7.
+
+o The constants are kd_ppmg = 3.9e-6, kd_pphmg = 8.7e-4 and kd_ppmg2 = 1.78e-8
+  (this last one cumulative, so Mg2P2O7 is second order in free Mg), taken from
+  10.1021/ja01578a006. The solubility product of brucite is
+  Ksp = 5.61e-12 from the CRC Handbook, 76th ed. The reference composition that
+  inspired the grid comes from 10.1074/jbc.M110.214510. Water autoprotolysis is
+  set at pKw = 14.0, i.e. 25 C throughout, and no ionic strength correction is
+  applied anywhere, so every constant is a concentration constant at infinite
+  dilution. At the upper end of the grid the ionic strength is a few tenths molar,
+  which is where this assumption is weakest.
+
+o Worth flagging: 'beta_mgoh' is set to 0.0, so the MgOH(+) complex is declared but
+  switched off. The 'mgoh' column is identically zero in all 400 runs and the only
+  sink for magnesium at high pH is the solid. If MgOH(+) is ever enabled the
+  alkaline half of every curve will shift.
+
+o Each subfolder contains the same five outputs, all tagged with its own pair of
+  concentrations: 'concentrations_vs_pH_<Mg>_<PP>.dat' with absolute molarities,
+  'molecular_ratios_vs_pH_<Mg>_<PP>.dat' with the same data as fractions,
+  'pp_molecular_ratio_<Mg>_<PP>.png' and 'mg_molecular_ratio_<Mg>_<PP>.png' with
+  the two speciation diagrams, and 'speciation_resume_<Mg>_<PP>.txt' with the
+  constants, the precipitation onset and the dominant species every half pH unit.
+  The pH scan is 0.00 to 13.95 in steps of 0.05, so 280 points per run.
+
+o I re-derived the two mass balances directly from the stored '.dat' files for all
+  400 runs. The largest relative closure error is 3.7e-7 on Mg and 3.8e-7 on PP,
+  which is exactly the rounding of the '%.6e' output format and not a defect of the
+  solver. No negative concentrations appear anywhere, and the saturation condition
+  is respected. The 400 concentration files are pairwise distinct, so no grid point
+  has been silently duplicated or overwritten.
+
+o A grid-wide analysis is written in 'speciation_grid_analysis.txt', which holds the
+  full 20x20 maps of precipitation onset, of the fraction of pyrophosphate carrying
+  magnesium at pH 7, of the maximum fraction of Mg2P2O7, of free Mg at pH 7 and of
+  the maximum fraction of MgP2O7, plus a regime map.
+
+o On whether these are really 400 different systems: they are, but not uniformly
+  across pH. Below pH 2 all 400 curves collapse onto each other, the largest spread
+  in any pyrophosphate fraction being 0.0014. Magnesium binding is negligible there
+  and the speciation is the bare pKa ladder. Above pH 12 they collapse again, to
+  within 5e-7, because every system ends with all the magnesium in the solid and
+  all the pyrophosphate as free P2O7(4-). The whole difference between the 400
+  systems lives in the window between roughly pH 4 and pH 9, where the spread in a
+  single fraction reaches 0.95, i.e. the full range.
+
+o The more useful negative result is that the Mg:PP ratio alone does not fix the
+  speciation. Grouping the grid into the 63 families that share a ratio, the
+  fractions inside a family still differ by up to 0.45. The 1:1 diagonal is the
+  clearest case: from 0.005/0.005 M to 0.100/0.100 M the peak MgP2O7 fraction
+  barely moves, 0.938 to 0.941, but the peak MgHP2O7 fraction climbs from 0.415 to
+  0.603, the peak Mg2P2O7 fraction from 0.084 to 0.159, and the free Mg fraction at
+  pH 7 falls tenfold, from 0.246 to 0.024. Two boxes prepared at the same ratio but
+  at different dilution are therefore not the same chemical system, and the
+  binuclear complex is what breaks the scaling, being second order in free Mg.
+
+o Some regularities do hold. The maximum MgP2O7 fraction is stoichiometrically
+  capped: it equals the Mg:PP ratio whenever magnesium is the limiting reagent and
+  saturates at 0.941 as soon as Mg >= PP, which is the clean triangular structure
+  visible in that map. Precipitation onset is monotone in both totals, earliest at
+  pH 8.90 for 0.100/0.005 M and latest at pH 11.75 for 0.005/0.095 M, so a 2.85 pH
+  unit span across the grid; along the 1:1 diagonal it is pinned at 10.35 for every
+  concentration except the most dilute point, where it is 10.40. In every one of
+  the 400 systems all the magnesium is eventually in the solid by the end of the
+  scan.
+
+o Classifying the grid by how much pyrophosphate carries magnesium at pH 7 gives
+  three regimes and they are well populated: 45 points below 0.25, where
+  pyrophosphate stays free and protonated, 132 points between 0.25 and 0.75, and
+  223 points above 0.75, where pyrophosphate is essentially magnesium saturated.
+  The boundary runs diagonally, and the transition is broad enough that the grid
+  spacing of 0.005 M resolves it comfortably. If a single representative
+  composition is needed for the simulation boxes, the mid regime near
+  0.050/0.050 M is the one where the speciation is most sensitive to the totals and
+  therefore the most demanding test.
