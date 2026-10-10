@@ -1,0 +1,11 @@
+--- US (PMF_react_TS1_alpha) ---
+
+Umbrella-sampling stage along 'dD', seeded from ../SMD/lmp_files/ (see ../README). 100 window
+subfolders per replica, each with a static harmonic restraint at its own dD value -- same
+layout as LFER_3_mg2/pph4/PMF_react_TS1/USW_100_react_TS1/ (see that folder's README for the
+full per-window/WHAM file description). 'average_PMF*.py' / 'average_pmf*.dat/.png' at this
+level average the three replicas' WHAM profiles together.
+
+Three replicas (rep1/2/3) -- one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

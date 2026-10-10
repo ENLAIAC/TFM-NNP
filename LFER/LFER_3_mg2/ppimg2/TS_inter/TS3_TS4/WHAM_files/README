@@ -1,0 +1,7 @@
+--- WHAM_files (TS_inter/TS3_TS4) ---
+
+Shared WHAM scripts ('errors_wham1D.py', 'job_wham.sh', 'wham1D.py') for the US/
+reconstruction above -- same scripts as LFER_3_mg2/pph4/PMF_react_TS1/WHAM_files/, see its
+README for what each does.
+
+Note: this README documents pre-existing content; no existing file was modified.

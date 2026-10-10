@@ -1,0 +1,15 @@
+--- OPES_TS ---
+
+OPES (On-the-fly Probability Enhanced Sampling) metadynamics runs exploring the TS region of
+the pph4 mechanism directly (as opposed to the harmonic-restraint umbrella sampling used in
+../PMF_react_TS1/, ../PMF_react_TS2/ and ../US/). Each replica biases the angle/coordination
+CVs 'aobpow' and 'cowbulkp' (see plumed_OPES_TS_repN.dat / plumed_pph4-hydrolysis.dat) with
+PLUMED's OPES bias over a very long run (tens of millions of steps, restart snapshots every
+100000 steps), letting the system freely explore the TS basin rather than pin it to a single
+reaction-coordinate value. Output per replica: 'OPES_TS_repN.lammpstrj'/'.log', 'COLVAR'/
+'Coord.info'/'OPES.log', 'KERNELS' (deposited OPES kernels), 'mg_coord.info' and
+'model_devi.out' (NNP-committee deviation, QC), plus the full restart-snapshot series.
+
+Five replicas (rep1..rep5) — one README covers all five, same protocol with different seeds.
+
+Note: this README documents pre-existing content; no existing file was modified.

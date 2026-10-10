@@ -1,0 +1,12 @@
+--- USW_100_TS1_TS2 ---
+
+Umbrella-sampling stage connecting TS1 and TS2 (see ../README), seeded from
+../SMD_TS1_TS2/lmp_files/ and restrained on 'cobh' instead of 'dD'. Structurally identical in
+layout to LFER_3_mg2/pph4/PMF_react_TS1/USW_100_react_TS1/ (100 window subfolders per
+replica, each with a static harmonic restraint at its own cobh value; 'inputs/lmp_files/'
+traceability copy; 'WHAM/' per-replica free-energy reconstruction) — see that folder's
+README for the full per-window/WHAM file description, substituting the coordinate name.
+
+Three replicas (rep1/2/3) — one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

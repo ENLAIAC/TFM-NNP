@@ -1,0 +1,8 @@
+--- SMD (TS_inter/TS3_TS5) ---
+
+MOVINGRESTRAINT pulls 'colvp' from AT0=0.0 to AT1=0.9 over 100000 steps, KAPPA=300 kcal/mol
+(see ../../README). Restart snapshots converted into seed structures for ../US/.
+
+Three replicas (rep1/2/3) -- one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

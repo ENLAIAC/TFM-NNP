@@ -1,0 +1,10 @@
+--- US (PMF_react_TS1_beta) ---
+
+Umbrella-sampling stage along 'dD', seeded from ../SMD/lmp_files/ (see ../README). Same
+100-window-per-replica layout as ../../PMF_react_TS1_alpha/US/ -- see its README (or
+LFER_3_mg2/pph4/PMF_react_TS1/USW_100_react_TS1/README) for the full per-window/WHAM file
+description.
+
+Three replicas (rep1/2/3) -- one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

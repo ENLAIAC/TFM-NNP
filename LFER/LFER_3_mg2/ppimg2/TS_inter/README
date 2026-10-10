@@ -1,0 +1,12 @@
+--- OVERVIEW: TS_inter ---
+
+SMD -> Umbrella-Sampling -> WHAM pipelines for four pairwise TS interconversions of the
+ppimg2 system, each along whichever coordination CV separates that pair (see ../README for
+the shared CV/wall definitions): TS1_TS2 -> 'colvp' (AT0=0.1->1.1); TS3_TS1 -> 'coh'
+(AT0=1.9->0.9, i.e. pulled in the opposite direction to the others); TS3_TS4 -> 'coelp'
+(AT0=0.0->0.9); TS3_TS5 -> 'colvp' (AT0=0.0->0.9). SMD kappa=300, US window kappa=300, 'dD'
+pinned at 0 (kappa=400) throughout the umbrella-sampling stage. All four have completed WHAM
+output (repN/US/WHAM/fepTSx_TSy_ppimg2.out, all three replicas) -- unlike the analogous pph3
+interconversions, no rep3-divergence issue was flagged for this system as of this review.
+
+Note: this README documents pre-existing content; no existing file was modified.

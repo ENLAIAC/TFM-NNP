@@ -1,0 +1,13 @@
+--- USW_100_TS2_TS3 ---
+
+Umbrella-sampling stage connecting TS2 and TS3 (see ../README), seeded from
+../SMD_TS2_TS3/lmp_files/ and restrained on the combined cobh+cowh coordinate. Same
+window/replica/WHAM layout as LFER_3_mg2/pph4/PMF_react_TS1/USW_100_react_TS1/ — see that
+folder's README, substituting the coordinate. Note: at least one replica here also contains a
+'COLVAR_bis' file and a nested 'inputs/lmp_files/<NNN>/COLVAR' set alongside the standard
+'COLVAR'/'inputs/lmp_files/', left over from a partial re-run of specific windows; the
+replica's top-level 'COLVAR' and 'WHAM/' outputs are the ones used for the reported profile.
+
+Three replicas (rep1/2/3) — one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

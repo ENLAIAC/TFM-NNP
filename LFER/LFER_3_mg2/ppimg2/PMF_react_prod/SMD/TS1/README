@@ -1,0 +1,8 @@
+--- TS1 (PMF_react_prod/SMD) ---
+
+Steered MD toward the TS1 target along 'dD' (see ../README for the pull parameters). Restart
+snapshots converted into seed structures for ../../US/TS1/.
+
+Three replicas (rep1/2/3) -- one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

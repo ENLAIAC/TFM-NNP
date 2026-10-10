@@ -1,3 +1,47 @@
+--- OVERVIEW: LFER ---
+
+Free-energy (LFER -- Linear Free Energy Relationship) study of pyrophosphate hydrolysis
+across the protonation / Mg2+-coordination series, synced from MareNostrum 5
+(supervisor's account uv169161, reserved area
+/gpfs/scratch/uv36/adrian/deepmd-training/LFER). Last sync: 10/10/2026.
+
+Three systems, same pipeline shape in each (OPES -> steered MD -> umbrella sampling -> WHAM):
+
+  LFER_3_mg2/pph4/     H4P2O7, fully protonated
+  LFER_3_mg2/pph3/     H3P2O7(-), alpha and beta isomers
+  LFER_3_mg2/ppimg2/   2Mg(2+)[P2O7](4-), the bimagnesium complex
+  NNP_LFER_choice/     committee-consistency check, same PMF rebuilt three times
+
+WHAT IS HERE AND WHAT IS NOT
+
+Only the resulting plots, the analysis scripts and the per-folder READMEs are kept. The
+umbrella-sampling and SMD trajectories, the COLVAR/KERNELS files, the per-window LAMMPS
+starting configurations and the trained graph_*.pb NNP models all remain on the cluster
+only -- together they are roughly 884 GB, against 71 MB here.
+
+DEDUPLICATION -- IMPORTANT WHEN COMPARING WITH THE CLUSTER
+
+The cluster tree replicates the same job script into every umbrella window, so the
+curated file set there is 8575 files but only 710 distinct ones. Only the distinct files
+are committed here, each once, at the shallowest directory that covers all the places it
+appeared on the cluster. Worst cases: 'job_lammps-deepmd.sh' existed in 4849 identical
+copies and 'convert_restart_to_lmp.py' in 83. So if a script appears here one level above
+where you expect it, that is why -- it was identical in every window below that point.
+Content was compared by MD5, and no two distinct files were allowed to collapse onto the
+same path.
+
+NOTE ON PATHS
+
+Until 10/10/2026 this folder was called 'Train_PPiMg2_LFER/', because on the cluster the
+study used to live under Train_PPiMg2/. The two duplicate copies there were merged into a
+single tree under LFER/ on 02/10 and 07/10/2026, and Train_PPiMg2/LFER_3_mg2 and
+Train_PPiMg2/NNP_LFER_choice are now only symlinks. Repo paths again match cluster paths
+one-to-one. See docs/STRUCTURE_OVERVIEW.md.
+
+----------------------------------------------------------------------
+Previous content of this file, from the 05/07/2026 pph4-only sync:
+----------------------------------------------------------------------
+
 --- OVERVIEW: Train_PPiMg2_LFER ---
 
 New content synced from MareNostrum 5 (supervisor's account uv169161, reserved area

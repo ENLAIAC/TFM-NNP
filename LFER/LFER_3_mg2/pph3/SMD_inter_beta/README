@@ -1,0 +1,21 @@
+--- OVERVIEW: SMD_inter_beta ---
+
+SMD legs connecting the TS1/TS3/TS5 stationary points pairwise for the beta protonation
+isomer of pph3 (mirroring pph4's US/ interconversion set -- see LFER_3_mg2/pph4/US/README),
+each pulled along whichever coordinate actually separates that pair. No corresponding
+'SMD_inter_alpha/' exists in this LFER_3_mg2 copy -- the alpha isomer's equivalent SMD stage
+was built and run on Vives instead (see ../US_inter_alpha/README).
+
+--- TS1_generation/, TS3_generation/, TS5_generation/ ---
+Generate the TS1-, TS3- and TS5-region starting configurations via an initial SMD run, before
+the pairwise legs below pull from them -- see each folder's README.
+
+--- TS1_TS2/, TS3_TS1/, TS3_TS4/, TS3_TS5/, TS5_TS2/ ---
+Pairwise SMD pulls, one per edge, each along its own driven CV (kappa=400 kcal/mol,
+100000 steps): TS1_TS2 and TS5_TS2 and TS3_TS1 -> 'cowh' (AT0=0.9->1.9); TS3_TS4 -> 'coelp'
+(AT0=1.8->2.7); TS3_TS5 -> 'cobh' (AT0=0.9->1.9) -- see each folder's README. Four of these
+five (all but TS5_TS2) were carried through to umbrella sampling in ../US_inter_beta/.
+
+Note: this README documents pre-existing content; no existing file was modified. (Corrected
+the original pass here missed 'TS3_generation/', which mirrors TS1_generation/ and
+TS5_generation/ for the TS3 endpoint; now documented, see TS3_generation/README.)

@@ -1,0 +1,9 @@
+--- TS3_generation (SMD_inter_beta) ---
+
+Generates rep1's starting TS3-region configuration ('TS3_rep1.lmp') via an initial SMD run
+along 'dD', before the TS3_TS1/, TS3_TS4/ and TS3_TS5/ legs above pull from it -- same
+pattern as ../TS1_generation/ and ../TS5_generation/. Includes its own 'lmp_files/' (100
+numbered window seed structures) and Vives job script; unlike TS1_generation/'s
+'SMD.dat'/README, uses 'SMD.info' and has no README of its own until now.
+
+Note: this README documents pre-existing content; no existing file was modified.

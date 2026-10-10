@@ -1,0 +1,9 @@
+--- NNP_3 ---
+
+Same reactant->TS1 umbrella-sampling PMF reconstruction as ../NNP_1/ and ../NNP_2/, driven
+instead with committee member 'graph_3_004_compressed.pb' listed first in the LAMMPS
+'pair_style deepmd' call (so it drives the dynamics; graph_1 and graph_2 are listed after it
+for the committee deviation calculation only). Same rep_1/2/3 + average_PMF.py structure —
+see ../NNP_1/README for the full file description.
+
+Note: this README documents pre-existing content; no existing file was modified.

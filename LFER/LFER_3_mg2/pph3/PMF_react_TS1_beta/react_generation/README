@@ -1,0 +1,9 @@
+--- react_generation (PMF_react_TS1_beta) ---
+
+Generates rep1's starting TS1-region configuration ('TS1_rep1.lmp') via an initial SMD run
+along 'dD' (background restraints as in ../SMD/README) before the umbrella-sampling seed
+generation in ../SMD/ proper -- includes its own 'lmp_files/' (100 numbered window seed
+structures, 'metadata.csv') and job script ('job_lammps-deepmd_explore_gpu_vives.sh',
+submitted from Vives). Single run, not a rep1/2/3 set.
+
+Note: this README documents pre-existing content; no existing file was modified.

@@ -1,0 +1,14 @@
+--- WHAM_files (PMF_react_TS1) ---
+
+Shared WHAM (Weighted Histogram Analysis Method) scripts used by all three replicas in
+../USW_100_react_TS1/*/WHAM/ to reconstruct the 1D free-energy profile along dD.
+
+o wham1D.py: reads the per-window biased COLVAR series (window centers + force constants
+  from 'input.txt') and reconstructs the unbiased free-energy profile F(dD) via WHAM;
+  produces the F-profile, per-window histogram, biased-probability and convergence plots.
+o errors_wham1D.py: companion script estimating the statistical error on the WHAM free-energy
+  profile (block-averaging / bootstrap over the window trajectories).
+o job_wham.sh: SLURM submission script that runs wham1D.py with 'input.txt' and the CV name
+  (e.g. 'dD_pp') as arguments; copied into each replica's WHAM/ folder before submission.
+
+Note: this README documents pre-existing content; no existing file was modified.

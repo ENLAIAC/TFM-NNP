@@ -1,0 +1,8 @@
+--- TS5_generation (SMD_inter_beta) ---
+
+Generates rep1's starting TS5-region configuration ('TS5_rep1.lmp') via an initial SMD run
+along 'dD', before the ../TS5_TS2/ leg pulls from it -- same pattern as ../TS1_generation/.
+Holds only input/log files (no restart/lmp_files output visible yet), consistent with
+TS5_TS2/ itself not having produced output as of this review.
+
+Note: this README documents pre-existing content; no existing file was modified.

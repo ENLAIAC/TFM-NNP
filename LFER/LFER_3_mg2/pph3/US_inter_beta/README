@@ -1,0 +1,35 @@
+--- OVERVIEW: US_inter_beta ---
+
+Umbrella-sampling stage for the beta isomer's interconversions, seeded from
+../SMD_inter_beta/'s 100 structures per edge/replica, mirroring the alpha pipeline's
+parameters (kappa=300 on the driven CV, dD pinned at 0 with kappa=400) -- see
+../US_inter_alpha/README for the shared build pattern. Covers four of SMD_inter_beta's five
+edges -- TS1_TS2, TS3_TS1, TS3_TS4, TS3_TS5; TS5_TS2 was not carried through to umbrella
+sampling (stayed SMD-only, see ../SMD_inter_beta/TS5_TS2/README).
+
+All four interconversions now have completed WHAM output (repN/WHAM/fepTSx_TSy_pph3_beta.out,
+no NaNs). As of a review on 19/07/2026: TS3_TS1 was consistent across replicas (barriers
+~10.4/9.1/8.9 kcal/mol); TS1_TS2 was consistent after reseeding rep1/rep2 from rep3's branch
+(~10.6/10.5/11.1); TS3_TS4 was made consistent (~8.2/8.9/7.5) after two rounds of reseeding
+rep1's product-side windows from rep2 to fix a diverged water-coordination channel; TS3_TS5's
+WHAM was blocked at that time by a wrong COLVAR column being read for that edge (left as the
+user's own fix) -- its fep*.out now parses without NaNs, so that issue appears to have been
+resolved since, though this review did not re-derive its barrier values.
+
+A recurring rep3 pattern was diagnosed across these interconversions: the PLUMED setup
+restrains 'cobh'/'cowh'/'coelp' and pins 'dD=0', but leaves the dissociative-character
+coordinate 'dD_sum' (=dobp+dowp) unrestrained; rep3's SMD-derived seeds happen to sit in a
+more dissociative basin along dD_sum than rep1/rep2's, and 400 ps of US sampling per window
+isn't enough to cross back -- a seed-driven non-ergodicity issue rather than a WHAM/setup bug.
+
+--- USW_100_<edge>/ ---
+Structurally identical to US_inter_alpha's (100 numbered window subfolders per replica, each
+with its own LAMMPS run + PLUMED restraint; 'WHAM/' per-replica free-energy reconstruction).
+Restrained CV per edge: TS1_TS2 -> 'cobh', TS3_TS1 -> 'cowh', TS3_TS4 -> 'coelp',
+TS3_TS5 -> 'cobh' (kappa=300 kcal/mol in all cases, 'dD' pinned at 0 throughout).
+
+--- WHAM_files/ ---
+Shared 'wham1D.py'/'errors_wham1D.py'/'job_wham.sh' -- same scripts as ../US_inter_alpha/
+WHAM_files/, see its README.
+
+Note: this README documents pre-existing content; no existing file was modified.

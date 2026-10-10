@@ -1,0 +1,323 @@
+=====================================
+FOLDER: LFER_3_mg2
+SYSTEM: MareNostrum 5 — glogin2
+CREATED: 16/06/2026
+UPDATED: 17/09/2026
+PURPOSE: Production LFER study of pyrophosphate hydrolysis with Mg2+, comparing
+         the pph4 and pph3 protonation states, plus the transition-state level
+         diagram spanning the whole PPi protonation spectrum.
+=====================================
+
+--- OVERVIEW: LFER_3_mg2 ---
+
+Production Linear Free Energy Relationship (LFER) study of pyrophosphate hydrolysis in the
+presence of Mg2+, comparing the pph4 (fully protonated) and pph3 (tri-protonated) systems.
+
+o NNP/       the iteration-005 NNP committee driving every run in this folder — see its
+             README (and ../NNP_LFER_choice/ for the iteration-004 consistency check that
+             preceded it).
+o codes/     shared free-energy-surface reconstruction scripts (FES_2D*.py,
+             FES_from_Reweighting.py) — see its README.
+o pph4/      the main system: OPES metadynamics (2D FES) plus three SMD->US->WHAM PMF
+             pipelines mapping the full multi-step reaction free-energy profile —
+             see pph4/README.
+o pph3/      benchmark OPES metadynamics hydrolysis run for the tri-protonated system,
+             for comparison against pph4 — see pph3/README.
+o ppimg2/    reserved/empty — not yet populated at the time of this review.
+
+Note: this README documents pre-existing content; no existing file was modified.
+
+06/08/2026
+
+o Read-only review of the pph4 and pph3 OPES hydrolysis PLUMED inputs to tabulate the
+  reaction-CV walls (cowh, cobh, coelp, dobp, dowp) alongside the equivalent setups in
+  Elia's 'training' and 'Training_2Mgcomplex' folders. Details and the extracted values
+  are recorded in pph4/README and pph3/README. Backups of the three READMEs touched in
+  this pass were left as 'README.bak_20260806'.
+
+26/08/2026 - 12:29
+
+o Went back to the transition-state level diagram produced by 'TS_barplot.py'. The
+  original 'ts_levels.png' comes out at 24 x 8 inches, so the level bars take up a small
+  fraction of each column and the canvas reads as stretched and mostly empty. I also
+  wanted the ten species to share one coherent palette instead of the mixture of
+  colour-blind-safe hues and stock matplotlib colour names that had accumulated there.
+
+o Rather than edit 'TS_barplot.py' I added 'TS_barplot_v2.py' next to it. It reads the
+  same 'ts_energies.txt' and writes 'ts_levels_v2.png'; the old script and its output are
+  untouched. The colours are now chemistry-encoded: a viridis ramp indexed by protonation
+  state for the purely protonated species, with each alpha isomer drawn as the lighter
+  tint of its beta partner, and a separate warm ramp for the three Mg-bearing species, so
+  the protonation gradient and the Mg series can be told apart at a glance.
+
+o The layout is rebuilt around the rule that no text may ever overlap another text, a
+  bar, or one of the dashed lines separating the species. Each species now sits in its own
+  box delimited by light grey dashed lines. An isolated level keeps the bar centred with
+  the TS name on the left and the energy on the right. A near-degenerate pair is split
+  horizontally: the higher level shifted right with its name on top of the bar and its
+  energy to the left, the lower level shifted left with its name under the bar and its
+  energy to the right. Levels that are exactly degenerate are drawn side by side, each
+  with its own name on top, sharing a single energy label on the left carrying both
+  uncertainties slash-separated. Three or more levels crowded inside a single text line
+  get one slot each at their true energies and are joined by leader lines to a de-crowded
+  label list at the right of the box.
+
+o For the present data that means the P2O7 levels at 42.1, 41.9 and 41.3 are the
+  leader-line case; the 25.0 tie in beta-H3P2O7 is drawn as two side-by-side bars with
+  'TS5' passing through the clear channel between them; and the close pairs in H4P2O7
+  (22.5 / 21.9) and beta-H3P2O7 are the shifted case.
+
+o Worth recording a bug in 'TS_barplot.py': its 'spread_labels' function nudged the label
+  text vertically to resolve collisions while leaving the bar at its true energy, so in
+  the P2O7 column the '41.9 +/- 0.6' text did not actually sit at 41.9. The new script
+  drops that function and moves bars rather than text, so a label is always at the energy
+  of its own level.
+
+o The canvas is no longer a fixed size. Column widths are measured from the actually
+  rendered text extents, and the figure is grown only until a verification pass finds no
+  remaining overlap; for this data it settles at about 18.9 x 12.2 inches, an aspect ratio
+  of roughly 1.55 instead of the previous 3.0. The script refuses to save the figure if
+  that verification pass still reports a collision.
+
+o Ran 'TS_barplot_v2.py' on glogin2 against the Anaconda matplotlib 3.8.0 build and it
+  produced 'ts_levels_v2.png'. A backup of this README as it stood before this entry was
+  left as 'README.bak_20260826'.
+
+26/08/2026 - 15:48
+
+o Three adjustments to 'TS_barplot_v2.py' after looking at the first render.
+
+o In the P2O7 column the three crowded levels (42.1, 41.9, 41.3) were being spread
+  into separate horizontal slots. They are now kept aligned on the column axis like
+  every other bar, so the whole column shares one vertical, and only the leader lines
+  fan out to the de-crowded energy labels on the right. The referencing by lines is
+  unchanged.
+
+o The rule that displaces a near-degenerate pair no longer fires on a proximity
+  threshold. The script now lays the pair out in the plain centred style first,
+  measures it, and keeps that layout whenever the labels genuinely clear one another;
+  the horizontal shift is applied only if a real overlap is found. With the present
+  data this means the H4P2O7 pair at 22.5 and 21.9 goes back to the default rendering,
+  one directly above the other, which is legible as it stands. The shifted layout
+  remains in the script for data where it is actually needed.
+
+o The plot is now enclosed in a solid black frame on all four sides. The light grey
+  dashed lines are used only for the internal dividers between species, where before
+  they also formed the top and right edges of the plot.
+
+o Re-ran on glogin2; 'ts_levels_v2.png' now comes out at about 18.1 x 12.1 inches.
+  'TS_barplot.py' and 'ts_levels.png' remain untouched.
+
+14/09/2026
+
+o Came back to 'TS_barplot.py' because the figure it produces, once dropped into a
+  presentation slide, is hard to read: at 16 x 8 inches with 9 pt labels the text and the
+  level bars occupy only a small part of each column and nothing is legible from a
+  distance. Only the four species left uncommented in 'ts_energies.txt' are involved,
+  Mg2P2O7, beta-H3P2O7, alpha-H3P2O7 and H4P2O7, so the diagram is four columns wide.
+  'TS_barplot_v2.py' and 'ts_levels_v2.png' were not touched.
+
+o The canvas is now 13.333 x 7.5 inches, the 16:9 shape of a slide, saved at 300 dpi, and
+  the axes box is pinned with explicit margins instead of 'tight_layout' so that the
+  column geometry can be computed exactly.
+
+o Instead of fixed font sizes the script now measures every label, every energy value and
+  every column title with the real renderer and then bisects for the largest font size at
+  which each column still holds its label, its bar and its value strictly inside its own
+  slot. All the horizontal lengths are expressed as fractions of a column width, a
+  margin of 0.03 column widths is kept clear on both sides of every dashed separator, and
+  the label-bar-value block is centred inside the column so the side with the wider text
+  gets the room it needs. Bars are 0.28 column widths long with the line width tied to
+  the font size, and the column titles, the axis label and the tick labels are all scaled
+  from the fitted size. For the present data it settles at 13.7 pt for the levels and
+  18.5 pt for the column titles, against 9 pt and 13 pt before.
+
+o Degenerate levels were the bottleneck: the 25.0 tie in beta-H3P2O7 is drawn as two
+  side-by-side bars with a name on top of each, which is intrinsically wide and was
+  dragging the font size of the whole figure down. Those two top labels are now allowed
+  to shrink on their own, down to 70 % of the level size, so a degenerate group no longer
+  caps the rest of the diagram. With this data they do not shrink at all.
+
+o Added a verification pass that runs after the drawing: it re-measures every bar and
+  every text actually placed on the axes, converts the extents back to data coordinates
+  and reports the smallest clearance to a dashed separator, printing a failure line for
+  anything that crosses one. The current figure clears by 0.029 column widths.
+
+o The output is written as 'ts_levels_v3.png', so the original 'ts_levels.png' is left in
+  place for comparison. A copy of the script as it stood before this pass was left as
+  'TS_barplot.py.bak_20260914'.
+
+o Also rendered 'ts_levels_v3_smallerr.png' as an alternative: it is the same script with
+  the single constant ERR_SCALE set to 0.75, which prints the '+/- uncertainty' smaller
+  than the energy value and, since the value block is then narrower, lets the auto-fit
+  grow the levels to 16.2 pt and the column titles to 21.8 pt. Kept for a side-by-side
+  look before deciding which one goes on the slide.
+
+o The 'spread_labels' behaviour flagged in the 26/08 entry is still present in this
+  script, so a side text can sit slightly off the energy of its own bar. With only these
+  four species the displacement stays around 0.1 kcal/mol, which is not visible at this
+  scale, but it is worth keeping in mind if more species are uncommented.
+
+o Both renders were produced on glogin2 with the Anaconda matplotlib 3.8.0 build. A
+  backup of this README as it stood before this entry was left as 'README.bak_20260914'.
+
+15/09/2026
+
+o The 16:9 version of the diagram was still too wide for the slide: with the name on the
+  left of the bar and the energy on its right, most of each column is spent on text laid
+  out horizontally and both the bars and the letters stay small. Rewrote 'TS_barplot.py'
+  around a stacked layout instead. The canvas keeps its 13.333 inch width but is now 10
+  inches tall, and the name and the energy of a level are written on a single line
+  directly over its own bar, which frees the whole column width for the bar itself.
+
+o The bars are now 0.80 column widths long, against 0.28 before, with a line width of
+  8.2 pt against 3 pt in the original script. The auto-fit settles at 18.2 pt for the
+  level text and 24.6 pt for the column titles, so with respect to the original figure
+  the text is twice as large and the bars are nearly three times as long on a canvas that
+  is narrower than the one we started from.
+
+o Levels that sit too close to write both texts on the same side are not nudged any more.
+  The script now enumerates, for every column, the above/below placements of the text
+  blocks and keeps the first one in which no block touches another block or any bar; a
+  block that cannot go above its bar is flipped below it. In practice this puts 'TS2' in
+  the Mg2 column, 'TS5' in beta-H3P2O7, 'TS4' in alpha-H3P2O7 and 'TS1'/'TS2' in H4P2O7
+  underneath their own bars. This also removes the 'spread_labels' displacement flagged in
+  the 26/08 entry: a label now always sits at the energy of its own level.
+
+o Degenerate levels are handled by splitting one bar into one segment per level, so the
+  group keeps the footprint of a normal bar, with each name written over its own segment
+  and the shared energy on the row beyond. The 25.0 tie in beta-H3P2O7 is the only case
+  in this data.
+
+o The verification pass was extended: besides checking that no bar and no text crosses a
+  dashed separator, it now compares every pair of drawn objects and reports any overlap.
+  The current figure passes with no overlap and a minimum clearance of 0.098 column
+  widths from the separators.
+
+o Re-ran on glogin2; 'ts_levels_v3.png' now comes out at 13.333 x 10 inches.
+  'ts_levels_v3_smallerr.png' from the 14/09 pass is stale, since the ERR_SCALE constant
+  no longer exists in the rewritten script, and can be deleted. 'TS_barplot_v2.py',
+  'ts_levels_v2.png', 'TS_barplot.py.bak_20260914' and the original 'ts_levels.png' are
+  all untouched.
+
+15/09/2026 - 08:52
+
+o Measured where the size of the text in this diagram actually comes from, because making
+  the canvas taller had not made the figure any more readable on a slide. Sweeping the
+  canvas height with everything else fixed gives 11.8 pt at 6.5 inches, 13.7 at 7.5, 18.2
+  at 10 and 20.0 at 11: a straight line, 1.82 pt per inch of height. The fitted font is
+  set by the vertical room each level gets, so a taller canvas buys font size and the
+  scaling that fits the image back onto the slide takes exactly the same amount away.
+  The 13.333 x 10 figure and the 13.333 x 7.5 one are the same size once on the slide.
+
+o The binding constraint is the H4P2O7 column: five levels inside 5.0 kcal/mol on a
+  24.7 kcal/mol axis, so the crowded window is a fifth of the axis and has to hold five
+  bars and five lines of text. The width, by contrast, is slack: at 7.5 inches of height
+  the fitted size stays at 13.7 pt while the canvas narrows from 13.333 to 8.5 inches.
+  Reducing YPAD does not help either, 1.0 gives 13.0 pt, because the extreme levels then
+  need room for their text inside the frame.
+
+o Rebuilt the figure at a 2:5 height-to-width ratio as agreed, 13.333 x 5.333 inches. The
+  auto-fit settles at 8.0 pt for the levels and 10.8 pt for the column titles, which is
+  what the vertical room allows at that shape.
+
+o Two bugs in my own fitting code came out of this, both caught by the verification pass
+  rather than by eye. The block heights were taken from the height of the string 'TS1'
+  and scaled, so lines carrying a superscript and a +- sign were under-estimated and
+  'TS3' in H4P2O7 ended up sitting on the bar above it. Scaling a measurement from a
+  20 pt reference is wrong as well: font metrics are not exactly proportional to the
+  point size, and the error was about 3 percent at 9 pt, enough to put a text block on a
+  bar. Every candidate size is now measured as it will actually be drawn, with a cache
+  keyed on string and size since the bisection asks for the same string repeatedly.
+
+o Recorded for later, the effective text size in a quarter-slide slot 6.67 inches wide:
+  4.0 pt at the 2:5 ratio, 6.8 pt at 16:9 or 4:3, the latter being the ceiling for any
+  shape in that slot. Dropping to the three lowest levels of each system gives 11.7 pt on
+  the canvas, and to the two lowest 21.5 pt, at which point the text width rather than
+  the vertical crowding becomes the limit. A diagram carrying all nineteen levels cannot
+  be read from a quarter of a slide whatever its shape.
+
+15/09/2026 - 09:14
+
+o Decided to keep the diagram in the bottom left quarter of the slide with all nineteen
+  levels on it, accepting that the energies are not meant to be read from the audience:
+  the figure is there to show four ladders and where they sit with respect to each other,
+  and the numbers are fine print for whoever looks at the slide up close.
+
+o That decision only works if the species names and the energy scale are readable, so the
+  chrome is no longer tied to the level font. Column titles, axis label and tick numbers
+  now have their own fit: the titles grow to the largest size the column width allows,
+  capped at 26 pt, the tick numbers and the axis label follow at 80 and 85 percent of it,
+  and the left and bottom margins are then iterated until they hold them. The y-axis
+  label is additionally kept shorter than the axes box, which would bite on a canvas this
+  short. The levels stay at the 8.0 pt the vertical crowding allows.
+
+o 'ts_levels_v3.png' is therefore 13.333 x 5.333 inches with 26 pt column titles, 22.1 pt
+  axis label, 20.8 pt tick numbers and 8.0 pt level text. Placed in a quarter slide the
+  species names land at about 13 pt and the tick numbers at 10 pt, both legible from the
+  room, while the level text is around 4 pt.
+
+o The verification pass reports no overlap and a minimum clearance of 0.100 column widths
+  from the dashed separators.
+
+17/09/2026
+
+o Brought the whole protonation spectrum back into the diagram and reframed it as a 16:9
+  figure. The six species that were commented out in both 'ts_energies.txt' and the
+  SYSTEMS dictionary of 'TS_barplot.py' -- P2O7, MgP2O7, beta-HP2O7, alpha-HP2O7,
+  MgHP2O7 and H2P2O7 -- are now active in both, so the plot carries all ten species and
+  thirty-seven levels. Backups of both files as they stood were left as
+  'ts_energies.txt.bak_20260917' and 'TS_barplot.py.bak_20260917'. The two files were
+  consistent with each other beforehand, and 'ts_energies.txt' had not been touched since
+  14/09; 'TS_barplot_v2.py' already had all ten species in its own dictionary, so it
+  gains rather than loses from the data file being uncommented.
+
+o Ten species did not fit at any canvas size, for two reasons that had nothing to do with
+  the aspect ratio. Three P2O7 levels lie within 0.8 kcal/mol, which on this axis is
+  about ten points of height, thinner than the bars themselves, so no vertical
+  arrangement can separate them; and with ten columns each text line has to fit in a
+  tenth of the width, which is a ratio and therefore does not improve when the canvas
+  grows. That capped the level text at about 9.5 pt even with P2O7 left out.
+
+o Both were solved by dropping what was redundant and by generalising the handling of
+  degenerate levels. The species superscript of every label repeats the column title, so
+  it is now stripped when drawing, 'ts_energies.txt' keeping its labels untouched; the
+  uncertainty is no longer written on the figure and stays in the data file. Levels too
+  close to be told apart vertically are drawn side by side at their true energies, the
+  column being split into one slot per level, each slot carrying its own name with its
+  own energy underneath. The script searches, for every column, every way of cutting the
+  levels into consecutive clusters and keeps the cheapest one that can actually be
+  placed, so a level keeps its own full width bar unless it has to share. Exactly
+  degenerate levels are never split across clusters.
+
+o Two refinements came out of measuring rather than guessing. Writing a full
+  'name + energy' line inside a cluster slot does not fit, while either half of it does,
+  which is why each slot gets two short rows instead: that alone took the figure from
+  7.1 to 12.0 pt. And the crowded low end of H4P2O7 needs room under its lowest bar, so
+  YPAD went from 2.0 to 2.5, worth another point; past 2.5 the wider axis costs more than
+  the room gains.
+
+o 'ts_levels_v3.png' is now 13.333 x 7.5 inches with 13.3 pt level text, 17.8 pt column
+  titles, 15.1 pt axis label and 14.2 pt tick numbers, ten of the thirty-seven levels
+  drawn side by side. The verification pass reports no overlap and a minimum clearance of
+  0.100 column widths. Worth recording that ten species cost nothing in text size against
+  the four-species version, which also sat at 13.7 pt: removing the two redundancies paid
+  for the six extra columns.
+
+o Correction to the backups noted above. 'TS_barplot.py.bak_20260917' did capture the
+  script as it stood, that is with FIGSIZE already set to (16, 9) and all ten species
+  already uncommented in the dictionary, so the only file genuinely out of step with the
+  plot was 'ts_energies.txt'. 'ts_energies.txt.bak_20260917', on the other hand, came out
+  holding the modified content rather than the original, so it was rebuilt by
+  re-commenting the six species; it is back to 1486 bytes with its eighteen commented
+  rows, matching the file as it stood on 14/09.
+
+17/09/2026 - 10:41
+
+o Made the species names under the columns smaller, they were heavier than they needed to
+  be against the levels. The column titles now carry their own factor, TITLE_SCALE, set
+  to 0.75 of the size the column width would allow, which brings them from 17.8 to
+  13.3 pt, the same size as the level text. The axis label and the tick numbers are
+  deliberately left out of that factor and stay at 15.1 and 14.2 pt. The bottom margin
+  retightens on its own, being measured from the title height. Re-ran on glogin2, the
+  verification pass still reports no overlap.

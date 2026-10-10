@@ -57,3 +57,31 @@ independent 2D check via unbiased OPES sampling, and OPES_TS gives a broader loo
 region itself.
 
 Note: this README documents pre-existing content; no existing file was modified.
+
+06/08/2026
+
+o Read-only pass over the OPES hydrolysis PLUMED inputs, to extract the reaction-CV
+  walls for a comparison table against the pph3 and ppimg2 setups. No existing file
+  was modified.
+
+o There are four distinct versions of 'plumed_pph4-hydrolysis.dat' in the rep folders,
+  which I separated by checksum. The most recent one is the top-level file in
+  'rep_1/2/3_tot_constrained' (identical in the three replicas, last touched
+  05/07/2026). The 'pph3_included'/'pph3-included' subfolders hold an earlier variant
+  from 01/07/2026 in which the bounds are opened so that pph3-like protonation states
+  stay accessible during the run.
+
+o Walls on the five reaction CVs, lower/upper. Latest tot_constrained version:
+  cowh 0.9/1.9, cobh 1.5/2.7, coelp 1.7/1.9, dobp -/3.5, dowp -/3.5. Its pph3_included
+  counterpart: cowh 0.9/2.0, cobh 1.3/2.7, coelp 1.8/1.9, distances unchanged. Plain
+  'rep_N' top-level: cowh 0.8/1.9, cobh 1.5/2.7, coelp 1.7/1.9. Plain 'rep_N/pph3-included':
+  cowh 0.9/2.0, cobh 1.4/2.7, coelp 1.7/1.9. Neither 'dobp' nor 'dowp' ever carries a
+  lower wall; both are capped at 3.5 A by a dedicated 'uw_dist'.
+
+o Only the '_tot_constrained' family adds the collective wall on 'sum_pyro'
+  (cowh+cobh+coelp) at 5.5, which is what the folder name refers to.
+
+o Run settings, identical across all six rep folders and their pph3-included variants:
+  LAMMPS 'units metal', timestep 0.0005 ps (0.5 fs), NVE with a CSVR thermostat at
+  298.15 K, 'run 20000000' steps, i.e. 10 ns per replica. OPES PACE=200, SIGMA=0.07 on
+  all four biased CVs, BARRIER=50 kcal/mol.

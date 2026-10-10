@@ -1,0 +1,9 @@
+--- SMD (TS_inter/TS3_TS1) ---
+
+MOVINGRESTRAINT pulls 'coh' from AT0=1.9 to AT1=0.9 over 100000 steps, KAPPA=300 kcal/mol
+(see ../../README) -- pulled in the opposite direction to the other three edges. Restart
+snapshots converted into seed structures for ../US/ (own 'lmp_files/' subfolder here too).
+
+Three replicas (rep1/2/3) -- one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

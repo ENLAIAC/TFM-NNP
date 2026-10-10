@@ -1,0 +1,33 @@
+
+=====================================
+FOLDER: ppimg2
+SYSTEM: MareNostrum 5 — glogin2 (scratch, supervisor account uv169161)
+UPDATED: 06/08/2026
+=====================================
+
+06/08/2026
+
+o Read-only pass over 'OPES_hydrolysis' to extract the reaction-CV walls, for a
+  comparison table against the pph4 setup in the sibling folder. No existing file
+  was modified.
+
+o Only 'rep1' is populated, holding 'plumed_ppimg2-hydrolysis.dat' (11/07/2026) and
+  'ppimg2-hydrolysis.in' (09/07/2026). The directories 'rep2' and 'rep3' exist but are
+  empty, so this OPES hydrolysis run currently has a single replica.
+
+o Walls on the five reaction CVs, lower/upper: coh 0.8/1.9, colvp -/1.1, coelp -/1.1,
+  delp_ob -/3.5, dnuc_elp -/3.5. The only lower wall in 'lw_1' is the one on 'coh';
+  neither 'colvp' nor 'coelp' nor either distance is bounded from below.
+
+o There is a 'sum_pyro' CV here too, but it is 'colvp+coelp' only, capped at 1.1,
+  whereas the pph4 'sum_pyro' is the three-term 'cowh+cobh+coelp' capped at 5.5. The
+  two are not the same quantity and should not be put in the same table column.
+
+o Note also that 'uw_dist' restrains only 'd_mg1p1' and 'd_mg2p2' at 3.5 A, i.e. two of
+  the four Mg-P distances, unlike the four-way version used in the ArcaNN 'user_files'
+  copy of this input.
+
+o Run settings: LAMMPS 'units metal', timestep 0.0005 ps (0.5 fs), NVE with a CSVR
+  thermostat at 298.15 K, 'run 20000000' steps, i.e. 10 ns, matching the pph4 runs.
+  OPES PACE=100, SIGMA=0.07 on all four biased CVs, BARRIER=50 kcal/mol. The NNP graph
+  paths are relative here, not absolute as in pph4.

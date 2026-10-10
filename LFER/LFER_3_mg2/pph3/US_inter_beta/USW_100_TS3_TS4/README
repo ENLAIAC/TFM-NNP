@@ -1,0 +1,10 @@
+--- USW_100_TS3_TS4 (US_inter_beta) ---
+
+Umbrella-sampling window set for the beta isomer's TS3<->TS4 interconversion (see ../README).
+Restrains 'coelp' at 100 evenly spaced values (kappa=300) while pinning 'dD' at 0 (kappa=400),
+seeded from ../../SMD_inter_beta/TS3_TS4/. rep1 initially diverged from rep2/rep3 (unrestrained
+water/proton H-bond coordination channel); fixed via two rounds of window reseeding from rep2
+(backups kept: 'rep1/_orig_divergent_50-99/', 'rep1/_orig_transition_27-49/'). WHAM now
+consistent (~8.2/8.9/7.5 kcal/mol).
+
+Note: this README documents pre-existing content; no existing file was modified.

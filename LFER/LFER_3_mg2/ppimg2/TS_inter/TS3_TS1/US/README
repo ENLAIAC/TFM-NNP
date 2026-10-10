@@ -1,0 +1,9 @@
+--- US (TS_inter/TS3_TS1) ---
+
+Umbrella-sampling window set restraining 'coh' at 100 evenly spaced values (kappa=300) while
+pinning 'dD' at 0 (kappa=400), seeded from ../SMD/ (own 'inputs/lmp_files/' traceability copy
+here too). WHAM complete for all three replicas ('WHAM/fepTS3_TS1_ppimg2.out').
+
+Three replicas (rep1/2/3) -- one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

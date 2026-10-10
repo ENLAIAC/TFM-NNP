@@ -1,0 +1,19 @@
+--- OVERVIEW: PMF_react_TS1_alpha ---
+
+Targeted SMD -> Umbrella-Sampling -> WHAM pipeline giving the reactant->TS1 free-energy
+profile along 'dD' for the alpha protonation isomer of pph3 -- same coordinate and pull
+range as pph4's equivalent segment (see LFER_3_mg2/pph4/PMF_react_TS1/README), adapted to
+pph3's own atom indices (elp=3, oelp=2,4,5, lvp=7, olvp=6,8,9,10, nuc=228; dD = DISTANCE(6,3)
+- DISTANCE(228,3)).
+
+--- SMD/ ---
+Steered MD generating the umbrella-sampling seed structures: MOVINGRESTRAINT pulls 'dD' from
+AT0=-2.0 to AT1=2.0 over 100000 steps, KAPPA=400 kcal/mol -- see SMD/README.
+
+--- US/ ---
+100-window umbrella sampling along 'dD', seeded from SMD/ -- see US/README.
+
+--- WHAM_files/ ---
+Shared WHAM scripts for US/*/WHAM/ -- already documented, see WHAM_files/README.
+
+Note: this README documents pre-existing content; no existing file was modified.

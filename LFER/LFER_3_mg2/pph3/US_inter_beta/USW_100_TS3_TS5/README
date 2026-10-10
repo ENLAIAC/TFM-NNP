@@ -1,0 +1,10 @@
+--- USW_100_TS3_TS5 (US_inter_beta) ---
+
+Umbrella-sampling window set for the beta isomer's TS3<->TS5 interconversion (see ../README).
+Restrains 'cobh' at 100 evenly spaced values (kappa=300) while pinning 'dD' at 0 (kappa=400),
+seeded from ../../SMD_inter_beta/TS3_TS5/. rep1 window 023 had a corrupt seed structure
+(reseeded from window 022, original kept as '.corrupt_bak'). WHAM output now parses without
+NaNs in all three replicas -- an earlier WHAM-column-reading bug specific to this edge (the
+CV file here has an extra 'dD' column ahead of 'cobh') appears to have been fixed since.
+
+Note: this README documents pre-existing content; no existing file was modified.
