@@ -1,0 +1,16 @@
+--- NNP_1 ---
+
+Reactant->TS1 umbrella-sampling PMF reconstruction (same 'dD' coordinate and window layout as
+LFER_3_mg2/pph4/PMF_react_TS1/USW_100_react_TS1/ — see that folder's README) driven with
+committee member 'graph_1_004_compressed.pb' as the primary potential: the LAMMPS
+'pair_style deepmd' line lists ../NNP/graph_1_004_compressed.pb first (DeePMD-kit's LAMMPS
+plugin uses the first-listed graph to drive the dynamics; the other two listed graphs are
+only used to compute 'model_devi_pyro.out', the committee disagreement for QC).
+
+o rep_1/, rep_2/, rep_3/: three independent replicas, each with 100 windows (000..099) +
+  'inputs/lmp_files/' seed copy + 'COLVAR' + 'WHAM/' (per-replica free-energy reconstruction,
+  same file set as described in LFER_3_mg2/pph4/PMF_react_TS1/USW_100_react_TS1/README).
+o average_PMF.py / average_pmf.png / average_pmf_noerror.dat: average the three replicas'
+  WHAM profiles into a single PMF estimate for this committee member.
+
+Note: this README documents pre-existing content; no existing file was modified.

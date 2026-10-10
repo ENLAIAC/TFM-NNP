@@ -1,0 +1,16 @@
+--- OVERVIEW: cp2k_MD ---
+
+Reference CP2K (DFT-MD) calculations on the PPiMg2 (2Mg2+[P2O7]4-) system, predating/
+alongside the DeePMD-kit NNP pipelines elsewhere in this tree -- used to generate/validate
+starting configurations and check the reaction-coordinate definitions later reused by the NNP
++PLUMED LFER work (see ../LFER/LFER_3_mg2/ppimg2/README).
+
+o configuration/   three starting-geometry variants (full system, 'edges', 'sides' framings
+                    of the reaction coordinate) -- see configuration/README.
+o PPiMg2_sides.xyz / PPiMg2_edges.xyz: loose root-level copies of two of those geometries.
+o PPiMg2_sides/    CP2K NVT MD run from the 'sides' geometry -- see PPiMg2_sides/README.
+o CP2K_opt_SMD/    CP2K steered-MD run driving the reaction directly -- see
+                    CP2K_opt_SMD/README (and CP2K_opt_SMD/initial/README for the detailed,
+                    already-documented work log).
+
+Note: this README documents pre-existing content; no existing file was modified.

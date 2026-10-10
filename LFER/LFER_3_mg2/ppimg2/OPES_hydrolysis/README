@@ -1,0 +1,13 @@
+--- OPES_hydrolysis (ppimg2) ---
+
+OPES metadynamics runs of the ppimg2 (bimagnesium pyrophosphate) hydrolysis, same OPES-on-
+'dD' protocol as ../../pph4/rep_1/ and ../../pph3/OPES_hydrolysis/ (see either README),
+producing 'COLVAR'/'Coord.info'/'Coord_Mg.info'/'KERNELS' plus this system's own local copies
+of the FES-reconstruction scripts ('FES_2D.py', 'FES_2D_inverse.py',
+'FES_from_Reweighting.py' -- folder-local variants of ../../codes/, producing 'FES_2D.png'
+here rather than in ../../codes/) and an 'Additional.info'/'Mg_dist.info' pair tracking the
+Mg-coordination CVs alongside the reaction coordinate.
+
+Three replicas (rep1/2/3) -- one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

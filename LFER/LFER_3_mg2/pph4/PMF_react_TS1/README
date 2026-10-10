@@ -1,0 +1,32 @@
+--- OVERVIEW: PMF_react_TS1 ---
+
+Full potential-of-mean-force (PMF) pipeline reconstructing the free-energy profile of the
+pph4 hydrolysis reaction along its reactant -> TS1 segment, using the reaction coordinate
+'dD' (combination of the nucleophile-attack and leaving-group-departure distances, see
+SMD_react_TS1/README for its exact definition). Three sampling techniques are chained here:
+
+  1. SMD_react_TS1/   Steered MD pulls the system from the reactant (dD=2.0) toward TS1
+                       (dD=-0.3) and slices the pulled trajectory into 100 restart
+                       structures spanning that range — see SMD_react_TS1/README.
+
+  2. USW_100_react_TS1/  Each of the 100 SMD-generated structures seeds one umbrella-sampling
+                       window, harmonically restrained at its own dD value, run
+                       independently to equilibrate the biased ensemble at that point along
+                       the coordinate — see USW_100_react_TS1/README.
+
+  3. WHAM_files/       The 100 windows' biased histograms are combined via WHAM
+                       (Weighted Histogram Analysis Method) to reconstruct the unbiased 1D
+                       free-energy profile F(dD) — see WHAM_files/README for the scripts,
+                       and USW_100_react_TS1/<rep>/WHAM/ for the resulting profile,
+                       per-window histograms and convergence plots.
+
+The whole SMD -> US -> WHAM chain is repeated independently for 3 replicas (rep1/2/3, same
+protocol, different random seeds) to check reproducibility of the reconstructed profile.
+
+This is one of four such PMF pipelines run for pph4 in this LFER study: this one covers
+reactant->TS1, ../PMF_react_TS2/ covers reactant->TS2 (same dD coordinate), and ../US/
+covers the three TS1-TS2-TS3 pairwise connections (different reaction coordinates — see
+../US/README). Together they map the full multi-step free-energy landscape of the reaction
+used in ../README's LFER analysis.
+
+Note: this README documents pre-existing content; no existing file was modified.

@@ -1,0 +1,11 @@
+--- TS3_TS5 (SMD_inter_beta) ---
+
+SMD pull connecting TS3 and TS5 for the beta isomer (see ../README). MOVINGRESTRAINT pulls
+'cobh' from AT0=0.9 to AT1=1.9 over 100000 steps, KAPPA=400 kcal/mol. Restart snapshots are
+converted into 'lmp_files/' seed structures for ../../US_inter_beta/USW_100_TS3_TS5/ (rep1
+window 023 there had a corrupt seed, reseeded from window 022 -- unrelated to this SMD stage
+itself, see that folder's README).
+
+Three replicas (rep1/2/3) -- one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

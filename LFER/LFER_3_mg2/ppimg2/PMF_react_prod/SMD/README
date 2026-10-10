@@ -1,0 +1,9 @@
+--- SMD (PMF_react_prod) ---
+
+Steered MD stage pulling 'dD' from AT0=-2.0 to AT1=2.0 over 100000 steps, KAPPA=300 kcal/mol,
+toward two separate targets kept in their own subfolders -- TS1/ and TS3/ (see each folder's
+README) -- under the same background coordination/distance/angle walls described in
+../../README. A loose top-level 'lmp_files/' plus 'convert_restart_to_lmp.py'/'run_convert.sh'
+duplicate the seed-conversion tooling found inside each target's own subfolder.
+
+Note: this README documents pre-existing content; no existing file was modified.

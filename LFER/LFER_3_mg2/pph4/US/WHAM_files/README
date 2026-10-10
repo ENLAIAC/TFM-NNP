@@ -1,0 +1,8 @@
+--- WHAM_files (US) ---
+
+Same WHAM scripts as LFER_3_mg2/pph4/PMF_react_TS1/WHAM_files/ (wham1D.py,
+errors_wham1D.py, job_wham.sh), shared by the three TS-TS umbrella-sampling reconstructions
+in USW_100_TS1_TS2/, USW_100_TS1_TS3/, USW_100_TS2_TS3/. See that folder's README for what
+each script does.
+
+Note: this README documents pre-existing content; no existing file was modified.

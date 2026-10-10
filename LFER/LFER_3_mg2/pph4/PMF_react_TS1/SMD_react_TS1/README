@@ -1,0 +1,30 @@
+--- SMD_react_TS1 ---
+
+Steered MD (SMD) stage that generates the starting configurations for the reactant -> TS1
+umbrella-sampling scan (see ../USW_100_react_TS1/README and ../README for the full pipeline).
+
+Three independent replicas (rep1, rep2, rep3) are run — same protocol, different random
+seeds/starting velocities, so this single README covers all three.
+
+What each replica does:
+o A LAMMPS+DeepMD+PLUMED run (job-array_lammps-deepmd_explore_gpu_alogin1.sh) drives the
+  reaction coordinate 'dD' (plumed_pph4-react-TS1.dat: dD = COMBINE of dobp [bridging-O to
+  electrophilic-P distance, tracks P-O bond cleavage] and dowp [nucleophile-O to
+  electrophilic-P distance, tracks the nucleophilic attack], coefficients -1,1) from AT0=2.0
+  (reactant-like) to AT1=-0.3 (TS1-like) via a MOVINGRESTRAINT ('steered_md') over 100000
+  steps, at KAPPA=300 kcal/mol/A^2. The same plumed file also enforces a battery of
+  coordination/distance/angle walls (nucleophile and leaving-group coordination spheres,
+  Mg-Mg and Mg-P distances, anti-metaphosphate angle restraint, bulk-water exclusion from the
+  electrophilic P, OH-Mg detachment prevention) to keep the pulled trajectory chemically
+  sensible and avoid spurious side reactions.
+o Output: 'pph4-react-TS1.lammpstrj'/'.log', PLUMED 'COLVAR'/'Coord.info'/'SMD_dD.log'
+  (dD and bias vs. time), 'mg_coord.info' (Mg coordination monitoring), 'model_devi.out'
+  (NNP-committee force deviation along the pull, for quality control), and 100 LAMMPS
+  restart files ('pph4-react-TS1.restart.<step>', every 1000 steps).
+o 'convert_restart_to_lmp.py' reads 'COLVAR' to get the dD value at each restart's timestep,
+  then converts each restart into a standalone LAMMPS data file 'lmp_files/USW_NNN.lmp'
+  (NNN = 000..099, ordered by timestep) plus 'lmp_files/metadata.csv' mapping each USW file
+  to its source restart, timestep and dD value. These 100 structures are the starting
+  points for the 100 umbrella-sampling windows in ../USW_100_react_TS1/.
+
+Note: this README documents pre-existing content; no existing file was modified.

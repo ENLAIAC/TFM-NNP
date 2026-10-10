@@ -1,0 +1,13 @@
+--- OPES_hydrolysis (pph3) ---
+
+OPES metadynamics runs of the pph3 (tri-protonated pyrophosphate) hydrolysis, the benchmark/
+comparison system to the pph4 analysis in ../../pph4/. Same OPES-on-'dD' protocol as
+../../pph4/rep_1/ (see that folder's README), producing 'COLVAR'/'Coord.info'/'KERNELS' and
+the NNP-committee 'model_devi'-style deviation logs; the accompanying 'OPES_additional.info'/
+'OPES_dD.info' record the reweighted bias/CV series used to reconstruct the free-energy
+surface with ../../codes/FES_2D.py once the run is complete (still accumulating as of the
+last check, no FES_2D.png yet for this system).
+
+Three replicas (rep_1/2/3) — one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

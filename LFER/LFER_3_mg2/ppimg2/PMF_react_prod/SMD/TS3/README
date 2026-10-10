@@ -1,0 +1,11 @@
+--- TS3 (PMF_react_prod/SMD) ---
+
+Steered MD toward the TS3 target along 'dD' (see ../README for the pull parameters). Also
+contains its own 'lmp_files/' (seed-structure conversion output) and an empty 'TS2/'
+subdirectory with no content -- likely a placeholder for a not-yet-started further stage, not
+documented further here. Unlike TS1/, this branch has no corresponding folder under
+../../US/ -- not yet carried through to umbrella sampling as of this review.
+
+Three replicas (rep1/2/3) -- one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

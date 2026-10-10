@@ -1,0 +1,9 @@
+--- WHAM_files (US_inter_alpha) ---
+
+Shared WHAM scripts for all five interconversion reconstructions in USW_100_*/repN/WHAM/:
+'wham1D.py' (copied from the MareNostrum 5 pph4 project -- see LFER_3_mg2/pph4/PMF_react_TS1/
+WHAM_files/README for what it does), 'errors_wham1D.py' its error-estimation companion, and a
+Vives-adapted 'job_wham.sh' (see ../README for the exact adaptation: 'cuerda' qos/partition,
+'wham_miguel' conda environment).
+
+Note: this README documents pre-existing content; no existing file was modified.

@@ -1,0 +1,81 @@
+=====================================
+FOLDER: NNP_LFER_choice
+SYSTEM: MareNostrum 5 — glogin2
+CREATED: 29/07/2026
+UPDATED: 07/10/2026
+PURPOSE: Committee-consistency check on the ArcaNN NNP triplet before committing
+         it to production LFER/PMF work: the same reactant->TS1 umbrella-sampling
+         PMF is rebuilt three times, each time driven by a different committee
+         member.
+=====================================
+
+29/07/2026
+
+o Consistency check on the ArcaNN iteration-004 NNP committee before committing to
+  it (or its iteration-005 successor, see '../LFER_3_mg2/NNP/') for production
+  LFER/PMF work. The same reactant->TS1 umbrella-sampling PMF is reconstructed
+  three times, each time using a different one of the three committee members as
+  the sole driving potential. The other two are still listed, but only to report
+  the model-deviation diagnostic: DeePMD-kit's LAMMPS plugin drives the dynamics
+  with the first-listed graph. See 'NNP/README'.
+
+o 'NNP/'         the shared graph triplet.
+  'NNP_1/'       PMF driven by graph_1 -- see its README.
+  'NNP_2/'       PMF driven by graph_2 -- see its README.
+  'NNP_3/'       PMF driven by graph_3 -- see its README.
+  'WHAM_files/'  shared WHAM scripts; the result of each arm is the
+                 'average_pmf.png' inside the corresponding 'NNP_N/'.
+
+o Comparing 'NNP_1/average_pmf.png' against 'NNP_2/' and 'NNP_3/' is the test:
+  if one committee member disagrees enough with the others, the committee has not
+  converged for this reaction coordinate and the production pipelines in
+  '../LFER_3_mg2/pph4/' should not be trusted yet.
+
+01/10/2026
+
+o Checked the replica layout under each arm. Every 'NNP_N/rep_M' carries the full
+  100 umbrella windows, and the per-replica file sets agree once the SLURM job id
+  embedded in the 'LAMMPS_DeepMD.<jobid>_<window>' log names is normalised away.
+  The replicas are therefore genuinely consistent and are described here once
+  rather than in nine separate READMEs. The leftover differences are incidental
+  working files that happen to sit in one replica and not another
+  ('generate_US_windows.py', 'plumed_USW_XX.dat', 'safe/', a stray 'CV1'), none of
+  which affect the sampling.
+
+o Three anomalies that are worth knowing before reading the comparison, because
+  they make the three arms unequal:
+
+    'NNP_1/rep_2' is incomplete. It has 1317 files against 1521 in rep_1 and 1512
+    in rep_3, and it is missing the window-generation script and the 'safe/'
+    backup. Treat the NNP_1 arm as weaker-sampled than the other two.
+
+    'NNP_3/rep_1' contains three FILES literally named 'rep_1', 'rep_2' and
+    'rep_3', each 4993 bytes, sitting next to the window directories. They are
+    not replica folders. They look like the output of a redirection that was meant
+    to go elsewhere, and a script that globs 'rep_*' one level too deep will pick
+    them up.
+
+    'NNP_1/rep_3' contains a nested directory also called 'rep_3', holding seven
+    stray 'LAMMPS_DeepMD.41690933_*' logs and nothing else. Same cause, same
+    hazard.
+
+o None of the three anomalies were modified; they are recorded here only so the
+  comparison is read with the right caveats.
+
+07/10/2026
+
+o This is now the only copy of this tree. '../../Train_PPiMg2/NNP_LFER_choice' is a
+  symlink pointing here, kept because 1830 files in this tree hardcode that absolute
+  path. Editing through either spelling edits the same file.
+
+o Two of the three anomalies recorded on 01/10 are resolved. The three files named
+  'rep_1', 'rep_2' and 'rep_3' sitting inside 'NNP_3/rep_1/' are gone: they were
+  byte-identical copies of 'job-array_lammps-deepmd_explore_gpu_alogin1.sh', which
+  already sat properly named in that same directory, so nothing was lost. The nested
+  'NNP_1/rep_3/rep_3/' directory is also gone; none of its eighty 'inputs/' files were
+  missing from the parent 'inputs/', and the one template that differed was kept as
+  'NNP_1/rep_3/inputs/plumed_USW_XX.dat.from_nested_20260729'.
+
+o The third anomaly stands: 'NNP_1/rep_2' still holds 1317 files against 1521 in
+  rep_1 and 1512 in rep_3. That is under-sampling, not clutter, so it was left alone.
+  Keep treating the NNP_1 arm as weaker-sampled when comparing the three PMFs.

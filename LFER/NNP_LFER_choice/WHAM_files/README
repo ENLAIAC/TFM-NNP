@@ -1,0 +1,23 @@
+--- WHAM_files (NNP_LFER_choice) ---
+
+Same WHAM scripts as LFER_3_mg2/pph4/PMF_react_TS1/WHAM_files/ (wham1D.py,
+errors_wham1D.py, job_wham.sh), shared by NNP_1/, NNP_2/ and NNP_3/'s per-replica WHAM
+reconstructions. See that folder's README for what each script does.
+
+Note: this README documents pre-existing content; no existing file was modified.
+
+13/07/2026
+
+o Added 'wham1D_copy.py', a modified copy of 'wham1D.py' that fixes the spurious
+  baseline problem seen in the US_inter_alpha/USW_100_TS3_TS4 replicas (rep2 and
+  rep3 profiles differing by ~160 kcal/mol). Rare sub-ps CV excursions outside the
+  physically sampled range were landing in empty far-field histogram bins, where the
+  WHAM reweighting produced an artificially low free energy that then became the
+  global-minimum zero reference, shifting each replica's whole profile by a random
+  amount. The copy now (i) excludes frames whose CV falls outside the window-centre
+  span extended by a margin (ACCEPT_MARGIN=0.15, i.e. band [0.75,1.95] here) and
+  (ii) sets the free-energy zero to the minimum found *within* that acceptable band
+  (still a genuine sampled minimum, not a fixed CV). Validated by resubmitting the
+  WHAM for rep2: 10 outlier frames excluded, baseline pinned at CV=1.885, and the
+  three replicas collapse to consistent profiles (barrier ~11.2-11.8 kcal/mol,
+  TS3 side ~8.5-8.8, TS4 side ~0.7-0.8). The original 'wham1D.py' was left untouched.

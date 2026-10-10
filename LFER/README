@@ -1,0 +1,84 @@
+--- OVERVIEW: LFER ---
+
+Free-energy (LFER -- Linear Free Energy Relationship) study of pyrophosphate hydrolysis
+across the protonation / Mg2+-coordination series, synced from MareNostrum 5
+(supervisor's account uv169161, reserved area
+/gpfs/scratch/uv36/adrian/deepmd-training/LFER). Last sync: 10/10/2026.
+
+Three systems, same pipeline shape in each (OPES -> steered MD -> umbrella sampling -> WHAM):
+
+  LFER_3_mg2/pph4/     H4P2O7, fully protonated
+  LFER_3_mg2/pph3/     H3P2O7(-), alpha and beta isomers
+  LFER_3_mg2/ppimg2/   2Mg(2+)[P2O7](4-), the bimagnesium complex
+  NNP_LFER_choice/     committee-consistency check, same PMF rebuilt three times
+
+WHAT IS HERE AND WHAT IS NOT
+
+Only the resulting plots, the analysis scripts and the per-folder READMEs are kept. The
+umbrella-sampling and SMD trajectories, the COLVAR/KERNELS files, the per-window LAMMPS
+starting configurations and the trained graph_*.pb NNP models all remain on the cluster
+only -- together they are roughly 884 GB, against 71 MB here.
+
+DEDUPLICATION -- IMPORTANT WHEN COMPARING WITH THE CLUSTER
+
+The cluster tree replicates the same job script into every umbrella window, so the
+curated file set there is 8575 files but only 710 distinct ones. Only the distinct files
+are committed here, each once, at the shallowest directory that covers all the places it
+appeared on the cluster. Worst cases: 'job_lammps-deepmd.sh' existed in 4849 identical
+copies and 'convert_restart_to_lmp.py' in 83. So if a script appears here one level above
+where you expect it, that is why -- it was identical in every window below that point.
+Content was compared by MD5, and no two distinct files were allowed to collapse onto the
+same path.
+
+NOTE ON PATHS
+
+Until 10/10/2026 this folder was called 'Train_PPiMg2_LFER/', because on the cluster the
+study used to live under Train_PPiMg2/. The two duplicate copies there were merged into a
+single tree under LFER/ on 02/10 and 07/10/2026, and Train_PPiMg2/LFER_3_mg2 and
+Train_PPiMg2/NNP_LFER_choice are now only symlinks. Repo paths again match cluster paths
+one-to-one. See docs/STRUCTURE_OVERVIEW.md.
+
+----------------------------------------------------------------------
+Previous content of this file, from the 05/07/2026 pph4-only sync:
+----------------------------------------------------------------------
+
+--- OVERVIEW: Train_PPiMg2_LFER ---
+
+New content synced from MareNostrum 5 (supervisor's account uv169161, reserved area
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2), on 05/07/2026. This is a free-energy
+(LFER — Linear Free Energy Relationship) analysis of the pph4 reaction pathway, and a
+comparison of three candidate NNP committees for that analysis. Only the resulting plots and
+the analysis scripts were copied locally (the underlying umbrella-sampling/SMD trajectories,
+COLVAR/KERNELS files, and the trained graph_*.pb NNP models themselves remain on the cluster
+only — see conversation/session notes on repo size).
+
+--- LFER_3_mg2/pph4/ ---
+
+Free-energy-surface (FES) and potential-of-mean-force (PMF) analysis for the pph4 system:
+o FES_2D.png: 2D free-energy surface for the reaction coordinate pair used to characterize
+  the pph4 hydrolysis mechanism.
+o rep_1/, rep_2/, rep_3/ (and their _tot_constrained variants, each with original/ and
+  pph3_included/ sub-variants): independent replicas of the FES_2D reconstruction, testing
+  sensitivity to constraints and to including the pph3 dataset in training.
+o PMF_react_TS1/USW_100_react_TS1/: umbrella-sampling (window width 100) PMF along the
+  reactant -> TS1 path, with an averaged profile (average_pmf.png) and per-replica WHAM
+  output (rep1/2/3/WHAM/: wham_F_profile*.png free-energy profile, wham_F_windows*.png
+  per-window histograms, wham_biased_P_windows*.png biased probability distributions,
+  wham_cvg*.png convergence check).
+o US/USW_100_TS1_TS2/, US/USW_100_TS1_TS3/, US/USW_100_TS2_TS3/: umbrella-sampling PMF scans
+  between the three stationary points (TS1, TS2, TS3) of the reaction, each with the same
+  average_pmf.png + per-replica WHAM plot structure as above.
+
+--- NNP_LFER_choice/ ---
+
+Comparison of three candidate NNP committees (NNP_1/, NNP_2/, NNP_3/) on the same
+umbrella-sampling PMF reconstruction, used to select which committee to carry forward for
+production LFER analysis. Each NNP_n/ contains an averaged PMF (average_pmf.png) and
+per-replica WHAM diagnostics (rep_1/2/3/WHAM/), following the same plot set as above.
+
+--- scripts/ ---
+
+Analysis code used to produce the plots above — see scripts/README for details.
+
+Note: this README was written on 05/07/2026 to summarize newly-synced content; no existing
+local file was modified to produce it.

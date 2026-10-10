@@ -1,0 +1,8 @@
+--- NNP (NNP_LFER_choice) ---
+
+Shared three-member NNP committee for this comparison: 'graph_1/2/3_004_compressed.pb'
+(DeePMD-kit compressed models, ArcaNN iteration 004). ../NNP_1/, ../NNP_2/ and ../NNP_3/ all
+use this same triplet, just reordered in the LAMMPS 'pair_style deepmd' call — see
+../README for why that matters.
+
+Note: this README documents pre-existing content; no existing file was modified.

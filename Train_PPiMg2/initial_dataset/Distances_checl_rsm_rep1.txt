@@ -1,0 +1,179 @@
+Entering 00001
+  *** SCF run converged in    10 steps ***
+00001/2_labeling_00001.out converged correctly
+Entering 00002
+  *** SCF run converged in    10 steps ***
+00002/2_labeling_00002.out converged correctly
+Entering 00003
+  *** SCF run converged in    10 steps ***
+00003/2_labeling_00003.out converged correctly
+Entering 00004
+  *** SCF run converged in    10 steps ***
+00004/2_labeling_00004.out converged correctly
+Entering 00005
+  *** SCF run converged in    10 steps ***
+00005/2_labeling_00005.out converged correctly
+Entering 00006
+  *** SCF run converged in    10 steps ***
+00006/2_labeling_00006.out converged correctly
+Entering 00007
+  *** SCF run converged in    10 steps ***
+00007/2_labeling_00007.out converged correctly
+Entering 00008
+  *** SCF run converged in    10 steps ***
+00008/2_labeling_00008.out converged correctly
+Entering 00009
+  *** SCF run converged in    10 steps ***
+00009/2_labeling_00009.out converged correctly
+Entering 00010
+  *** SCF run converged in    10 steps ***
+00010/2_labeling_00010.out converged correctly
+Entering 00011
+  *** SCF run converged in    10 steps ***
+00011/2_labeling_00011.out converged correctly
+Entering 00012
+  *** SCF run converged in    10 steps ***
+00012/2_labeling_00012.out converged correctly
+Entering 00013
+  *** SCF run converged in    10 steps ***
+00013/2_labeling_00013.out converged correctly
+Entering 00014
+  *** SCF run converged in    10 steps ***
+00014/2_labeling_00014.out converged correctly
+Entering 00015
+  *** SCF run converged in    10 steps ***
+00015/2_labeling_00015.out converged correctly
+Entering 00016
+  *** SCF run converged in    10 steps ***
+00016/2_labeling_00016.out converged correctly
+Entering 00017
+  *** SCF run converged in    10 steps ***
+00017/2_labeling_00017.out converged correctly
+Entering 00018
+  *** SCF run converged in    10 steps ***
+00018/2_labeling_00018.out converged correctly
+Entering 00019
+  *** SCF run converged in    10 steps ***
+00019/2_labeling_00019.out converged correctly
+Entering 00020
+  *** SCF run converged in    10 steps ***
+00020/2_labeling_00020.out converged correctly
+Entering 00021
+  *** SCF run converged in    10 steps ***
+00021/2_labeling_00021.out converged correctly
+Entering 00022
+  *** SCF run converged in    10 steps ***
+00022/2_labeling_00022.out converged correctly
+Entering 00023
+  *** SCF run converged in    10 steps ***
+00023/2_labeling_00023.out converged correctly
+Entering 00024
+  *** SCF run converged in    10 steps ***
+00024/2_labeling_00024.out converged correctly
+Entering 00025
+  *** SCF run converged in    10 steps ***
+00025/2_labeling_00025.out converged correctly
+Entering 00026
+  *** SCF run converged in    10 steps ***
+00026/2_labeling_00026.out converged correctly
+Entering 00027
+  *** SCF run converged in    10 steps ***
+00027/2_labeling_00027.out converged correctly
+Entering 00028
+  *** SCF run converged in    10 steps ***
+00028/2_labeling_00028.out converged correctly
+Entering 00029
+  *** SCF run converged in    10 steps ***
+00029/2_labeling_00029.out converged correctly
+Entering 00030
+  *** SCF run converged in    10 steps ***
+00030/2_labeling_00030.out converged correctly
+Entering 00031
+  *** SCF run converged in    10 steps ***
+00031/2_labeling_00031.out converged correctly
+Entering 00032
+  *** SCF run converged in    10 steps ***
+00032/2_labeling_00032.out converged correctly
+Entering 00033
+  *** SCF run converged in    10 steps ***
+00033/2_labeling_00033.out converged correctly
+Entering 00034
+  *** SCF run converged in    10 steps ***
+00034/2_labeling_00034.out converged correctly
+Entering 00035
+  *** SCF run converged in    10 steps ***
+00035/2_labeling_00035.out converged correctly
+Entering 00036
+  *** SCF run converged in    10 steps ***
+00036/2_labeling_00036.out converged correctly
+Entering 00037
+  *** SCF run converged in    10 steps ***
+00037/2_labeling_00037.out converged correctly
+Entering 00038
+  *** SCF run converged in    10 steps ***
+00038/2_labeling_00038.out converged correctly
+Entering 00039
+  *** SCF run converged in    10 steps ***
+00039/2_labeling_00039.out converged correctly
+Entering 00040
+  *** SCF run converged in    10 steps ***
+00040/2_labeling_00040.out converged correctly
+Entering 00041
+  *** SCF run converged in    10 steps ***
+00041/2_labeling_00041.out converged correctly
+Entering 00042
+  *** SCF run converged in    10 steps ***
+00042/2_labeling_00042.out converged correctly
+Entering 00043
+  *** SCF run converged in    10 steps ***
+00043/2_labeling_00043.out converged correctly
+Entering 00044
+  *** SCF run converged in    10 steps ***
+00044/2_labeling_00044.out converged correctly
+Entering 00045
+Entering 00046
+Entering 00047
+Entering 00048
+Entering 00049
+Entering 00050
+Entering 00051
+Entering 00052
+Entering 00053
+Entering 00054
+Entering 00055
+Entering 00056
+Entering 00057
+Entering 00058
+Entering 00059
+Entering 00060
+Entering 00061
+Entering 00062
+Entering 00063
+Entering 00064
+Entering 00065
+Entering 00066
+Entering 00067
+Entering 00068
+Entering 00069
+Entering 00070
+Entering 00071
+Entering 00072
+Entering 00073
+Entering 00074
+Entering 00075
+Entering 00076
+Entering 00077
+Entering 00078
+Entering 00079
+Entering 00080
+Entering 00081
+Entering 00082
+Entering 00083
+Entering 00084
+Entering 00085
+Entering 00086
+Entering 00087
+Entering logs
+RESUME
+------------------------------------------------------
+Count of errors: 0

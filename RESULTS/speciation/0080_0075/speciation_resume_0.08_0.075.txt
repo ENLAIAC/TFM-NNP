@@ -1,0 +1,37 @@
+Mg / pyrophosphate speciation with Mg(OH)2(s)
+  total Mg = 8.0000e-02 M   total PP = 7.5000e-02 M
+  pKa ladder = 0.85, 1.96, 6.6, 9.41   pKw = 14.0
+  kd_ppmg = 3.900e-06  kd_pphmg = 8.700e-04  kd_ppmg2 = 1.780e-08
+  Ksp(Mg(OH)2) = 5.610e-12   beta_MgOH = 0.000e+00
+  precipitation onset between pH 10.05 and 10.10
+  max solid = 8.0000e-02 M (100.00 % of total Mg) at pH 13.95
+
+Dominant species by pH
+  pH  0.00  PP: h4pp   (0.875)   Mg: mg_free  (1.000)   solid: 0.000e+00
+  pH  0.50  PP: h4pp   (0.684)   Mg: mg_free  (1.000)   solid: 0.000e+00
+  pH  1.00  PP: h3pp   (0.550)   Mg: mg_free  (1.000)   solid: 0.000e+00
+  pH  1.50  PP: h3pp   (0.637)   Mg: mg_free  (1.000)   solid: 0.000e+00
+  pH  2.00  PP: h2pp   (0.505)   Mg: mg_free  (0.999)   solid: 0.000e+00
+  pH  2.50  PP: h2pp   (0.768)   Mg: mg_free  (0.995)   solid: 0.000e+00
+  pH  3.00  PP: h2pp   (0.897)   Mg: mg_free  (0.981)   solid: 0.000e+00
+  pH  3.50  PP: h2pp   (0.910)   Mg: mg_free  (0.941)   solid: 0.000e+00
+  pH  4.00  PP: h2pp   (0.827)   Mg: mg_free  (0.845)   solid: 0.000e+00
+  pH  4.50  PP: h2pp   (0.657)   Mg: mg_free  (0.675)   solid: 0.000e+00
+  pH  5.00  PP: mghpp  (0.493)   Mg: mg_free  (0.468)   solid: 0.000e+00
+  pH  5.50  PP: mghpp  (0.592)   Mg: mghpp    (0.555)   solid: 0.000e+00
+  pH  6.00  PP: mghpp  (0.595)   Mg: mghpp    (0.558)   solid: 0.000e+00
+  pH  6.50  PP: mghpp  (0.510)   Mg: mghpp    (0.478)   solid: 0.000e+00
+  pH  7.00  PP: mghpp  (0.353)   Mg: mg2pp    (0.348)   solid: 0.000e+00
+  pH  7.50  PP: mgpp   (0.517)   Mg: mgpp     (0.485)   solid: 0.000e+00
+  pH  8.00  PP: mgpp   (0.698)   Mg: mgpp     (0.654)   solid: 0.000e+00
+  pH  8.50  PP: mgpp   (0.814)   Mg: mgpp     (0.763)   solid: 0.000e+00
+  pH  9.00  PP: mgpp   (0.876)   Mg: mgpp     (0.821)   solid: 0.000e+00
+  pH  9.50  PP: mgpp   (0.903)   Mg: mgpp     (0.846)   solid: 0.000e+00
+  pH 10.00  PP: mgpp   (0.913)   Mg: mgpp     (0.856)   solid: 0.000e+00
+  pH 10.50  PP: mgpp   (0.919)   Mg: mgpp     (0.862)   solid: 9.279e-03
+  pH 11.00  PP: mgpp   (0.583)   Mg: mgpp     (0.547)   solid: 3.613e-02
+  pH 11.50  PP: pp     (0.868)   Mg: mg_solid (0.883)   solid: 7.063e-02
+  pH 12.00  PP: pp     (0.983)   Mg: mg_solid (0.987)   solid: 7.894e-02
+  pH 12.50  PP: pp     (0.998)   Mg: mg_solid (0.999)   solid: 7.989e-02
+  pH 13.00  PP: pp     (1.000)   Mg: mg_solid (1.000)   solid: 7.999e-02
+  pH 13.50  PP: pp     (1.000)   Mg: mg_solid (1.000)   solid: 8.000e-02

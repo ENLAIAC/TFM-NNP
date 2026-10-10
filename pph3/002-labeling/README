@@ -1,0 +1,25 @@
+--- 002-labeling (pph3, ArcaNN) ---
+
+CP2K single-point DFT labeling of ~890 sampled configurations of the pph3 system, producing
+the labeled dataset for this ArcaNN iteration's DeePMD training set -- same two-stage
+CP2K pattern as templates/01_initial_trainingset/labeling/ (see its README for the file
+layout: per-config 00001/../00890/ subfolders each with '1_labeling_NNNNN.inp/.out',
+'2_labeling_NNNNN.inp/.out' + '-Force_Eval.fe'/'-Forces.for'/'-Wannier.xyz', starting
+structure 'labeling_NNNNN.xyz', 'job_script_NNNNN.sh'), filled in from the '_XXXXX' templates
+at this level by 'job-array_CP2K.sh' (this batch's own array-submission script, alongside
+'job_CP2K_submission.sh' and 'job_slurm_submission_cp2k.sh' -- three submission scripts,
+possibly successive resubmission variants).
+
+Bookkeeping files from the labeling/extraction post-processing: 'selected.txt' (configs kept
+for training), 'skipped_calc.txt' / 'skip', 'failed_calculation.txt', 'missing_out_file.txt',
+'manual_check_file.txt' -- tracking which of the ~890 calculations succeeded, were skipped,
+or need manual review. 'SMD_dD_validation.xyz' is a separate validation trajectory (checking
+sampled configurations against the 'dD' reaction coordinate used elsewhere in the pyrophosphate
+work). 'generate_xyz.sh' / 'check_convergence.sh' are the same utilities as ../../script/.
+Numerous loose 'CP2K.<jobid>_<N>' files are per-task job-array scratch/log output, not tied to
+any single configuration.
+
+Not documented individually: the ~890 numbered 00001/../00890/ configuration subfolders -- see
+this README instead.
+
+Note: this README documents pre-existing content; no existing file was modified.

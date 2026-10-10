@@ -1,0 +1,14 @@
+--- SMD_TS2_TS3 ---
+
+Steered MD stage generating the starting configurations for the TS2 <-> TS3 umbrella-sampling
+scan (see ../USW_100_TS2_TS3/README and ../README). This is the only leg of the reaction
+network pulled along two coordinates simultaneously: MOVINGRESTRAINT drives 'cobh' (2.8->1.8)
+and 'cowh' (1.9->0.9) together over 100000 steps, KAPPA=200 kcal/mol/A^2 each — i.e. the
+leaving-group and nucleophile coordination spheres reorganize concurrently between TS2 and
+TS3, unlike the TS1-TS2 and TS1-TS3 legs which each isolate one of the two. Same background
+wall restraints as the other pph4 pipelines apply (see PMF_react_TS1/SMD_react_TS1/README).
+Restart snapshots are converted into 'lmp_files/' seed structures the same way.
+
+Three replicas (rep1/2/3) — one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

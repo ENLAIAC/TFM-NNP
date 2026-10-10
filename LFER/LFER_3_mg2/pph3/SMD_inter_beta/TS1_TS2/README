@@ -1,0 +1,10 @@
+--- TS1_TS2 (SMD_inter_beta) ---
+
+SMD pull connecting TS1 and TS2 for the beta isomer (see ../README). MOVINGRESTRAINT pulls
+'cowh' from AT0=0.9 to AT1=1.9 over 100000 steps, KAPPA=400 kcal/mol. Restart snapshots are
+converted into 'lmp_files/' seed structures for ../../US_inter_beta/USW_100_TS1_TS2/, which
+restrains the related 'cobh' coordinate instead while pinning 'dD' at 0.
+
+Three replicas (rep1/2/3) -- one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

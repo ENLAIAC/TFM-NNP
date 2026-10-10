@@ -1,0 +1,14 @@
+--- SMD (PMF_react_TS1_alpha) ---
+
+Steered MD stage generating the starting configurations for the reactant->TS1 umbrella-
+sampling scan (see ../US/README and ../README). MOVINGRESTRAINT pulls 'dD' (the nucleophile-
+approach/P-O-bond-cleavage reaction coordinate, pph3 atom numbering) from AT0=-2.0 to
+AT1=2.0 over 100000 steps, KAPPA=400 kcal/mol, under background UPPER_WALLS/LOWER_WALLS/
+angle restraints preventing metaphosphate formation and keeping the neutralizing Mg2+
+engaged (same protocol as pph4's reactant->TS1 SMD, see LFER_3_mg2/pph4/PMF_react_TS1/
+SMD_react_TS1/README). Restart snapshots are converted into 'lmp_files/' seed structures for
+the umbrella windows.
+
+Three replicas (rep1/2/3) -- one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

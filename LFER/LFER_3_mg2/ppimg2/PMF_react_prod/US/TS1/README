@@ -1,0 +1,11 @@
+--- TS1 (PMF_react_prod/US) ---
+
+Umbrella-sampling window set along 'dD', seeded from ../../SMD/TS1/ (see ../README). 100
+window subfolders per replica, static restraint on 'dD' at each window's value (kappa=300,
+consistent with this system's softer SMD kappa) plus the same background Mg-coordination /
+distance / angle walls as the SMD stage. WHAM complete for all three replicas
+('WHAM/fepreact_TS1_ppimg2.out').
+
+Three replicas (rep1/2/3) -- one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

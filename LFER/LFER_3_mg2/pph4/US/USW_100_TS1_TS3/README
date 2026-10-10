@@ -1,0 +1,10 @@
+--- USW_100_TS1_TS3 ---
+
+Umbrella-sampling stage connecting TS1 and TS3 (see ../README), seeded from
+../SMD_TS1_TS3/lmp_files/ and restrained on 'cowh'. Same window/replica/WHAM layout as
+LFER_3_mg2/pph4/PMF_react_TS1/USW_100_react_TS1/ — see that folder's README, substituting
+the coordinate name.
+
+Three replicas (rep1/2/3) — one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

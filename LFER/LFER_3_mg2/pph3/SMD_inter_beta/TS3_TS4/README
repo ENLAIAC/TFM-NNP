@@ -1,0 +1,10 @@
+--- TS3_TS4 (SMD_inter_beta) ---
+
+SMD pull connecting TS3 and TS4 for the beta isomer (see ../README). MOVINGRESTRAINT pulls
+'coelp' from AT0=1.8 to AT1=2.7 over 100000 steps, KAPPA=400 kcal/mol. Restart snapshots are
+converted into 'lmp_files/' seed structures for ../../US_inter_beta/USW_100_TS3_TS4/, whose
+rep1 initially diverged and needed reseeding from rep2 -- see that folder's README.
+
+Three replicas (rep1/2/3) -- one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

@@ -1,0 +1,8 @@
+--- USW_100_TS3_TS4 (US_inter_alpha) ---
+
+Umbrella-sampling window set for the alpha isomer's TS3<->TS4 interconversion (see
+../README). Restrains 'coelp' at 100 evenly spaced values (kappa=300) while pinning 'dD' at 0
+(kappa=400), seeded from 'SMD_inter_alpha/TS3_TS4/repN/lmp_files/' on Vives. Same per-replica
+layout as USW_100_TS1_TS2/ (see its README) -- 100 window subfolders plus WHAM/, not yet run.
+
+Note: this README documents pre-existing content; no existing file was modified.

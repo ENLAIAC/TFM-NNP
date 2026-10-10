@@ -1,0 +1,14 @@
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/new_rep/rep2/00001
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/new_rep/rep2/00013
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/new_rep/rep2/00014
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/new_rep/rep5/00001
+
+TOTAL DISCARDED: 4
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/new_rep/rep2/00001
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/new_rep/rep2/00013
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/new_rep/rep2/00014
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/new_rep/rep2/00001
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/new_rep/rep2/00013
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/new_rep/rep2/00014
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/new_rep/rep5/00001
+

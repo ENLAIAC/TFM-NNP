@@ -1,0 +1,7 @@
+--- WHAM_files (US_inter_beta) ---
+
+Shared 'wham1D.py'/'errors_wham1D.py'/'job_wham.sh' used by all four interconversion
+reconstructions in USW_100_*/repN/WHAM/ -- same scripts as ../US_inter_alpha/WHAM_files/,
+see its README (or LFER_3_mg2/pph4/PMF_react_TS1/WHAM_files/README) for what each does.
+
+Note: this README documents pre-existing content; no existing file was modified.

@@ -1,0 +1,10 @@
+--- WHAM_files (PMF_react_TS1_beta) ---
+
+Own copy of the shared WHAM scripts ('errors_wham1D.py', 'job_wham.sh', 'wham1D.py') used by
+US/*/WHAM/ to reconstruct the dD free-energy profile for this isomer -- same scripts as
+../../pph4/PMF_react_TS1/WHAM_files/ and ../PMF_react_TS1_alpha/WHAM_files/, see either for
+what each script does. No 'slurm.err'/'slurm.out' present here, unlike alpha's copy --
+suggesting WHAM has not yet been run (or was run without keeping the job log) for this branch
+as of this review.
+
+Note: this README documents pre-existing content; no existing file was modified.

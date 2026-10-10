@@ -1,0 +1,51 @@
+=====================================
+FOLDER: TS_OPES
+SYSTEM: MareNostrum 5 — glogin2
+CREATED: 06/07/2026
+UPDATED: 07/10/2026
+PURPOSE: OPES runs exploring the transition-state region of the ppimg2
+         (2Mg(2+)[P2O7](4-)) system with the ArcaNN iteration-006 NNP committee.
+=====================================
+
+06/07/2026
+
+o OPES metadynamics runs exploring the transition-state region of the ppimg2
+  system, using the ArcaNN iteration-006 NNP committee
+  ('graph_1/2/3_006_compressed.pb', copied into each replica folder alongside the
+  shared top-level copy). Each replica runs LAMMPS+DeepMD+PLUMED from
+  'ppimg2-TS.lmp' via 'job_lammps_submission.sh', biasing the reaction coordinate
+  defined in 'plumed_ppimg2-TS.dat', and logs 'COLVAR' and 'Coord_Mg.info'
+  (Mg-coordination monitoring) plus 'model_devi.out' for committee-deviation QC.
+
+o The files at the top level, outside the 'repN/' subfolders, are an earlier
+  reference run of the same setup, predating the replica split. 'KERNELS' and
+  'opes_md.dat' belong to that run.
+
+01/10/2026
+
+o Corrected the replica description. The previous version of this file stated
+  "five replicas, same protocol with different seeds", which is the intent but not
+  what is on disk. Checked each one:
+
+    rep1  complete, 10 files, same file set as the reference run.
+    rep2  complete, 10 files, identical layout to rep1 apart from the SLURM job id
+          in the log name.
+    rep3  PARTIAL, 4 files only. Missing the three NNP graph files, the LAMMPS
+          input 'ppimg2-TS.lmp' and the log 'ppimg2-TS.log'. It cannot be rerun or
+          analysed as it stands.
+    rep4  EMPTY.
+    rep5  EMPTY.
+
+o So the usable statistics here are two replicas, not five. rep3 was set up and
+  abandoned, rep4 and rep5 were only ever created as directories. If an analysis
+  script globs 'rep*' and averages, it will silently average over two.
+
+o rep1 and rep2 are genuinely consistent with each other, so they are described
+  once here rather than carrying one README each.
+
+07/10/2026
+
+o Decision on the incomplete replicas: leave them exactly as they are. rep3 stays
+  partial, rep4 and rep5 stay empty. Elia will look at them. They are not abandoned
+  clutter to be cleaned, so do not remove or regenerate them, and keep remembering
+  that an analysis globbing 'rep*' here averages over two usable replicas only.

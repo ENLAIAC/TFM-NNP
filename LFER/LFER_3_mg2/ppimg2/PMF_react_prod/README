@@ -1,0 +1,15 @@
+--- OVERVIEW: PMF_react_prod ---
+
+SMD -> Umbrella-Sampling -> WHAM pipeline along 'dD' (AT0=-2.0->AT1=2.0, KAPPA=300
+kcal/mol -- slightly softer pull than pph3/pph4's KAPPA=400) toward two targets, TS1 and TS3
+-- see SMD/README. Only the TS1 branch has been carried through to umbrella sampling and WHAM
+(US/TS1/, complete for all three replicas); TS3's SMD-generated structures have not yet been
+taken to umbrella sampling as of this review.
+
+--- SMD/ ---
+Steered MD generating seed structures for both targets -- see SMD/README.
+
+--- US/ ---
+Umbrella sampling + WHAM for the TS1 branch only -- see US/README.
+
+Note: this README documents pre-existing content; no existing file was modified.

@@ -1,0 +1,9 @@
+--- USW_100_TS1_TS2 (US_inter_beta) ---
+
+Umbrella-sampling window set for the beta isomer's TS1<->TS2 interconversion (see ../README
+for full status, including the rep1/rep2 reseeding needed to fix an initial inconsistency
+with rep3). Restrains 'cobh' at 100 evenly spaced values (kappa=300) while pinning 'dD' at 0
+(kappa=400), seeded from ../../SMD_inter_beta/TS1_TS2/. WHAM complete
+('WHAM/fepTS1_TS2_pph3_beta.out' in all three replicas, consistent barriers).
+
+Note: this README documents pre-existing content; no existing file was modified.

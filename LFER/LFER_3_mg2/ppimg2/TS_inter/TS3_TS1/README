@@ -1,0 +1,6 @@
+--- TS3_TS1 (TS_inter) ---
+
+SMD -> Umbrella-Sampling -> WHAM for the TS3<->TS1 interconversion, driven on 'coh' (see
+../README) -- see SMD/README and US/README.
+
+Note: this README documents pre-existing content; no existing file was modified.

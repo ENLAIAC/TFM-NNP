@@ -1,0 +1,12 @@
+--- TS5_TS2 (SMD_inter_beta) ---
+
+SMD pull connecting TS5 and TS2 for the beta isomer (see ../README). MOVINGRESTRAINT pulls
+'cowh' from AT0=0.9 to AT1=1.9, KAPPA=400 -- same pull as TS1_TS2/TS3_TS1. Each replica's
+folder holds only the input files ('SMD_pph3-rep1.in', 'plumed_SMD_pph3-rep1.dat',
+'job_lammps-deepmd_explore_gpu_vives.sh') with no trajectory/restart/log output yet, unlike
+every other edge in this folder -- this leg has not produced output as of this review. Not
+carried through to umbrella sampling (no 'USW_100_TS5_TS2/' exists under ../US_inter_beta/).
+
+Three replicas (rep1/2/3) -- one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

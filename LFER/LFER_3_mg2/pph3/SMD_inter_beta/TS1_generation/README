@@ -1,0 +1,8 @@
+--- TS1_generation (SMD_inter_beta) ---
+
+Generates rep1's starting TS1-region configuration ('TS1_rep1.lmp') via an initial SMD run
+along 'dD' (same protocol as ../../PMF_react_TS1_beta/react_generation/), before the pairwise
+legs above pull from it. Includes its own 'lmp_files/' (100 numbered window seed structures)
+and Vives job script. Single run, not a rep1/2/3 set.
+
+Note: this README documents pre-existing content; no existing file was modified.

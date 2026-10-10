@@ -1,0 +1,550 @@
+Entering 00001
+  *** SCF run converged in    10 steps ***
+00001/2_labeling_00001.out converged correctly
+Entering 00002
+  *** SCF run converged in    10 steps ***
+00002/2_labeling_00002.out converged correctly
+Entering 00003
+  *** SCF run converged in    10 steps ***
+00003/2_labeling_00003.out converged correctly
+Entering 00004
+  *** SCF run converged in    10 steps ***
+00004/2_labeling_00004.out converged correctly
+Entering 00005
+  *** SCF run converged in    11 steps ***
+00005/2_labeling_00005.out converged correctly
+Entering 00006
+  *** SCF run converged in    11 steps ***
+00006/2_labeling_00006.out converged correctly
+Entering 00007
+  *** SCF run converged in    17 steps ***
+00007/2_labeling_00007.out converged correctly
+Entering 00008
+  *** SCF run converged in    15 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+Entering 00009
+  *** SCF run converged in    11 steps ***
+00009/2_labeling_00009.out converged correctly
+Entering 00010
+  *** SCF run converged in    10 steps ***
+00010/2_labeling_00010.out converged correctly
+Entering 00011
+  *** SCF run converged in    10 steps ***
+00011/2_labeling_00011.out converged correctly
+Entering 00012
+  *** SCF run converged in    10 steps ***
+00012/2_labeling_00012.out converged correctly
+Entering 00013
+  *** SCF run converged in    10 steps ***
+00013/2_labeling_00013.out converged correctly
+Entering 00014
+  *** SCF run converged in    10 steps ***
+00014/2_labeling_00014.out converged correctly
+Entering 00015
+  *** SCF run converged in    10 steps ***
+00015/2_labeling_00015.out converged correctly
+Entering 00016
+  *** SCF run converged in    10 steps ***
+00016/2_labeling_00016.out converged correctly
+Entering 00017
+  *** SCF run converged in    10 steps ***
+00017/2_labeling_00017.out converged correctly
+Entering 00018
+  *** SCF run converged in    10 steps ***
+00018/2_labeling_00018.out converged correctly
+Entering 00019
+  *** SCF run converged in    10 steps ***
+00019/2_labeling_00019.out converged correctly
+Entering 00020
+  *** SCF run converged in    10 steps ***
+00020/2_labeling_00020.out converged correctly
+Entering 00021
+  *** SCF run converged in    10 steps ***
+00021/2_labeling_00021.out converged correctly
+Entering 00022
+  *** SCF run converged in    11 steps ***
+00022/2_labeling_00022.out converged correctly
+Entering 00023
+  *** SCF run converged in    11 steps ***
+00023/2_labeling_00023.out converged correctly
+Entering 00024
+  *** SCF run converged in    13 steps ***
+00024/2_labeling_00024.out converged correctly
+Entering 00025
+  *** SCF run converged in     4 steps ***
+00025/2_labeling_00025.out converged correctly
+Entering 00026
+  *** SCF run converged in     8 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00027
+  *** SCF run converged in     7 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00028
+  *** SCF run converged in    20 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00029
+  *** SCF run converged in    17 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00030
+  *** SCF run converged in    16 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00031
+  *** SCF run converged in    18 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00032
+  *** SCF run converged in    12 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00033
+Entering 00034
+  *** SCF run converged in    11 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00035
+  *** SCF run converged in     3 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00036
+  *** SCF run converged in    19 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+Entering 00037
+Entering 00038
+Entering 00039
+  *** SCF run converged in    16 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00040
+  *** SCF run converged in    20 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00041
+  *** SCF run converged in     4 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00042
+Entering 00043
+  *** SCF run converged in     6 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00044
+  *** SCF run converged in    16 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms  ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+Entering 00045
+  *** SCF run converged in    15 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms  ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00046
+Entering 00047
+  *** SCF run converged in     9 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00048
+  *** SCF run converged in    12 steps ***
+00048/2_labeling_00048.out converged correctly
+Entering 00049
+  *** SCF run converged in    11 steps ***
+00049/2_labeling_00049.out converged correctly
+Entering 00050
+  *** SCF run converged in    18 steps ***
+00050/2_labeling_00050.out converged correctly
+Entering 00051
+  *** SCF run converged in    10 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00052
+  *** SCF run converged in    16 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00053
+  *** SCF run converged in     1 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00054
+  *** SCF run converged in     1 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+Entering 00055
+  *** SCF run converged in     7 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00056
+  *** SCF run converged in    12 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00057
+  *** SCF run converged in    12 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00058
+Entering 00059
+  *** SCF run converged in     6 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00060
+  *** SCF run converged in    10 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00061
+Entering 00062
+Entering 00063
+Entering 00064
+  *** SCF run converged in    15 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00065
+  *** SCF run converged in     6 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00066
+Entering 00067
+Entering 00068
+Entering 00069
+Entering 00070
+Entering 00071
+Entering 00072
+Entering 00073
+Entering 00074
+Entering 00075
+  *** SCF run converged in     7 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00076
+  *** SCF run converged in     1 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00077
+  *** SCF run converged in    13 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00078
+  *** SCF run converged in     6 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00079
+Entering 00080
+Entering 00081
+Entering 00082
+  *** SCF run converged in    18 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00083
+Entering 00084
+Entering 00085
+Entering 00086
+Entering 00087
+Entering 00088
+Entering 00089
+  *** SCF run converged in     7 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00090
+Entering 00091
+  *** SCF run converged in    20 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+Entering 00092
+  *** SCF run converged in    12 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00093
+  *** SCF run converged in     8 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00094
+Entering 00095
+  *** SCF run converged in    12 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+Entering 00096
+Entering 00097
+Entering 00098
+Entering 00099
+  *** SCF run converged in    12 steps ***
+00099/2_labeling_00099.out converged correctly
+Entering 00100
+  *** SCF run converged in     3 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+Entering 00101
+  *** SCF run converged in    15 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00102
+  *** SCF run converged in    19 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00103
+  *** SCF run converged in     3 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00104
+Entering 00105
+Entering 00106
+Entering 00107
+Entering 00108
+Entering 00109
+Entering 00110
+  *** SCF run converged in    11 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00111
+Entering 00112
+  *** SCF run converged in     8 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00113
+Entering 00114
+Entering 00115
+Entering 00116
+Entering 00117
+Entering 00118
+Entering 00119
+  *** SCF run converged in     8 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00120
+  *** SCF run converged in     6 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00121
+Entering 00122
+  *** SCF run converged in     8 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00123
+Entering 00124
+  *** SCF run converged in    14 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00125
+  *** SCF run converged in    11 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00126
+  *** SCF run converged in     7 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00127
+Entering 00128
+Entering 00129
+Entering 00130
+Entering 00131
+  *** SCF run converged in    14 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00132
+  *** SCF run converged in     6 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00133
+  *** SCF run converged in    10 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms  ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00134
+  *** SCF run converged in     8 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00135
+  *** SCF run converged in    12 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00136
+  *** SCF run converged in     6 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00137
+Entering 00138
+  *** SCF run converged in     3 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+Entering 00139
+Entering 00140
+  *** SCF run converged in     6 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00141
+Entering 00142
+Entering 00143
+Entering 00144
+Entering 00145
+Entering 00146
+Entering 00147
+  *** SCF run converged in    15 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms  ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms   ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00148
+Entering 00149
+Entering 00150
+  *** SCF run converged in     7 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00151
+  *** SCF run converged in     5 steps ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+ *** WARNING in particle_methods.F:677 :: The distance between the atoms ***
+Entering 00152
+Entering 00153
+Entering 00154
+Entering 00155
+Entering 00156
+Entering 00157
+Entering 00158
+Entering 00159
+Entering 00160
+Entering 00161
+Entering 00162
+Entering 00163
+Entering 00164
+Entering 00165
+Entering 00166
+Entering 00167
+Entering 00168
+Entering 00169
+Entering 00170
+Entering 00171
+Entering 00172
+Entering 00173
+Entering 00174
+Entering 00175
+Entering 00176
+Entering 00177
+Entering 00178
+Entering 00179
+Entering 00180
+Entering 00181
+Entering 00182
+Entering 00183
+Entering 00184
+Entering 00185
+Entering 00186
+Entering 00187
+Entering 00188
+Entering 00189
+Entering 00190
+Entering 00191
+Entering 00192
+Entering 00193
+Entering 00194
+Entering 00195
+Entering 00196
+Entering 00197
+Entering 00198
+Entering 00199
+Entering 00200
+Entering 00201
+Entering 00202
+Entering 00203
+Entering 00204
+Entering 00205
+Entering 00206
+Entering 00207
+Entering 00208
+Entering 00209
+Entering 00210
+Entering 00211
+Entering 00212
+Entering 00213
+Entering 00214
+Entering logs
+RESUME
+------------------------------------------------------
+Count of errors: 62

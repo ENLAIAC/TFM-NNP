@@ -1,0 +1,22 @@
+--- OVERVIEW: PMF_react_TS1_beta ---
+
+Same reactant->TS1 SMD -> Umbrella-Sampling -> WHAM pipeline as ../PMF_react_TS1_alpha/, run
+independently for the beta protonation isomer. Unlike alpha, this branch includes its own
+'react_generation/' step producing rep1's starting TS1-region configuration locally (alpha's
+equivalent starting point was not generated inside this folder).
+
+--- react_generation/ ---
+Generates the reactant/TS1 starting configuration via an initial SMD run before the SMD/
+stage below -- see react_generation/README.
+
+--- SMD/ ---
+Steered MD along 'dD' (same AT0=-2.0/AT1=2.0/KAPPA=400 as alpha) generating the
+umbrella-sampling seeds -- see SMD/README.
+
+--- US/ ---
+100-window umbrella sampling along 'dD' -- see US/README.
+
+--- WHAM_files/ ---
+Own copy of the shared WHAM scripts (separate from alpha's) -- see WHAM_files/README.
+
+Note: this README documents pre-existing content; no existing file was modified.

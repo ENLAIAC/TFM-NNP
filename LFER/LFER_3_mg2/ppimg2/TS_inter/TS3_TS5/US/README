@@ -1,0 +1,9 @@
+--- US (TS_inter/TS3_TS5) ---
+
+Umbrella-sampling window set restraining 'colvp' at 100 evenly spaced values (kappa=300)
+while pinning 'dD' at 0 (kappa=400), seeded from ../SMD/. WHAM complete for all three
+replicas ('WHAM/fepTS3_TS5_ppimg2.out').
+
+Three replicas (rep1/2/3) -- one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

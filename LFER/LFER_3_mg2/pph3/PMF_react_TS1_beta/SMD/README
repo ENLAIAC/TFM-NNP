@@ -1,0 +1,12 @@
+--- SMD (PMF_react_TS1_beta) ---
+
+Steered MD stage generating the starting configurations for the reactant->TS1 umbrella-
+sampling scan (see ../US/README and ../README), seeded from ../react_generation/'s TS1-region
+configuration. MOVINGRESTRAINT pulls 'dD' from AT0=-2.0 to AT1=2.0 over 100000 steps,
+KAPPA=400 kcal/mol -- same protocol as ../../PMF_react_TS1_alpha/SMD/ (see its README for the
+full CV/wall definitions, identical here). Restart snapshots are converted into 'lmp_files/'
+seed structures for the umbrella windows.
+
+Three replicas (rep1/2/3) -- one README covers all three.
+
+Note: this README documents pre-existing content; no existing file was modified.

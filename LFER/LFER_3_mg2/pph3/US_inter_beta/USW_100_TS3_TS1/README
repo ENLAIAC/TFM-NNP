@@ -1,0 +1,8 @@
+--- USW_100_TS3_TS1 (US_inter_beta) ---
+
+Umbrella-sampling window set for the beta isomer's TS3<->TS1 interconversion (see ../README).
+Restrains 'cowh' at 100 evenly spaced values (kappa=300) while pinning 'dD' at 0 (kappa=400),
+seeded from ../../SMD_inter_beta/TS3_TS1/. WHAM complete and consistent across replicas
+(~10.4/9.1/8.9 kcal/mol barriers as of the 19/07/2026 review).
+
+Note: this README documents pre-existing content; no existing file was modified.

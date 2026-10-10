@@ -1,0 +1,9 @@
+--- NNP (LFER_3_mg2) ---
+
+The three-member NNP committee (DeePMD-kit compressed models 'graph_1/2/3_005_compressed.pb',
+ArcaNN iteration 005) used to drive every LAMMPS+DeepMD run in this LFER_3_mg2/ analysis
+(pph3/, pph4/) — the production committee, one ArcaNN iteration on from the iteration-004
+committee whose per-member consistency was checked in ../../NNP_LFER_choice/ (see that
+folder's README).
+
+Note: this README documents pre-existing content; no existing file was modified.

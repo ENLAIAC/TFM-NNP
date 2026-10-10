@@ -1,0 +1,14 @@
+--- codes (LFER_3_mg2) ---
+
+Free-energy-surface reconstruction scripts shared across pph3/ and pph4/'s OPES metadynamics
+runs (rep_1/2/3, rep_1/2/3_tot_constrained, OPES_hydrolysis).
+
+o FES_2D.py: reads an OPES run's 'COLVAR'+'KERNELS' and reweights the biased trajectory into
+  a 2D free-energy surface over two collective variables, producing 'FES_2D.png'.
+o FES_2D_inverse.py: variant of FES_2D.py using the inverse mapping of the two CVs, used as a
+  cross-check of the surface reconstruction (same underlying data, transposed axes/binning).
+o FES_from_Reweighting.py: reconstructs the free-energy surface via full trajectory
+  reweighting (rather than direct KERNELS-based estimation), producing the 'fes-rew*.dat'
+  profiles seen alongside FES_2D.png in each rep_N/ folder.
+
+Note: this README documents pre-existing content; no existing file was modified.

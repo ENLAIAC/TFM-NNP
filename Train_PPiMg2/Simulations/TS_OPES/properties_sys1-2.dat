@@ -1,0 +1,11 @@
+#Change atom types to match NNP
+type
+H 1
+O 2
+Mg 3
+P 4
+#Set box size
+supercell
+17.20 0.000 0.000
+0.000 17.20 0.000
+0.000 0.000 17.20

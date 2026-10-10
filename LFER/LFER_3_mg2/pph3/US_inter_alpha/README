@@ -1,0 +1,72 @@
+=====================================
+FOLDER: US_inter_alpha
+SYSTEM: Vives — vives.uv.es
+CREATED: 10/07/2026
+UPDATED: 10/07/2026
+PURPOSE: Umbrella-sampling stage seeded from 'SMD_inter_alpha''s 100 structures per
+         edge/replica, holding each edge's driven CV (and dD=0) fixed at 100 evenly
+         spaced values to reconstruct the interconversion free-energy profile via WHAM.
+=====================================
+
+10/07/2026
+
+o Read (read-only, supervisor account on MareNostrum 5) the equivalent, already-running
+  pph4 SMD->US->WHAM pipeline at 'LFER_3_mg2/pph4/US/' to use as the reference layout:
+  a top-level folder holding 'USW_100_TSx_TSy/repN/' replicas (100 numbered window
+  folders, an 'inputs/' template folder, a 'generate_US_window.py' generator, a
+  'COLVAR/' folder and a 'WHAM/' folder) plus one shared 'WHAM_files/'. Reproduced that
+  structure here rather than copying it directly, since pph3 alpha's atom-index scheme
+  and per-edge wall definitions differ from pph4's.
+
+o Set up 'US_inter_alpha/' as a new top-level folder, parallel to 'SMD_inter_alpha/',
+  with the same five edges. For each of the fifteen edge/replica combinations, built
+  'inputs/plumed_USW_XX.dat' by taking that edge's own 'SMD_inter_alpha/<edge>/rep1/
+  plumed_SMD_pph3-rep1.dat', stripping the MOVINGRESTRAINT block and the SMD-only PRINT
+  lines, and replacing them with a single static restraint on that edge's driven CV
+  ('uw: RESTRAINT ARG=<CV> AT=XX KAPPA=KAPPA_kcal') plus the pre-existing 'dD=0' pin —
+  everything else (atom groups, CVs, edge-specific walls) carried over unchanged.
+
+o Wrote 'inputs/US_lammps.in' (800,000-step run per window, same NNP committee and
+  timestep as the SMD stage) and 'inputs/job_lammps-deepmd.sh' (adapted from the SMD
+  stage's Vives job script — same 'cuerda' GPU partition and DeePMD-kit 2.1.4 conda
+  environment, but computing its EXTRA_FILES list at run time so the one script works
+  unchanged for every window). Copied each replica's 100 seed structures from
+  '../SMD_inter_alpha/<edge>/repN/lmp_files/' into 'inputs/lmp_files/'.
+
+o Wrote one 'generate_US_window.py' per edge/replica (adapted from pph4's version),
+  with the window range set to that edge's own SMD pull range (AT0->AT1), kappa=300
+  kcal/mol for every static restraint, and WHAM histogram parameters EQUIL_FRAMES=100,
+  CV_BIN_WIDTH=0.01, NUMBER_OF_CV_BINS=250, MIN_CV_VALUE = (window minimum - 0.45) —
+  the last chosen to give the WHAM histogram a comfortable margin below (and, given the
+  250-bin/0.01 span, well above) each edge's sampled range, mirroring pph4's convention.
+
+o Copied 'wham1D.py' and 'errors_wham1D.py' from the MareNostrum 5 pph4 project into a
+  new shared 'WHAM_files/' here (no prior copy existed anywhere on Vives), and wrote a
+  Vives-adapted 'job_wham.sh' mimicking the same ArcaNN job-script framework used by the
+  SMD stage, on the 'cuerda' qos/partition, activating the 'wham_miguel' conda
+  environment (already has a compatible numpy/scipy/matplotlib) instead of loading
+  DeepMD-kit.
+
+o Ran 'generate_US_window.py 100' in all fifteen 'USW_100_<edge>/repN/' folders,
+  producing 1500 window folders total (100 per replica) plus each replica's
+  'WHAM/input.txt' and 'WHAM/job_wham.sh'. Spot-checked restraint values, dD pinning,
+  byte-identical seed structures and WHAM input headers/centers across several
+  edges/windows — all correct.
+
+o Initially only copied the per-window 'job_lammps-deepmd.sh' convenience script into
+  each of the 1500 window folders (as pph4 itself does), missing the piece that
+  actually drives a replica's 100 windows in practice: fetched and read pph4's
+  'job-array_lammps-deepmd_explore_gpu_alogin1.sh' (living at the replica top level, one
+  per replica) to see it's a SLURM job array (--array=0-99) that uses
+  '' to cd into the matching window folder and run that window's
+  own 'US_lammps.in'/'plumed_USW_NNN.dat'/'USW_NNN.lmp'. Wrote the Vives equivalent,
+  'job-array_lammps-deepmd_explore_gpu_vives.sh', one per replica (fifteen total, at
+  each 'USW_100_<edge>/repN/' top level) — same 'cuerda' qos/partition and DeePMD-kit
+  2.1.4 conda activation as the SMD stage's job script, '--array=0-99%10' by default
+  (edit the array range to resubmit a subset of windows), NNP graph paths already
+  absolute inside 'US_lammps.in' so no per-task model symlinking is needed. This is the
+  one to actually 'sbatch' per replica; the per-window 'job_lammps-deepmd.sh' copies
+  remain as a fallback for resubmitting a single window by hand.
+
+o No SLURM jobs were submitted; the LAMMPS US windows and the WHAM reconstruction are
+  left for manual submission once reviewed.

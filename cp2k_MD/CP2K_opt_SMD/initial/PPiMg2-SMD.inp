@@ -1,0 +1,176 @@
+@SET SYSNAME PPiMg2-SMD
+
+&GLOBAL
+   PROJECT      ${SYSNAME}
+   PRINT_LEVEL LOW
+   RUN_TYPE     MD
+&END GLOBAL
+
+&FORCE_EVAL
+  METHOD Quickstep
+  STRESS_TENSOR ANALYTICAL
+  &DFT
+    BASIS_SET_FILE_NAME    GTH_BASIS_SETS
+    BASIS_SET_FILE_NAME    BASIS_MOLOPT
+    POTENTIAL_FILE_NAME    GTH_POTENTIALS
+    CHARGE 0
+    &MGRID
+      CUTOFF    400
+      REL_CUTOFF 50
+    &END MGRID
+    &QS
+      EPS_DEFAULT   1.0E-10
+      EPS_FILTER_MATRIX 0
+      EPS_PGF_ORB 1.0E-5
+      EXTRAPOLATION ASPC
+      EXTRAPOLATION_ORDER 3
+    &END QS
+    &SCF
+      SCF_GUESS RESTART
+      EPS_SCF   1.0E-4
+      MAX_SCF   200
+      &PRINT
+        &RESTART
+          &EACH
+            MD 50
+          &END EACH
+          ADD_LAST NUMERIC
+        &END
+      &END
+      &OT
+        MINIMIZER CG
+        PRECONDITIONER FULL_ALL
+      &END OT
+    &END SCF
+    &XC
+      &XC_FUNCTIONAL
+        &PBE
+          PARAMETRIZATION REVPBE
+        &END PBE
+      &END XC_FUNCTIONAL
+      &VDW_POTENTIAL
+        POTENTIAL_TYPE PAIR_POTENTIAL
+        &PAIR_POTENTIAL
+          TYPE DFTD3
+          D3_EXCLUDE_KIND_PAIR 1 1
+          D3_EXCLUDE_KIND_PAIR 1 2
+          D3_EXCLUDE_KIND_PAIR 1 3
+          D3_EXCLUDE_KIND_PAIR 1 4
+          R_CUTOFF 10.0
+          REFERENCE_FUNCTIONAL revPBE0
+          PARAMETER_FILE_NAME  dftd3.dat
+        &END PAIR_POTENTIAL
+      &END VDW_POTENTIAL
+    &END XC
+  &END DFT
+
+  &SUBSYS
+    &CELL
+      A 17.20   0.     0.
+      B  0.    17.20   0.
+      C  0.     0.    17.20
+    &END CELL
+    &TOPOLOGY
+      COORD_FILE_FORMAT XYZ
+      COORD_FILE_NAME ${SYSNAME}.xyz
+    &END TOPOLOGY
+
+    # --- DEFINIZIONE DELLE VARIABILI COLLETTIVE (CV) ---
+    &COLVAR
+      &DISTANCE
+         ATOMS 7 438
+      &END DISTANCE
+    &END COLVAR
+
+    &COLVAR
+      &DISTANCE
+         ATOMS 7 2
+      &END DISTANCE
+    &END COLVAR
+    # ---------------------------------------------------
+
+    &KIND H
+      BASIS_SET          DZVP-MOLOPT-SR-GTH-q1
+      POTENTIAL          GTH-PBE-q1
+    &END KIND
+    &KIND O
+      BASIS_SET          DZVP-MOLOPT-SR-GTH-q6
+      POTENTIAL          GTH-PBE-q6
+    &END KIND
+    &KIND P
+      BASIS_SET          DZVP-MOLOPT-SR-GTH-q5
+      POTENTIAL          GTH-PBE-q5
+    &END KIND
+    &KIND Mg
+      BASIS_SET          DZVP-MOLOPT-SR-GTH-q10
+      POTENTIAL          GTH-PBE-q10
+    &END KIND
+  &END SUBSYS
+&END FORCE_EVAL
+
+&MOTION
+   &MD
+      ENSEMBLE NVT
+      STEPS 100000
+      TIMESTEP 0.5
+      TEMPERATURE 298.15
+      &THERMOSTAT
+         TYPE CSVR
+         &CSVR
+            TIMECON 100.0
+         &END CSVR
+      &END THERMOSTAT
+   &END MD
+
+   # --- SEZIONE GUIDA PER LE RESTRIZIONI MOBILI (STEERED MD) ---
+   &CONSTRAINT
+      &COLLECTIVE
+         COLVAR 1                               # Approaching nucleophile
+         INTERMOLECULAR
+         TARGET [angstrom] 3.5
+         TARGET_GROWTH [angstrom*fs^-1] -0.000038
+         TARGET_LIMIT [angstrom] 1.6
+         &RESTRAINT
+            K [kcalmol*angstrom^-2] 200.0       
+         &END RESTRAINT
+      &END COLLECTIVE
+
+      &COLLECTIVE
+         COLVAR 2                               # Leaving group bond cleavage
+         INTERMOLECULAR
+         TARGET [angstrom] 1.65
+         TARGET_GROWTH [angstrom*fs^-1] 0.000027
+         TARGET_LIMIT [angstrom] 3.0
+         &RESTRAINT
+            K [kcalmol*angstrom^-2] 200.0      
+         &END RESTRAINT
+      &END COLLECTIVE
+   &END CONSTRAINT
+   # -------------------------------------------------------------
+
+   &PRINT
+      &TRAJECTORY
+         FILENAME =${SYSNAME}-Trajectory.xyz
+         &EACH
+            MD 50
+         &END EACH
+      &END TRAJECTORY
+      &VELOCITIES OFF
+      &END VELOCITIES
+      &FORCES
+         FILENAME =${SYSNAME}-Forces.for
+         &EACH
+            MD 50
+         &END EACH
+      &END FORCES
+      &RESTART
+         FILENAME =${SYSNAME}.restart
+         BACKUP_COPIES 1
+         &EACH
+            MD 50
+         &END EACH
+      &END RESTART
+      &RESTART_HISTORY OFF
+      &END RESTART_HISTORY
+   &END PRINT
+&END MOTION

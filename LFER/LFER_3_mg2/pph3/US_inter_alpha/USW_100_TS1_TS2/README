@@ -1,0 +1,11 @@
+--- USW_100_TS1_TS2 (US_inter_alpha) ---
+
+Umbrella-sampling window set for the alpha isomer's TS1<->TS2 interconversion (see
+../README for the full build log). Restrains 'cobh' at 100 evenly spaced values (kappa=300
+kcal/mol) while pinning 'dD' at 0 (kappa=400) via a static 'uw_dD' restraint, seeded from
+'SMD_inter_alpha/TS1_TS2/repN/lmp_files/' (built and run on Vives, not mirrored into this
+MN5 copy). Each replica (rep1/2/3) holds 100 numbered window subfolders (own LAMMPS run,
+'plumed_USW_NNN.dat', 'colvar_multi_NNN.dat', 'COLVAR/CVN[_thin]' output) plus a 'WHAM/'
+folder (input.txt + job_wham.sh; no WHAM output found yet as of this review).
+
+Note: this README documents pre-existing content; no existing file was modified.

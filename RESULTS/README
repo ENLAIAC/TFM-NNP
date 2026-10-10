@@ -1,0 +1,64 @@
+--- REPO NOTE (not part of the cluster README below) ---
+
+Synced from MareNostrum 5, /gpfs/scratch/uv36/adrian/deepmd-training/RESULTS, on
+10/10/2026. This is pure post-processing: no MD and no DFT is run here.
+
+Scope of what was committed: everything, including all 814 per-grid-point speciation
+diagrams (about 137 MB). They are genuinely distinct files, one pair per concentration
+grid point, not duplicates -- the complete 20x20 grid is here rather than a sample. The
+scientific summary of the whole grid is in 'speciation/speciation_grid_analysis.txt' if
+you want the conclusions without opening 814 figures.
+
+One artefact of the deduplication used across this sync: the eight
+'concentrations_vs_pH_<Mg>_<PP>.dat' files now sit at this top level rather than inside
+their grid-point folders. Each of them was byte-identical in two places on the cluster --
+once under 'speciation/<MMMM_PPPP>/' where it was produced and once under
+'energies/<MMMM_PPPP>/' where it was copied as input -- so it is committed once at the
+directory covering both. On the cluster they exist in both places.
+
+Read 'speciation/README' first, then 'energies/README'. The second one records the trap
+that matters most here: the 'energies/' subfolders belong to two incompatible generations
+of the same calculation and the folder names do not say which.
+
+----------------------------------------------------------------------
+Cluster README follows:
+----------------------------------------------------------------------
+
+=====================================
+FOLDER: RESULTS
+SYSTEM: MareNostrum 5 — glogin2
+CREATED: 06/08/2026
+UPDATED: 01/10/2026
+PURPOSE: Thermodynamic/kinetic modelling of the Mg(II)-pyrophosphate system as a
+         function of pH. Pure post-processing: no MD and no DFT is run here.
+=====================================
+
+06/08/2026
+
+o Analysis outputs derived from the project's speciation and thermodynamic
+  modelling, separate from the MD/DFT pipelines elsewhere in this tree.
+
+01/10/2026
+
+o Expanded this file to cover both subfolders, since 'energies/' was previously
+  undocumented. The two form a pipeline and should be read in order.
+
+o 'speciation/' solves the equilibrium speciation of the eleven-species
+  Mg(II)/pyrophosphate system over pH, on a 20x20 grid of total Mg and total PP
+  concentrations, 400 runs. It answers which species are present at which pH.
+  See 'speciation/README', which is detailed and includes the grid-wide analysis.
+
+o 'energies/' takes a speciation curve from the above, combines it with a
+  hand-entered table of per-species activation barriers, and returns a
+  Boltzmann-weighted effective barrier and Eyring rate constant versus pH, with
+  and without magnesium, including a comparison against Wolfenden's experimental
+  data. See 'energies/README'. That README also records the one thing that will
+  mislead a reader otherwise: the subfolders there belong to two incompatible
+  generations of the calculation, and the top-level script is not the one that
+  produced the newer ones.
+
+o 'bulk.sh' is the driver that built the speciation grid. It loops total Mg and
+  total PP from 5 to 100 mM in 5 mM steps, creates each 'MMMM_PPPP' folder, uses
+  'sed' to substitute the two concentrations into a frozen copy of
+  'speciation/speciation.py', and runs it there. Note it only generates the
+  speciation side; the 'energies/' runs were launched by hand.
