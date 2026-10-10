@@ -1,42 +1,70 @@
---- OVERVIEW: Training_2Mgcomplex ---
+=====================================
+FOLDER: Training_2Mgcomplex
+SYSTEM: MareNostrum 5 — glogin1 (scratch)
+CREATED: unknown (filesystem metadata suggests activity since at least 27/05/2026)
+UPDATED: 06/08/2026
+PURPOSE: ArcaNN active-learning working directory for the bimagnesium pyrophosphate
+         complex NNP (ppimg2-TS/-hydrolysis/-prod/-react), iterations 000-006:
+         exploration, labeling, training, test, NNP committee selection and
+         validation against DFT references.
+=====================================
 
-New content synced from MareNostrum 5 (account upg826249, /gpfs/scratch/uv36/elia/Training_2Mgcomplex),
-on 05/07/2026. This is the ArcaNN active-learning working directory for the bimagnesium
-complex NNP (systems ppimg2-TS/-hydrolysis/-prod/-react), now at iterations 000-006. Only the
-model-deviation monitoring plots, the NNP-validation plots, and a curated set of the analysis
-scripts that produced them were copied locally (the raw per-iteration exploration/labeling/
-training/test data, the NNP_select/ committee models and the full data/ initial-configuration
-library remain on the cluster only, as they amount to hundreds of GB and per-job binary output
-that does not belong in a git repository).
+05/07/2026
 
---- 005-exploration/ ---
+o Read-only tour of this folder (via Claude Code, on Elia's request) to check for new
+  data since the last GitHub sync of TFM-NNP (previous sync: 08/06/2026). No existing
+  file was modified.
 
-Model-deviation plots for iteration 005, one per sub-system, tracking the maximum force
-deviation across the NNP committee during LAMMPS/PLUMED exploration:
-o max_model_deviation_ppimg2-TS_005.png
-o max_model_deviation_ppimg2-hydrolysis_005.png
-o max_model_deviation_ppimg2-prod_005.png
-o max_model_deviation_ppimg2-react_005.png
+o Found new content since 08/06/2026: iteration 005 model-deviation plots
+  ('max_model_deviation_ppimg2-*_005.png'), a large 'validation_set/' tree comparing
+  NNP predictions against DFT references across the pp/pph/pph3/pph4/pphh/ppimg2/ppmg
+  system variants, and 'NNP_select/Adrian_TS1/' with per-NNP umbrella-sampling/WHAM
+  analysis.
 
---- validation_set/ ---
+o Copied to the local machine (~/TFM-NNP/Training_2Mgcomplex/ on the GitHub repo):
+  all 42 validation/model-deviation PNG plots, plus a de-duplicated set of the
+  analysis scripts that produced them ('max_model_deviation.py', 'lammps_to_dcd.py',
+  'plot.py', 'rmse_dD_v2.py', 'rmse_per_atom_nrmse.py', 'submit_missing.py',
+  'trajectory_breaker.sh', 'npy_generator.sh', 'dptest_launch.sh', 'wham1D.py',
+  'errors_wham1D.py', 'job_wham.sh', 'generate_US_window.py', and the
+  'job_deepmd_dptest_cpu_alogin1.sh' SLURM template). The raw per-iteration
+  exploration/labeling/training/test data, the 'data/' initial-configuration
+  library, and the trained 'graph_*.pb' NNP committee models were left on the
+  cluster only (too large / not appropriate for a git repository).
 
-NNP validation plots comparing DFT-labeled reference energies/forces against NNP predictions,
-organized by system and by validation run. Subfolder-naming convention:
-o plot_all*/: aggregated RMSE-forces plot across all systems for a given NNP generation
-  (plot_all/, plot_all_006_pph4/, plot_all_mg2/ -> each contains rmse_forces.png).
-o <system>/<run>/: per-system validation plots, where <system> is one of pp, pph, pph3,
-  pph3_bis, pph4, pph4_bis, pph_lp, pphh, ppimg2, ppmg (naming variants of the
-  pyrophosphate/Mg-complex protonation and coordination states), and <run> is one of
-  04_dptest(_2/_3) (DeePMD dptest runs), 005-plot / 005_plot_006_pph4 / 05_plot_mg2
-  (plotting passes at different NNP generations). Each run folder contains a <system>.png
-  (and, where available, a <system>_per_atom.png) energy/force parity or error plot.
-See validation_set's own content for the full per-run plot set; the naming reflects the
-exact folder names used on the cluster to keep provenance traceable.
+o Pushed to GitHub (ENLAIAC/TFM-NNP, commit 464bb5f) together with the equivalent
+  sync from the supervisor's account (see Train_PPiMg2 folder on uv169161).
 
---- scripts/ ---
+06/08/2026
 
-Curated analysis scripts (deduplicated from many near-identical per-replica copies on the
-cluster) — see scripts/README for what each one does.
+o Read-only inspection of 'user_files' to collect the wall settings of the reaction
+  CVs, for a comparison table against the pph3 and pph4 systems in the 'training'
+  folder. No file was modified. I noticed a stale vim swap file
+  '.plumed_ppimg2-TS.dat.swp' sitting in 'user_files', so that input may still be
+  open in an editor somewhere; I left it alone.
 
-Note: this README was written on 05/07/2026 to summarize newly-synced content; no existing
-local file was modified to produce it.
+o The CV names here differ from the ones used for pph3/pph4. The nucleophile
+  coordination is 'coh' instead of 'cowh', the leaving group oxygens coordination is
+  'colvp' instead of 'cobh', 'coelp' keeps its name, and the two distances are
+  'delp_ob' (bridging O-P, the old 'dobp') and 'dnuc_elp' (nucleophile-P, the old
+  'dowp'). Units are LENGTH=A and ENERGY=kcal/mol as in the other folder.
+
+o Walls I extracted, lower/upper. For ppimg2-TS: coh 0.8/2.1, colvp -/1.1,
+  coelp -/0.3, delp_ob -/3.2, dnuc_elp -/3.2. For ppimg2-hydrolysis the same
+  coordination walls but the two distances open to -/3.5. In ppimg2-prod the
+  nucleophile upper wall relaxes to 2.2 and 'delp_ob' switches sense, becoming a
+  lower wall at 3.2 since the bond is already broken; 'dnuc_elp' carries no wall
+  there. In ppimg2-react there is no 'coh' and no 'dnuc_elp' at all, colvp and
+  coelp share an upper wall at 1.1, and the bridging distance is restrained from
+  above at 1.7 under the name 'dob_elp'.
+
+o The individual lower walls on 'colvp' and 'coelp' are absent in this system.
+  Deprotonation is instead controlled collectively, through 'lw_1' acting on
+  'copyro_tot' (the sum coelp+coh+colvp) at 1.8.
+
+o The contrast with pph3/pph4 is large and expected: here coelp is capped at 0.3 and
+  colvp at 1.1, against 2.1-2.2 and 3.1-3.2 in the protonated systems, because the
+  pyrophosphate is fully deprotonated and its oxygens are coordinated to the two
+  Mg rather than carrying protons. Consistently, the Mg are held close by
+  'uw_dist' (all P-Mg distances below 3.5 A), the opposite of the pph3/pph4 setup
+  where they are pushed beyond 6.5 A.

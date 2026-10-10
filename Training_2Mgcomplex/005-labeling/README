@@ -1,0 +1,33 @@
+=====================================
+FOLDER: 005-labeling
+SYSTEM: MareNostrum 5 — glogin1
+CREATED: 12/06/2026
+UPDATED: 12/06/2026
+PURPOSE: CP2K DFT labeling of 385 candidate structures selected from
+         ArcaNN iteration 005 exploration for all 4 molecular systems.
+=====================================
+
+12/06/2026
+
+o Folder initialized by running 'arcann_training labeling prepare' from glogin1. The
+  parameter list file 'job-array-params_CP2K_label_cpu_glogin1.lst' was generated with
+  385 entries covering 4 systems: ppimg2-hydrolysis (175), ppimg2-TS (207),
+  ppimg2-prod (2) and ppimg2-react (1). Each calculation uses 1 node, 10 MPI ranks
+  and a two-step SCF scheme (0.5 h + 0.5 h walltime).
+
+o CP2K jobs submitted as SLURM job arrays on the gpp partition (qos gp_resa). The
+  hydrolysis (175), prod (2) and react (1) systems and the first 151 TS structures
+  (tasks 0-150) were launched manually. The remaining 56 TS tasks (151-206) were
+  submitted as job 41679731 once sufficient queue capacity was available, using
+  'sbatch --array=151-206%300 job-array_CP2K_label_cpu_glogin1_0.sh'.
+
+o All 385 CP2K calculations completed successfully: 350 output files for
+  ppimg2-hydrolysis, 4 for ppimg2-prod, 2 for ppimg2-react and 414 for ppimg2-TS
+  (2 output files per structure). Zero skipped or unconverged structures.
+
+o Ran 'arcann_training labeling check': all 4 systems passed without errors.
+  'is_checked' flag confirmed in 'control/labeling_005.json'.
+
+o Ran 'arcann_training labeling extract': DFT energies, forces and virial tensors
+  extracted for all 385 structures and written to the training dataset. 'is_extracted'
+  flag confirmed. Clean phase skipped as planned.
