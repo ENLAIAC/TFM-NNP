@@ -61,3 +61,11 @@ plt_env/
 
 # Backup files
 *.bak
+# Dated backup/retired variants used on the cluster (README.bak_20261007,
+# copy_LFER_3_mg2.sh.retired_20261002, ...). '*.bak' does NOT match these.
+*.bak_*
+*.retired_*
+# Parked merge variants from the 02/10/2026 LFER consolidation
+*.from_lfer_*
+*.from_train_*
+*.from_nested_*
