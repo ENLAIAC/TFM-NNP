@@ -126,17 +126,57 @@ TFM-NNP/
 │   ├── validation_set/      NNP-vs-DFT validation plots, per system and per validation run
 │   └── scripts/             Model-deviation, validation (RMSE/NRMSE), WHAM/US analysis scripts
 │
-└── Train_PPiMg2_LFER/       pph4 free-energy (LFER) and NNP-selection analysis (synced 05/07/2026)
-    ├── LFER_3_mg2/pph4/     FES_2D and umbrella-sampling PMF plots along the reaction path
-    ├── NNP_LFER_choice/     PMF comparison across 3 candidate NNP committees
-    └── scripts/             FES/PMF/WHAM analysis scripts
+├── LFER/                    Free-energy (LFER) study across the protonation / Mg series
+│   ├── LFER_3_mg2/pph4/     H4P2O7 — FES_2D and umbrella-sampling PMF plots
+│   ├── LFER_3_mg2/pph3/     H3P2O7(-) — alpha and beta isomers
+│   ├── LFER_3_mg2/ppimg2/   2Mg(2+)[P2O7](4-) — the bimagnesium complex
+│   ├── NNP_LFER_choice/     PMF comparison across 3 candidate NNP committees
+│   └── scripts/             FES/PMF/WHAM analysis scripts
+│
+├── RESULTS/                 pH speciation and the effective-barrier model (no MD/DFT)
+│   ├── speciation/          400-run 20x20 grid of Mg(II)/pyrophosphate equilibrium vs pH
+│   └── energies/            Boltzmann-weighted effective dG and Eyring rate vs pH
+│
+├── Train_PPiMg2/            ArcaNN training area for ppimg2
+│   ├── Simulations/         Reference production MD and OPES TS exploration
+│   └── initial_dataset/     Generation of the pre-iteration-0 training set
+│
+├── cp2k_MD/                 Reference CP2K DFT-MD on PPiMg2, predating the NNP work
+│
+├── pph3/                    ArcaNN CP2K labeling batch for the pph3 training set
+│                            (unrelated to LFER/LFER_3_mg2/pph3/ despite the name)
+│
+└── docs/
+    ├── STRUCTURE_OVERVIEW.md  Map of the whole MN5 partition, with absolute paths
+    └── MN5_partition_README   The partition's own root README, verbatim
 ```
 
-`Training_2Mgcomplex/` and `Train_PPiMg2_LFER/` were synced from MareNostrum 5 on 05/07/2026
-(own account upg826249, and supervisor's reserved area on uv169161, respectively) — see each
-folder's own README for details and provenance. Only plots and analysis scripts were copied;
-the raw per-iteration exploration/labeling/training data and the trained `graph_*.pb` NNP
-models remain on the cluster only.
+### Provenance and what is *not* here
+
+`LFER/`, `RESULTS/`, `Train_PPiMg2/`, `cp2k_MD/` and `pph3/` are synced from the supervisor's
+reserved area on MareNostrum 5 (`uv169161`, `/gpfs/scratch/uv36/adrian/deepmd-training`);
+`Training_2Mgcomplex/` comes from Elia's own account (`upg826249`,
+`/gpfs/scratch/uv36/elia/Training_2Mgcomplex`). Last sync 10/10/2026 — see each folder's own
+README for details, and [docs/STRUCTURE_OVERVIEW.md](docs/STRUCTURE_OVERVIEW.md) for the full
+map of the partition.
+
+Only plots, analysis scripts, summary tables and documentation are committed. Left on the
+cluster: the umbrella-sampling and SMD trajectories, `COLVAR`/`KERNELS` files, per-window
+LAMMPS starting configurations, the trained `graph_*.pb` NNP models, the raw per-iteration
+ArcaNN exploration/labeling data and the per-job SLURM dumps. The LFER tree alone is 884 GB
+on the cluster against 71 MB here.
+
+**Deduplication.** The cluster replicates the same job script into every umbrella window, so
+its curated LFER set is 8575 files but only 710 distinct. Each distinct file is committed
+once, at the shallowest directory covering all the places it appeared on the cluster
+(`job_lammps-deepmd.sh` alone existed in 4849 identical copies). Grouping is by MD5, and the
+placement rule is checked so that no two distinct files collapse onto one path. If a script
+sits one level higher here than you expect, that is why.
+
+**Path change, 10/10/2026.** `Train_PPiMg2_LFER/` was renamed to `LFER/`. On the cluster the
+two duplicate copies of the study were merged into a single tree under `LFER/` on 02/10 and
+07/10/2026, and `Train_PPiMg2/LFER_3_mg2` and `Train_PPiMg2/NNP_LFER_choice` are now only
+symlinks pointing there. Repo paths again correspond one-to-one with cluster paths.
 
 ---
 
