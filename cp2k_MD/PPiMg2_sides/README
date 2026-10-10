@@ -1,0 +1,11 @@
+--- PPiMg2_sides (cp2k_MD) ---
+
+CP2K NVT MD run (revPBE-D3/DZVP-MOLOPT-SR-GTH, CUTOFF 400/REL_CUTOFF 50, see
+'PPiMg2_sides.inp') from the 'sides' starting geometry (../configuration/PPi2Mg_sides.xyz).
+Numbered '.restart' snapshots every 500 steps up to at least step 4500, plus the running
+'-MD.restart' (+ 3 backup generations '.bak-1/2/3'), trajectory ('-Trajectory.xyz'), energy
+log ('-Energy.en'), motion log ('-Motion.log'), wavefunction restart ('-RESTART.wfn' + 3
+backups) and job output/log files ('PPiMg2_sides.out', two numbered SLURM job IDs). An
+'energy_graph' file plots the energy log.
+
+Note: this README documents pre-existing content; no existing file was modified.

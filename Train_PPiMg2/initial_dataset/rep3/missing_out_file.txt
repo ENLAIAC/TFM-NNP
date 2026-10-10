@@ -1,0 +1,1 @@
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/rep3/logs

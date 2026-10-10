@@ -1,0 +1,32 @@
+=====================================
+FOLDER: initial
+SYSTEM: MareNostrum 5 — glogin2
+CREATED: 24/05/2026
+UPDATED: 24/05/2026
+PURPOSE: Initial NVT steered MD run (CP2K/revPBE-D3) of the PPiMg2 system
+         driving nucleophilic attack and leaving-group cleavage simultaneously.
+=====================================
+
+24/05/2026
+
+o Folder initialized with the CP2K input file 'PPiMg2-SMD.inp', the starting
+  coordinate file 'PPiMg2-SMD.xyz' (518 atoms, 17.20 Å cubic cell), and the
+  job submission script 'job_CP2K_submission.sh'.
+
+o The run is an NVT MD (CSVR thermostat, 298.15 K, 0.5 fs timestep, 100000 steps)
+  with two simultaneous collective-variable restraints: COLVAR 1 drives atoms 7-438
+  closer (nucleophile approaching, growth -3.8e-5 Å/fs, target 1.6 Å) and COLVAR 2
+  opens the bond 7-2 (leaving group, growth +2.7e-5 Å/fs, target 3.0 Å). Both
+  restraints use K = 200 kcal/mol/Å². DFT level: revPBE-D3/DZVP-MOLOPT-SR-GTH.
+
+o The first submission (job 41002976, 10 nodes / 1120 tasks) crashed immediately
+  at the first MD step with a SIGSEGV in the FFT routines (fft_tools.F /
+  pw_methods.F). Diagnosis: the number of MPI tasks (1120) exceeded the FFT
+  grid size in z (~210 planes for a 17.2 Å cell at 400 Ry cutoff), causing
+  CP2K's plane-wave distribution to assign zero planes to most ranks.
+
+o Fixed by reducing 'job_CP2K_submission.sh' to 1 node / 112 tasks
+  (--nodes 1, --ntasks 112). SCF_GUESS is kept as RESTART so that subsequent
+  steps reuse the wavefunction; on this first run it falls back silently to
+  an atomic guess since no 'PPiMg2-SMD-RESTART.wfn' exists yet. Job resubmitted
+  as 41006687 (PENDING at time of writing).

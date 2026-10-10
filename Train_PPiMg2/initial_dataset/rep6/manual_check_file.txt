@@ -1,0 +1,6 @@
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/rep6/00148
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/rep6/00159
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/rep6/00166
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/rep6/00171
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/rep6/00195
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/rep6/00199

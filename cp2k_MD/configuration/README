@@ -1,0 +1,8 @@
+--- configuration (cp2k_MD) ---
+
+Three starting-geometry .xyz files for the PPiMg2 system (each 29087 bytes -- likely
+byte-identical or near-identical coordinate sets, just named for which reaction-coordinate
+framing each was intended for): 'PPi2Mg.xyz' (base geometry), 'PPi2Mg_edges.xyz' /
+'PPi2Mg_sides.xyz' (variants feeding ../PPiMg2_edges.xyz and ../PPiMg2_sides/, respectively).
+
+Note: this README documents pre-existing content; no existing file was modified.

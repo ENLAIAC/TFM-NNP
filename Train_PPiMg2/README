@@ -1,0 +1,46 @@
+--- OVERVIEW: Train_PPiMg2 ---
+
+Synced from MareNostrum 5, /gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2, on
+10/10/2026. This is the ArcaNN training area for the ppimg2 (2Mg(2+)[P2O7](4-)) system.
+
+IMPORTANT -- WHY THE LFER FOLDERS ARE NOT HERE
+
+On the cluster this directory also appears to contain 'LFER_3_mg2/' and
+'NNP_LFER_choice/', but both are SYMLINKS into ../LFER/, not directories. The duplicate
+copies that used to sit here were merged into the single trees under LFER/ on 02/10 and
+07/10/2026 and then deleted (884 GB and 121 GB recovered). In this repo that content
+lives under 'LFER/' only, so it is not duplicated here either. See docs/STRUCTURE_OVERVIEW.md
+section 3.1, and LFER/README.
+
+The symlinks are kept on the cluster because 159 scripts hardcode the old
+'Train_PPiMg2/LFER_3_mg2' path and 1830 hardcode 'Train_PPiMg2/NNP_LFER_choice', almost
+all of them to reach the NNP graph files. Editing through either spelling edits the same
+file. The two rsync scripts that used to maintain the mirror are retired on the cluster
+('copy_LFER_3_mg2.sh.retired_20261002', 'verify_LFER_3_mg2.sh.retired_20261002') and must
+not be run: with the symlink in place their source and destination resolve to the same
+directory.
+
+WHAT IS ACTUALLY HERE
+
+o Simulations/       NNP-driven MD of ppimg2 on the ArcaNN iteration-006 committee,
+                     separate from the PMF machinery. 'prod_MD/' is a single reference
+                     production run; 'TS_OPES/' is OPES exploration of the TS region.
+                     Read TS_OPES/README before using it: of the five replica folders,
+                     rep1 and rep2 are complete, rep3 is partial and rep4/rep5 are
+                     empty, so an analysis globbing 'rep*' averages over two. Those are
+                     being kept deliberately, not cleaned.
+
+o initial_dataset/   generation of the pre-iteration-0 DeePMD training set: CP2K AIMD,
+                     frame extraction, CP2K labeling, conversion to DeePMD format. Two
+                     generations -- the top-level repN were extracted with VMD, which
+                     truncated coordinate decimals and distorted structures (CP2K "atom
+                     closer than 0.5 A"), so rep3-rep8 were discarded; 'new_rep/' is the
+                     script-based re-extraction and is the live data. See its 'README.md'
+                     for the layout and 'README.txt' for the author's own notes and the
+                     per-replica configuration counts.
+
+Only scripts, summary tables and READMEs are kept here. The per-frame 'Energy_000NN.txt'
+extractions (about 3400 files) and the raw CP2K per-configuration job dirs stay on the
+cluster, following the same curation rule as arcann_workflow/ -- see that folder's README.
+The DeePMD-format dataset itself ('new_rep/init_mg2ppi-initial/', .raw plus set.000/*.npy)
+is also cluster-only; .npy is gitignored.

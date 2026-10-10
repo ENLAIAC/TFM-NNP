@@ -1,0 +1,16 @@
+--- OVERVIEW: CP2K_opt_SMD ---
+
+CP2K steered-MD run driving the PPiMg2 reaction directly (see initial/README for the detailed
+session log: NVT MD, CSVR thermostat 298.15 K, two simultaneous COLVAR restraints pulling the
+nucleophile in and the leaving group out, revPBE-D3/DZVP-MOLOPT-SR-GTH). Root-level files
+('PPiMg2-MD-SMD.*', 'PPiMg2-MD-RESTART.wfn*', 'PPiMg2-MD-1.ener', 'JOB-41000630') are this
+same run's live output, continuing past what initial/README's session log covered.
+
+--- initial/ ---
+Already documented -- see initial/README (dated, chronological session log; not touched
+here).
+
+--- safe/ ---
+Backup copies of two CP2K stdout logs from an earlier point in this run -- see safe/README.
+
+Note: this README documents pre-existing content; no existing file was modified.

@@ -1,0 +1,11 @@
+--- OVERVIEW: Simulations ---
+
+General-purpose NNP-driven MD runs of the ppimg2 (bimagnesium pyrophosphate complex) system,
+using the ArcaNN iteration-006 committee, separate from the pph3/pph4 LFER/PMF machinery in
+../LFER_3_mg2/ and ../NNP_LFER_choice/.
+
+o TS_OPES/    OPES metadynamics exploring the transition-state region (5 replicas) —
+              see its README.
+o prod_MD/    single reference production MD run — see its README.
+
+Note: this README documents pre-existing content; no existing file was modified.

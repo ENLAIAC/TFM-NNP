@@ -1,0 +1,9 @@
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/rep12/00047
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/rep12/00058
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/rep12/00069
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/rep12/00087
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/rep12/00109
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/rep12/00111
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/rep12/00114
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/rep12/00168
+/gpfs/scratch/uv36/adrian/deepmd-training/Train_PPiMg2/rep12/00170

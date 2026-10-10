@@ -1,0 +1,11 @@
+--- prod_MD ---
+
+Single production MD run of the ppimg2 complex using the ArcaNN iteration-006 NNP committee
+('graph_1/2/3_006_compressed.pb'), driven by 'ppimg2-prod.lmp'/'.in' with PLUMED monitoring
+via 'plumed_ppimg2-prod.dat' ('COLVAR', 'Coord.info', 'Coord_Mg.info', 'Mg_dist.log').
+'trajectory_prod.lammpstrj' is the resulting production trajectory, and 'model_devi.out'
+tracks the NNP-committee deviation for quality control. No replicas — this single run is the
+reference production dynamics for this system, distinct from the enhanced-sampling
+(OPES/SMD/US) runs elsewhere in this folder tree.
+
+Note: this README documents pre-existing content; no existing file was modified.

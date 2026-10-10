@@ -1,0 +1,6 @@
+--- safe (CP2K_opt_SMD) ---
+
+Backup copies of 'PPiMg2-MD-SMD.out' and 'PPiMg2-MD.out' (CP2K stdout logs) taken at an
+earlier point of the run in ../, kept for reference/rollback.
+
+Note: this README documents pre-existing content; no existing file was modified.
